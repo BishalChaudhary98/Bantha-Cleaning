@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Cleaning</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="generalcleaning.css">
+    <link rel="icon" type="image/png" href="logontp.png">
+    <link rel="shortcut icon" type="image/png" href="logontp.png">
+    <link rel="apple-touch-icon" href="logontp.png">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-section">
+                <a href="index.html">
+                    <img src="logo.png" alt="Company Logo" class="logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                </a>
+                <div style="display:none; font-weight:bold; font-size:1.2rem; color:#333;">LOGO</div>
+            </div>
+
+            <!-- Opening Hours -->
+            <div class="opening-hours">
+                <h3 id="hours-title">Opening Hours Today</h3>
+                <div class="current-hours">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="current-day"></span> - <span id="current-hours"></span>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </div>
+                
+                <div class="nav-item">
+                    <a href="#" class="nav-link services-toggle">
+                        Services
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown">
+                        <a href="generalcleaning.html">General Cleaning</a>
+                        <a href="deepcleaning.html">Deep Cleaning</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </nav>
+
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">General Cleaning</h1>
+            <p class="hero-description">
+                Reliable and routine cleaning services focused on maintaining cleanliness and comfort in your home, covering essential areas to keep your space neat, tidy, and welcoming every day.
+            </p>
+        </div>
+    </section>
+
+    <!-- Cleaning Information and Pricing Section -->
+    <section class="cleaning-info-section">
+        <div class="info-container">
+            <h2 class="section-title">House Cleaning with a Price You'll Love</h2>
+            
+            <!-- Information Content -->
+            <div class="info-content">
+                <p>
+                    At <strong>Bantha Cleaning</strong>, our general and house cleaning services are designed to maintain a clean, comfortable, and welcoming space for your everyday life. Whether it's regular upkeep or a scheduled visit, our experienced team delivers reliable results using eco-friendly, pet-safe products. Choose from daily, weekly, fortnightly, or monthly cleaning options to match your lifestyle and preferences.
+                </p>
+                <p>
+                    Our general cleaning covers essential tasks like dusting, vacuuming, mopping, kitchen and bathroom surface cleaning, and tidying up high-traffic areas. From regular home care to occasional refreshers, Bantha Cleaning offers flexible packages and affordable pricing to keep your home looking its best.
+                </p>
+                <p>
+                    We also provide commercial cleaning services to ensure your business environment remains clean, professional, and inviting. Trust our reliable, background-checked professionals for consistent, high-quality service you can depend on.
+                </p>
+            </div>
+            
+            <!-- Pricing Section -->
+            <div class="pricing-section">
+                <h3 class="pricing-title">Pricing Details</h3>
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Duration</th>
+                            <th>Weekly Contract</th>
+                            <th>Monthly Contract</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Less than 3 hours</td>
+                            <td>£60 per visit</td>
+                            <td>£80 per visit</td>
+                        </tr>
+                        <tr>
+                            <td>3 hours per visit</td>
+                            <td>£80 per visit</td>
+                            <td>£100 per visit</td>
+                        </tr>
+                        <tr>
+                            <td>4 hours per visit</td>
+                            <td>£100 per visit</td>
+                            <td>£120 per visit</td>
+                        </tr>
+                        <tr>
+                            <td>5 hours per visit</td>
+                            <td>£120 per visit</td>
+                            <td>£130 per visit</td>
+                        </tr>
+                        <tr>
+                            <td>6+ hours per visit</td>
+                            <td>£24/hour</td>
+                            <td>£25/hour</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="pricing-note">*Price is negotiable.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer-section">
+        <div class="footer-container">
+            <!-- Column 1: Menu -->
+            <div class="footer-column">
+                <h3>Menu</h3>
+                <div class="menu-item">
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="menu-item">
+                    <a href="javascript:void(0);" onclick="showHideMenu()">Service</a>
+                    <div class="service-submenu" id="submenu">
+                        <div class="submenu-item">
+                            <a href="generalcleaning.html">General Cleaning</a>
+                        </div>
+                        <div class="submenu-item">
+                            <a href="deepcleaning.html">Deep Cleaning</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            
+            <!-- Column 2: Follow Us -->
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61578910409312" class="social-link">
+                        <span class="social-icon">📘</span>
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/banthacleaning/" class="social-link">
+                        <span class="social-icon">📷</span>
+                        Instagram
+                    </a>
+                    <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="social-link">
+                        <span class="social-icon">💬</span>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Column 3: Contact Info -->
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:banthacleaningcompany.com">banthacleaningcompany.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">
+                        <a href="tel:+447825183734">+447825183734</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Website</div>
+                    <div class="contact-value">
+                        <a href="https://banthacleaning.com" target="_blank">banthacleaning.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Address</div>
+                    <div class="contact-value">Victoria Rd, Aldershot, UK</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright Section -->
+    <section class="copyright-section">
+        <div class="copyright-container">
+            <div class="copyright-text">
+                © 2025 Bantha Cleaning Ltd. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#privacy-policy">Privacy Policy</a>
+                <a href="#terms-of-service">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        function showHideMenu() {
+            var menu = document.getElementById('submenu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+            return false;
+        }
+    </script>
+    <script src="header.js"></script>
+</body>
+</html>
