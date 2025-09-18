@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Post</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-container {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .error-message {
+            background: #e74c3c;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Add New Post</h1>
+            <p>Share your cleaning tips with the world</p>
+        </div>
+
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                🎉 Post created successfully! Redirecting...
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                ❌ Please fill in all fields.
+            </div>
+
+            <form id="postForm">
+                <div class="form-group">
+                    <label for="title">Post Title *</label>
+                    <input type="text" id="title" required placeholder="Enter your post title">
+                </div>
+
+                <div class="form-group">
+                    <label for="excerpt">Short Description *</label>
+                    <textarea id="excerpt" required placeholder="Brief description (2-3 sentences)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Full Content *</label>
+                    <textarea id="content" required placeholder="Write your full article here..." style="min-height: 200px;"></textarea>
+                </div>
+
+                <!-- GitHub Image Section -->
+                <div class="form-group">
+                    <label for="githubRepo">Your GitHub Image Repository</label>
+                    <input type="url" id="githubRepo" placeholder="https://raw.githubusercontent.com/username/repo/main/" 
+                           style="margin-bottom: 0.5rem;">
+                    <small style="color: #64748b;">Enter your GitHub raw URL base (saves automatically)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="imageFiles">Image Filenames (one per line)</label>
+                    <textarea id="imageFiles" placeholder="image1.jpg
+image2.jpg
+image3.jpg" rows="4"></textarea>
+                    <small style="color: #64748b;">List your image filenames from GitHub repo</small>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" id="previewBtn" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">
+                        🔍 Preview Images
+                    </button>
+                </div>
+
+                <div id="imagePreview" style="display: none; margin-top: 1rem;">
+                    <h4>Image Preview:</h4>
+                    <div id="previewGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.5rem; margin-top: 0.5rem;"></div>
+                </div>
+
+                <!-- Optional single image URL (fallback) -->
+                <div class="form-group">
+                    <label for="image">Single Image URL (optional fallback)</label>
+                    <input type="url" id="image" placeholder="https://example.com/image.jpg">
+                    <small style="color: #64748b;">Use this if you don't have GitHub images</small>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">📝 Publish Post</button>
+                    <a href="blog.html" class="btn btn-secondary">← Back to Blog</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // GitHub Images Handler
+        class GitHubImages {
+            constructor() {
+                this.setupGitHubFeatures();
+            }
+
+            setupGitHubFeatures() {
+                // Load saved GitHub repo URL
+                const savedRepo = localStorage.getItem('githubRepoUrl');
+                if (savedRepo) {
+                    document.getElementById('githubRepo').value = savedRepo;
+                }
+
+                // Save repo URL when changed
+                document.getElementById('githubRepo').addEventListener('blur', () => {
+                    const repoUrl = document.getElementById('githubRepo').value.trim();
+                    if (repoUrl) {
+                        localStorage.setItem('githubRepoUrl', repoUrl);
+                    }
+                });
+
+                // Preview images button
+                document.getElementById('previewBtn').addEventListener('click', () => {
+                    this.previewImages();
+                });
+            }
+
+            previewImages() {
+                const repoUrl = document.getElementById('githubRepo').value.trim();
+                const filenames = document.getElementById('imageFiles').value
+                    .split('\n')
+                    .map(name => name.trim())
+                    .filter(name => name.length > 0);
+
+                if (!repoUrl) {
+                    alert('Please enter your GitHub repository URL first');
+                    return;
+                }
+
+                if (filenames.length === 0) {
+                    alert('Please enter at least one image filename');
+                    return;
+                }
+
+                const previewContainer = document.getElementById('imagePreview');
+                const previewGrid = document.getElementById('previewGrid');
+                
+                previewContainer.style.display = 'block';
+                previewGrid.innerHTML = '';
+
+                filenames.forEach(filename => {
+                    const fullUrl = repoUrl + (repoUrl.endsWith('/') ? '' : '/') + filename;
+                    
+                    const imgContainer = document.createElement('div');
+                    imgContainer.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 5px; overflow: hidden; text-align: center; padding: 0.5rem;';
+                    
+                    imgContainer.innerHTML = `
+                        <img src="${fullUrl}" alt="${filename}" 
+                             style="width: 100%; height: 80px; object-fit: cover; border-radius: 3px;"
+                             onload="this.nextElementSibling.textContent = '✅'"
+                             onerror="this.nextElementSibling.textContent = '❌'; this.style.background = '#fee2e2';">
+                        <div style="font-size: 0.8rem; margin-top: 0.25rem;">🔄</div>
+                        <div style="font-size: 0.7rem; color: #64748b;">${filename}</div>
+                    `;
+                    
+                    previewGrid.appendChild(imgContainer);
+                });
+            }
+
+            getImageUrls() {
+                const repoUrl = document.getElementById('githubRepo').value.trim();
+                const filenames = document.getElementById('imageFiles').value
+                    .split('\n')
+                    .map(name => name.trim())
+                    .filter(name => name.length > 0);
+
+                if (!repoUrl || filenames.length === 0) {
+                    return [];
+                }
+
+                const baseUrl = repoUrl.endsWith('/') ? repoUrl : repoUrl + '/';
+                return filenames.map(filename => baseUrl + filename);
+            }
+        }
+
+        // Post Form Handler
+        class PostForm {
+            constructor() {
+                this.form = document.getElementById('postForm');
+                this.successMessage = document.getElementById('successMessage');
+                this.errorMessage = document.getElementById('errorMessage');
+                this.githubImages = new GitHubImages();
+                
+                this.form.addEventListener('submit', this.handleSubmit.bind(this));
+            }
+
+            handleSubmit(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const title = document.getElementById('title').value.trim();
+                const excerpt = document.getElementById('excerpt').value.trim();
+                const content = document.getElementById('content').value.trim();
+                const singleImage = document.getElementById('image').value.trim();
+                
+                // Get GitHub images
+                const imageUrls = this.githubImages.getImageUrls();
+                const mainImage = imageUrls[0] || singleImage || ''; // First GitHub image or fallback
+
+                // Validate
+                if (!title || !excerpt || !content) {
+                    this.showError('Please fill in all required fields.');
+                    return;
+                }
+
+                // Create post object
+                const post = {
+                    id: Date.now(),
+                    title: title,
+                    excerpt: excerpt,
+                    content: content,
+                    image: mainImage, // Main image for display
+                    images: imageUrls.length > 0 ? imageUrls : (singleImage ? [singleImage] : []), // All images array
+                    date: new Date().toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric' 
+                    })
+                };
+
+                // Save post
+                this.savePost(post);
+            }
+
+            savePost(post) {
+                try {
+                    // Get existing posts
+                    const existingPosts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
+                    
+                    // Add new post to beginning
+                    existingPosts.unshift(post);
+                    
+                    // Save back to localStorage
+                    localStorage.setItem('blogPosts', JSON.stringify(existingPosts));
+                    
+                    // Show success and redirect
+                    this.showSuccess();
+                    
+                    setTimeout(() => {
+                        window.location.href = 'blog.html';
+                    }, 2000);
+                    
+                } catch (error) {
+                    this.showError('Error saving post. Please try again.');
+                    console.error('Error:', error);
+                }
+            }
+
+            showSuccess() {
+                this.errorMessage.style.display = 'none';
+                this.successMessage.style.display = 'block';
+                this.form.style.opacity = '0.5';
+                this.form.style.pointerEvents = 'none';
+            }
+
+            showError(message) {
+                this.successMessage.style.display = 'none';
+                this.errorMessage.textContent = `❌ ${message}`;
+                this.errorMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    this.errorMessage.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            new PostForm();
+        });
+    </script>
+</body>
+</html>
