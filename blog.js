@@ -1,9 +1,9 @@
 
 // GitHub Configuration
 const GITHUB_CONFIG = {
-    owner: 'your-username',           // Replace with your GitHub username
-    repo: 'your-repo-name',          // Replace with your repository name
-    token: 'your-github-token',      // Replace with your personal access token
+    owner: 'BishalChaudhary98',           // Replace with your GitHub username
+    repo: 'Bantha-Cleaning',          // Replace with your repository name
+    token: prompt('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'),      // Replace with your personal access token
     branch: 'main'                   // or 'master' depending on your default branch
 };
 
@@ -277,3 +277,4 @@ setInterval(() => {
         blog.loadPosts();
     }
 }, 30000);
+
