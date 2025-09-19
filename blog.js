@@ -1,197 +1,279 @@
-// Store current post data for gallery navigation
-    let currentPost = null;
 
-    // Simple blog system
-    class SimpleBlog {
-        constructor() {
-            this.posts = this.loadPosts();
-            this.render();
-        }
+// GitHub Configuration
+const GITHUB_CONFIG = {
+    owner: 'your-username',           // Replace with your GitHub username
+    repo: 'your-repo-name',          // Replace with your repository name
+    token: 'your-github-token',      // Replace with your personal access token
+    branch: 'main'                   // or 'master' depending on your default branch
+};
 
-        // Load posts from localStorage
-        loadPosts() {
-            const saved = localStorage.getItem('blogPosts');
-            return saved ? JSON.parse(saved) : [];
-        }
+// GitHub API Helper
+class GitHubAPI {
+    constructor(config) {
+        this.config = config;
+        this.baseUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/contents`;
+    }
 
-        // Render all posts
-        render() {
-            const grid = document.getElementById('gridBlogPosts'); // ✅ FIXED: Updated ID
-            
-            if (this.posts.length === 0) {
-                grid.innerHTML = `
-                    <div class="state-empty"> <!-- ✅ FIXED: Updated class -->
-                        <h3>No posts yet</h3>
-                        <p>Click "Add New Post" to create your first blog post!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = this.posts.map(post => {
-                // Handle multiple images
-                let imageDisplay;
-                if (post.images && post.images.length > 1) {
-                    imageDisplay = `
-                        <img src="${post.images[0]}" alt="${post.title}">
-                        <div class="badge-image-count">📸 ${post.images.length}</div> <!-- ✅ FIXED: Updated class -->
-                    `;
-                } else {
-                    imageDisplay = post.image ? 
-                        `<img src="${post.image}" alt="${post.title}">` : 
-                        `<span>📝 ${post.title}</span>`;
+    async getFile(path) {
+        try {
+            const response = await fetch(`${this.baseUrl}/${path}`, {
+                headers: {
+                    'Authorization': `token ${this.config.token}`,
+                    'Accept': 'application/vnd.github.v3+json'
                 }
-
-                return `
-                    <div class="card-blog" onclick="showFullPost(${post.id})"> <!-- ✅ FIXED: Updated class -->
-                        <div class="image-blog"> <!-- ✅ FIXED: Updated class -->
-                            ${imageDisplay}
-                        </div>
-                        <div class="content-blog"> <!-- ✅ FIXED: Updated class -->
-                            <div class="date-blog">${post.date}</div> <!-- ✅ FIXED: Updated class -->
-                            <h3 class="title-blog">${post.title}</h3> <!-- ✅ FIXED: Updated class -->
-                            <p class="excerpt-blog">${post.excerpt}</p> <!-- ✅ FIXED: Updated class -->
-                            <span class="link-read-more">Read More →</span> <!-- ✅ FIXED: Updated class -->
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Refresh posts (for real-time updates)
-        refresh() {
-            this.posts = this.loadPosts();
-            this.render();
-        }
-    }
-
-    // Show full post in modal (FIXED VERSION)
-    function showFullPost(postId) {
-        const posts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
-        const post = posts.find(p => p.id === postId);
-        
-        if (!post) return;
-
-        // Store current post for gallery navigation
-        currentPost = post;
-
-        // Set modal content - ✅ FIXED: Updated IDs
-        document.getElementById('titleModal').textContent = post.title;
-        document.getElementById('dateModal').textContent = post.date;
-        
-        // FIXED: Better content formatting with proper paragraph breaks
-        let formattedContent = post.content;
-        
-        // First, normalize line endings
-        formattedContent = formattedContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-        
-        // Split content into paragraphs based on double line breaks
-        let paragraphs = formattedContent.split(/\n\s*\n/);
-        
-        // If no double line breaks found, split on single line breaks
-        if (paragraphs.length === 1) {
-            paragraphs = formattedContent.split('\n');
-        }
-        
-        // Format each paragraph
-        formattedContent = paragraphs
-            .map(paragraph => paragraph.trim())
-            .filter(paragraph => paragraph.length > 0)
-            .map(paragraph => {
-                // Handle single line breaks within paragraphs as <br>
-                const formattedParagraph = paragraph.replace(/\n/g, '<br>');
-                return `<p>${formattedParagraph}</p>`;
-            })
-            .join('');
-        
-        document.getElementById('contentModal').innerHTML = formattedContent; // ✅ FIXED: Updated ID
-
-        // Handle images
-        showImageGallery();
-
-        // Show modal - ✅ FIXED: Updated ID
-        document.getElementById('modalPost').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-
-    // Show image gallery (separated for reuse)
-    function showImageGallery() {
-        const modalImages = document.getElementById('sectionModalImages'); // ✅ FIXED: Updated ID
-        
-        if (currentPost.images && currentPost.images.length > 0) {
-            if (currentPost.images.length === 1) {
-                // Single image - full width
-                modalImages.innerHTML = `<img src="${currentPost.images[0]}" alt="${currentPost.title}">`;
-            } else {
-                // Multiple images - grid layout
-                modalImages.innerHTML = `
-                    <div class="grid-images-modal"> <!-- ✅ FIXED: Updated class -->
-                        ${currentPost.images.map(img => `<img src="${img}" alt="${currentPost.title}" onclick="showLargeImage('${img}')">`).join('')}
-                    </div>
-                `;
+            });
+            
+            if (response.status === 404) {
+                return null; // File doesn't exist
             }
-        } else if (currentPost.image) {
-            // Fallback single image
-            modalImages.innerHTML = `<img src="${currentPost.image}" alt="${currentPost.title}">`;
-        } else {
-            // No images
-            modalImages.innerHTML = `
-                <div style="height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
-                    📝 ${currentPost.title}
+            
+            const data = await response.json();
+            const content = atob(data.content); // Decode base64
+            return {
+                content: JSON.parse(content),
+                sha: data.sha
+            };
+        } catch (error) {
+            console.error('Error fetching file:', error);
+            return null;
+        }
+    }
+
+    async updateFile(path, content, sha = null) {
+        try {
+            const body = {
+                message: `Update ${path}`,
+                content: btoa(JSON.stringify(content, null, 2)), // Encode to base64
+                branch: this.config.branch
+            };
+
+            if (sha) {
+                body.sha = sha; // Required for updates
+            }
+
+            const response = await fetch(`${this.baseUrl}/${path}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${this.config.token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
+
+            return response.ok;
+        } catch (error) {
+            console.error('Error updating file:', error);
+            return false;
+        }
+    }
+}
+
+// GitHub Blog System
+class GitHubBlog {
+    constructor() {
+        this.api = new GitHubAPI(GITHUB_CONFIG);
+        this.posts = [];
+        this.loadPosts();
+    }
+
+    async loadPosts() {
+        try {
+            // Show loading state
+            const grid = document.getElementById('gridBlogPosts');
+            grid.innerHTML = `
+                <div style="text-align: center; padding: 4rem; color: #64748b;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🔄</div>
+                    <h3>Loading posts...</h3>
                 </div>
             `;
+
+            // Try to get posts index
+            const postsData = await this.api.getFile('posts/posts.json');
+            
+            if (postsData && postsData.content) {
+                this.posts = postsData.content;
+            } else {
+                this.posts = [];
+            }
+
+            this.render();
+        } catch (error) {
+            console.error('Error loading posts:', error);
+            this.showError('Failed to load posts. Please check your internet connection.');
         }
     }
 
-    // Show large image (FIXED - now goes back to gallery, not blog)
-    function showLargeImage(imageSrc) {
-        const modalImages = document.getElementById('sectionModalImages'); // ✅ FIXED: Updated ID
-        modalImages.innerHTML = `
-            <img src="${imageSrc}" alt="Large view">
-            <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer;" onclick="showImageGallery()">
-                ← Back to Gallery
+    render() {
+        const grid = document.getElementById('gridBlogPosts');
+        
+        if (this.posts.length === 0) {
+            grid.innerHTML = `
+                <div class="state-empty">
+                    <h3>No posts yet</h3>
+                    <p>Posts will appear here once they're published!</p>
+                </div>
+            `;
+            return;
+        }
+
+        // Sort posts by date (newest first)
+        const sortedPosts = [...this.posts].sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
+
+        grid.innerHTML = sortedPosts.map(post => {
+            let imageDisplay;
+            if (post.images && post.images.length > 1) {
+                imageDisplay = `
+                    <img src="${post.images[0]}" alt="${post.title}">
+                    <div class="badge-image-count">📸 ${post.images.length}</div>
+                `;
+            } else {
+                imageDisplay = post.image ? 
+                    `<img src="${post.image}" alt="${post.title}">` : 
+                    `<span>📝 ${post.title}</span>`;
+            }
+
+            return `
+                <div class="card-blog" onclick="showFullPost('${post.id}')">
+                    <div class="image-blog">
+                        ${imageDisplay}
+                    </div>
+                    <div class="content-blog">
+                        <div class="date-blog">${post.date}</div>
+                        <h3 class="title-blog">${post.title}</h3>
+                        <p class="excerpt-blog">${post.excerpt}</p>
+                        <span class="link-read-more">Read More →</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    showError(message) {
+        const grid = document.getElementById('gridBlogPosts');
+        grid.innerHTML = `
+            <div style="text-align: center; padding: 4rem; color: #e74c3c;">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">❌</div>
+                <h3>Error</h3>
+                <p>${message}</p>
+                <button onclick="blog.loadPosts()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Try Again
+                </button>
             </div>
         `;
     }
 
-    // Close modal
-    function closeModal() {
-        document.getElementById('modalPost').style.display = 'none'; // ✅ FIXED: Updated ID
-        document.body.style.overflow = 'auto';
-        currentPost = null; // Clear current post
+    getPost(postId) {
+        return this.posts.find(p => p.id === postId);
     }
+}
 
-    // Close modal when clicking outside
-    window.addEventListener('click', function(e) {
-        const modal = document.getElementById('modalPost'); // ✅ FIXED: Updated ID
-        if (e.target === modal) {
-            closeModal();
+// Global variables
+let currentPost = null;
+let blog = null;
+
+// Show full post in modal
+function showFullPost(postId) {
+    const post = blog.getPost(postId);
+    if (!post) return;
+
+    currentPost = post;
+
+    // Set modal content
+    document.getElementById('titleModal').textContent = post.title;
+    document.getElementById('dateModal').textContent = post.date;
+    
+    // Format content
+    let formattedContent = post.content;
+    formattedContent = formattedContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    let paragraphs = formattedContent.split(/\n\s*\n/);
+    
+    if (paragraphs.length === 1) {
+        paragraphs = formattedContent.split('\n');
+    }
+    
+    formattedContent = paragraphs
+        .map(paragraph => paragraph.trim())
+        .filter(paragraph => paragraph.length > 0)
+        .map(paragraph => {
+            const formattedParagraph = paragraph.replace(/\n/g, '<br>');
+            return `<p>${formattedParagraph}</p>`;
+        })
+        .join('');
+    
+    document.getElementById('contentModal').innerHTML = formattedContent;
+
+    // Handle images
+    showImageGallery();
+
+    // Show modal
+    document.getElementById('modalPost').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// Image gallery functions (same as before)
+function showImageGallery() {
+    const modalImages = document.getElementById('sectionModalImages');
+    
+    if (currentPost.images && currentPost.images.length > 0) {
+        if (currentPost.images.length === 1) {
+            modalImages.innerHTML = `<img src="${currentPost.images[0]}" alt="${currentPost.title}">`;
+        } else {
+            modalImages.innerHTML = `
+                <div class="grid-images-modal">
+                    ${currentPost.images.map(img => `<img src="${img}" alt="${currentPost.title}" onclick="showLargeImage('${img}')">`).join('')}
+                </div>
+            `;
         }
-    });
+    } else if (currentPost.image) {
+        modalImages.innerHTML = `<img src="${currentPost.image}" alt="${currentPost.title}">`;
+    } else {
+        modalImages.innerHTML = `
+            <div style="height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                📝 ${currentPost.title}
+            </div>
+        `;
+    }
+}
 
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal();
-        }
-    });
+function showLargeImage(imageSrc) {
+    const modalImages = document.getElementById('sectionModalImages');
+    modalImages.innerHTML = `
+        <img src="${imageSrc}" alt="Large view">
+        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer;" onclick="showImageGallery()">
+            ← Back to Gallery
+        </div>
+    `;
+}
 
-    // Initialize blog
-    const blog = new SimpleBlog();
+function closeModal() {
+    document.getElementById('modalPost').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    currentPost = null;
+}
 
-    // Refresh when new posts are added (for real-time updates)
-    window.addEventListener('storage', function(e) {
-        if (e.key === 'blogPosts') {
-            blog.refresh();
-        }
-    });
+// Event listeners
+window.addEventListener('click', function(e) {
+    const modal = document.getElementById('modalPost');
+    if (e.target === modal) {
+        closeModal();
+    }
+});
 
-    // Also refresh when page gets focus (when returning from add-post page)
-    window.addEventListener('focus', function() {
-        blog.refresh();
-    });
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
 
-    // Refresh every 5 seconds to catch new posts
-    setInterval(() => {
-        blog.refresh();
-    }, 5000);
+// Initialize blog when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    blog = new GitHubBlog();
+});
+
+// Refresh posts every 30 seconds to check for new posts
+setInterval(() => {
+    if (blog) {
+        blog.loadPosts();
+    }
+}, 30000);
