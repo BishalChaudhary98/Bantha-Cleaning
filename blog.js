@@ -1,165 +1,55 @@
-// Secure GitHub Configuration - No token in code!
-const GITHUB_CONFIG = {
-    owner: 'BishalChaudhary98',           // Replace with your actual GitHub username
-    repo: 'Bantha-Cleaning',          // Replace with your actual repository name
-    token: null,                     // Will be set securely
-    branch: 'main'
-};
-
-// Secure token management
-function getGitHubToken() {
-    if (!GITHUB_CONFIG.token) {
-        const token = prompt(`
-🔐 GitHub Token Required
-
-To load blog posts, please enter your GitHub Personal Access Token:
-
-(This is secure - the token is not stored in the code)
-        `);
-        
-        if (token && token.trim()) {
-            GITHUB_CONFIG.token = token.trim();
-            return token.trim();
-        } else {
-            alert('❌ Token is required to load blog posts.');
-            return null;
-        }
-    }
-    return GITHUB_CONFIG.token;
-}
-
-// GitHub API Helper
-class GitHubAPI {
-    constructor(config) {
-        this.config = config;
-        this.baseUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/contents`;
-    }
-
-    async getFile(path) {
-        const token = getGitHubToken();
-        if (!token) return null;
-
-        try {
-            const response = await fetch(`${this.baseUrl}/${path}`, {
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            });
-            
-            if (response.status === 404) {
-                return null;
-            }
-            
-            if (response.status === 401) {
-                alert('❌ Invalid GitHub token. Please check your token.');
-                GITHUB_CONFIG.token = null; // Reset token
-                return null;
-            }
-            
-            const data = await response.json();
-            const content = atob(data.content);
-            return {
-                content: JSON.parse(content),
-                sha: data.sha
-            };
-        } catch (error) {
-            console.error('Error fetching file:', error);
-            return null;
-        }
-    }
-}
-
-// GitHub Blog System
-// GitHub Blog System (Debug Version)
-class GitHubBlog {
+// PUBLIC BLOG - No authentication needed for visitors
+class PublicBlog {
     constructor() {
-        this.api = new GitHubAPI(GITHUB_CONFIG);
         this.posts = [];
         this.loadPosts();
     }
 
     async loadPosts() {
         try {
-            console.log('🔍 Starting to load posts...');
-            console.log('⚙️ Config:', {
-                owner: GITHUB_CONFIG.owner,
-                repo: GITHUB_CONFIG.repo,
-                branch: GITHUB_CONFIG.branch
-            });
-
-            // Show loading state
             const grid = document.getElementById('gridBlogPosts');
             grid.innerHTML = `
                 <div style="text-align: center; padding: 4rem; color: #64748b;">
                     <div style="font-size: 2rem; margin-bottom: 1rem;">🔄</div>
                     <h3>Loading posts...</h3>
-                    <p>You may be prompted for your GitHub token</p>
                 </div>
             `;
 
-            // Try to get posts index
-            console.log('📂 Fetching posts.json...');
-            const postsData = await this.api.getFile('posts/posts.json');
+            // Load posts from GitHub (PUBLIC URL - no token needed)
+            const response = await fetch('https://raw.githubusercontent.com/BishalChaudhary98/Bantha-Cleaning/main/posts/posts.json');
             
-            console.log('📋 Posts data received:', postsData);
-            
-            if (postsData && postsData.content) {
-                this.posts = postsData.content;
-                console.log('✅ Posts loaded:', this.posts.length, 'posts');
-                console.log('📝 Posts array:', this.posts);
+            if (response.ok) {
+                this.posts = await response.json();
+                this.render();
             } else {
-                this.posts = [];
-                console.log('📭 No posts found or empty posts.json');
+                this.showNoPostsMessage();
             }
-
-            this.render();
         } catch (error) {
-            console.error('💥 Error loading posts:', error);
-            this.showError('Failed to load posts. Check console for details.');
+            console.error('Error loading posts:', error);
+            this.showNoPostsMessage();
         }
     }
 
     render() {
-        console.log('🎨 Rendering posts...');
         const grid = document.getElementById('gridBlogPosts');
         
-        if (this.posts.length === 0) {
-            console.log('📭 No posts to display');
-            grid.innerHTML = `
-                <div class="state-empty">
-                    <h3>No posts yet</h3>
-                    <p>Posts will appear here once they're published!</p>
-                    <button onclick="blog.loadPosts()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                        🔄 Refresh Posts
-                    </button>
-                </div>
-            `;
+        if (!this.posts || this.posts.length === 0) {
+            this.showNoPostsMessage();
             return;
         }
 
-        console.log('📝 Rendering', this.posts.length, 'posts');
-
         // Sort posts by date (newest first)
-        const sortedPosts = [...this.posts].sort((a, b) => {
-            const dateA = new Date(a.dateCreated || a.date);
-            const dateB = new Date(b.dateCreated || b.date);
-            return dateB - dateA;
-        });
+        const sortedPosts = [...this.posts].sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
 
-        console.log('📅 Sorted posts:', sortedPosts);
-
-        grid.innerHTML = sortedPosts.map((post, index) => {
-            console.log(`🎯 Rendering post ${index + 1}:`, post.title);
-            
+        grid.innerHTML = sortedPosts.map(post => {
             let imageDisplay;
             if (post.images && post.images.length > 1) {
                 imageDisplay = `
-                    <img src="${post.images[0]}" alt="${post.title}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==';">
+                    <img src="${post.images[0]}" alt="${post.title}" onerror="this.style.display='none'">
                     <div class="badge-image-count">📸 ${post.images.length}</div>
                 `;
             } else if (post.image) {
-                imageDisplay = `<img src="${post.image}" alt="${post.title}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==';">`;
+                imageDisplay = `<img src="${post.image}" alt="${post.title}" onerror="this.style.display='none'">`;
             } else {
                 imageDisplay = `<span>📝 ${post.title}</span>`;
             }
@@ -178,20 +68,14 @@ class GitHubBlog {
                 </div>
             `;
         }).join('');
-
-        console.log('✅ Posts rendered successfully!');
     }
 
-    showError(message) {
+    showNoPostsMessage() {
         const grid = document.getElementById('gridBlogPosts');
         grid.innerHTML = `
-            <div style="text-align: center; padding: 4rem; color: #e74c3c;">
-                <div style="font-size: 2rem; margin-bottom: 1rem;">❌</div>
-                <h3>Error</h3>
-                <p>${message}</p>
-                <button onclick="blog.loadPosts()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                    Try Again
-                </button>
+            <div class="state-empty">
+                <h3>No posts yet</h3>
+                <p>Check back soon for new cleaning tips and advice!</p>
             </div>
         `;
     }
@@ -200,6 +84,7 @@ class GitHubBlog {
         return this.posts.find(p => p.id === postId);
     }
 }
+
 // Global variables
 let currentPost = null;
 let blog = null;
@@ -211,11 +96,10 @@ function showFullPost(postId) {
 
     currentPost = post;
 
-    // Set modal content
     document.getElementById('titleModal').textContent = post.title;
     document.getElementById('dateModal').textContent = post.date;
     
-    // Format content
+    // Format content with proper line breaks
     let formattedContent = post.content;
     formattedContent = formattedContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     let paragraphs = formattedContent.split(/\n\s*\n/);
@@ -300,7 +184,12 @@ document.addEventListener('keydown', function(e) {
 
 // Initialize blog when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    blog = new GitHubBlog();
+    blog = new PublicBlog();
 });
 
-
+// Auto-refresh every 5 minutes to check for new posts
+setInterval(() => {
+    if (blog) {
+        blog.loadPosts();
+    }
+}, 300000); // 5 minutes
