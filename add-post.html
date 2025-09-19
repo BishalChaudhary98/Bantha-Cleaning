@@ -161,21 +161,21 @@
                 ❌ Please fill in all fields.
             </div>
 
-            <form id="postForm">
-                <div class="form-group">
-                    <label for="title">Post Title *</label>
-                    <input type="text" id="title" required placeholder="Enter your post title">
-                </div>
+            <!-- Update your form fields with character counters -->
+<div class="form-group">
+    <label for="title">Post Title * <span id="titleCount" style="color: #64748b; font-size: 0.8rem;">(0/200)</span></label>
+    <input type="text" id="title" required placeholder="Enter your post title" maxlength="200">
+</div>
 
-                <div class="form-group">
-                    <label for="excerpt">Short Description *</label>
-                    <textarea id="excerpt" required placeholder="Brief description (2-3 sentences)"></textarea>
-                </div>
+<div class="form-group">
+    <label for="excerpt">Short Description * <span id="excerptCount" style="color: #64748b; font-size: 0.8rem;">(0/500)</span></label>
+    <textarea id="excerpt" required placeholder="Brief description (2-3 sentences)" maxlength="500"></textarea>
+</div>
 
-                <div class="form-group">
-                    <label for="content">Full Content *</label>
-                    <textarea id="content" required placeholder="Write your full article here..." style="min-height: 200px;"></textarea>
-                </div>
+<div class="form-group">
+    <label for="content">Full Content * <span id="contentCount" style="color: #64748b; font-size: 0.8rem;">(0/10000)</span></label>
+    <textarea id="content" required placeholder="Write your full article here..." style="min-height: 200px;" maxlength="10000"></textarea>
+</div>
 
                 <!-- GitHub Image Section -->
                 <div class="form-group">
@@ -250,6 +250,31 @@ To publish blog posts, please enter your GitHub Personal Access Token:
     return GITHUB_CONFIG.token;
 }
 
+        // Add character counters
+document.addEventListener('DOMContentLoaded', function() {
+    // Character counters
+    const titleInput = document.getElementById('title');
+    const excerptInput = document.getElementById('excerpt');
+    const contentInput = document.getElementById('content');
+    
+    const titleCount = document.getElementById('titleCount');
+    const excerptCount = document.getElementById('excerptCount');
+    const contentCount = document.getElementById('contentCount');
+    
+    function updateCounter(input, counter, max) {
+        const current = input.value.length;
+        counter.textContent = `(${current}/${max})`;
+        counter.style.color = current > max * 0.9 ? '#e74c3c' : '#64748b';
+    }
+    
+    titleInput.addEventListener('input', () => updateCounter(titleInput, titleCount, 200));
+    excerptInput.addEventListener('input', () => updateCounter(excerptInput, excerptCount, 500));
+    contentInput.addEventListener('input', () => updateCounter(contentInput, contentCount, 10000));
+    
+    // Initialize form handler
+    new GitHubPostForm();
+});
+        
 // GitHub API Helper
 class GitHubAPI {
     constructor(config) {
@@ -467,43 +492,109 @@ class GitHubPostForm {
     }
 
     async savePostToGitHub(post) {
-        try {
-            // Get existing posts
-            const postsData = await this.api.getFile('posts/posts.json');
-            let posts = [];
-            let sha = null;
+    try {
+        console.log('🔍 Starting save process...');
+        
+        // Validate and clean content
+        post = this.validateAndCleanPost(post);
+        
+        // Check content size
+        const postSize = JSON.stringify(post).length;
+        console.log('📏 Post size:', postSize, 'characters');
+        
+        if (postSize > 100000) { // 100KB limit
+            this.showError('Post is too large. Please reduce content length.');
+            return;
+        }
 
-            if (postsData) {
-                posts = postsData.content || [];
-                sha = postsData.sha;
-            }
+        // Get existing posts
+        const postsData = await this.api.getFile('posts/posts.json');
+        let posts = [];
+        let sha = null;
 
-            // Add new post to the beginning
-            posts.unshift(post);
+        if (postsData) {
+            posts = postsData.content || [];
+            sha = postsData.sha;
+        }
 
-            // Save updated posts index
-            const success = await this.api.updateFile('posts/posts.json', posts, sha);
+        // Add new post to the beginning
+        posts.unshift(post);
 
-            if (success) {
-                // Also save individual post file (optional, for backup)
-                await this.api.updateFile(`posts/post-${post.id}.json`, post);
-                
-                this.showSuccess();
-                
-                // Redirect after 3 seconds
-                setTimeout(() => {
-                    window.location.href = 'blog.html';
-                }, 3000);
-            } else {
-                this.showError('Failed to save post to GitHub. Please check your token and repository settings.');
-            }
+        // Check total file size
+        const totalSize = JSON.stringify(posts).length;
+        console.log('📊 Total posts file size:', totalSize, 'characters');
+        
+        if (totalSize > 1000000) { // 1MB limit
+            // Keep only last 50 posts to prevent file getting too large
+            posts = posts.slice(0, 50);
+            console.log('✂️ Trimmed to 50 most recent posts');
+        }
 
-        } catch (error) {
-            console.error('Error saving post:', error);
-            this.showError('Error saving post. Please try again.');
+        // Save updated posts index
+        const success = await this.api.updateFile('posts/posts.json', posts, sha);
+
+        if (success) {
+            console.log('✅ Posts saved successfully!');
+            this.showSuccess();
+            
+            setTimeout(() => {
+                window.location.href = 'blog.html';
+            }, 3000);
+        } else {
+            this.showError('Failed to save post to GitHub. Please try again with shorter content.');
+        }
+
+    } catch (error) {
+        console.error('💥 Error in savePostToGitHub:', error);
+        if (error.message.includes('too large') || error.message.includes('size')) {
+            this.showError('Post content is too large. Please make it shorter.');
+        } else {
+            this.showError(`Error saving post: ${error.message}`);
         }
     }
+}
 
+// Add this new validation function
+validateAndCleanPost(post) {
+    // Clean and validate title
+    post.title = post.title.trim().substring(0, 200); // Max 200 chars
+    
+    // Clean and validate excerpt
+    post.excerpt = post.excerpt.trim().substring(0, 500); // Max 500 chars
+    
+    // Clean content - remove excessive whitespace and limit length
+    post.content = post.content
+        .trim()
+        .replace(/\n{3,}/g, '\n\n') // Replace multiple line breaks with double
+        .replace(/\s{2,}/g, ' ')    // Replace multiple spaces with single
+        .substring(0, 10000);       // Max 10,000 chars
+    
+    // Validate and clean image URLs
+    if (post.image) {
+        post.image = post.image.trim();
+        if (!this.isValidUrl(post.image)) {
+            post.image = '';
+        }
+    }
+    
+    if (post.images && Array.isArray(post.images)) {
+        post.images = post.images
+            .filter(img => img && this.isValidUrl(img.trim()))
+            .slice(0, 10); // Max 10 images
+    }
+    
+    return post;
+}
+
+// Add URL validation
+isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
     showLoading() {
         this.errorMessage.style.display = 'none';
         this.successMessage.style.display = 'none';
@@ -586,6 +677,7 @@ document.head.appendChild(style);
 </body>
 
 </html>
+
 
 
 
