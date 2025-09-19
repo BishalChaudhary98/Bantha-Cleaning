@@ -90,7 +90,7 @@
 
 .date-blog {
     background: #e2e8f0;
-    color: #64748b;
+    color: #000000;
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
     font-size: 0.9rem;
@@ -257,7 +257,7 @@
 
 .date-modal {
     background: #e2e8f0;
-    color: #000000;
+    color: #64748b;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -434,3 +434,4 @@
     }
 
 }
+
