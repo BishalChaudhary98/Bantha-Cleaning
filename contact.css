@@ -355,7 +355,7 @@
         
         .contact-description {
             font-size: 1.1rem;
-            color: #7f8c8d;
+            color: #333333;
             line-height: 1.7;
             margin-bottom: 25px;
         }
@@ -621,3 +621,4 @@
                 padding: 50px 0;
             }
         }
+
