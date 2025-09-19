@@ -72,6 +72,7 @@ class GitHubAPI {
 }
 
 // GitHub Blog System
+// GitHub Blog System (Debug Version)
 class GitHubBlog {
     constructor() {
         this.api = new GitHubAPI(GITHUB_CONFIG);
@@ -81,6 +82,13 @@ class GitHubBlog {
 
     async loadPosts() {
         try {
+            console.log('🔍 Starting to load posts...');
+            console.log('⚙️ Config:', {
+                owner: GITHUB_CONFIG.owner,
+                repo: GITHUB_CONFIG.repo,
+                branch: GITHUB_CONFIG.branch
+            });
+
             // Show loading state
             const grid = document.getElementById('gridBlogPosts');
             grid.innerHTML = `
@@ -92,48 +100,69 @@ class GitHubBlog {
             `;
 
             // Try to get posts index
+            console.log('📂 Fetching posts.json...');
             const postsData = await this.api.getFile('posts/posts.json');
+            
+            console.log('📋 Posts data received:', postsData);
             
             if (postsData && postsData.content) {
                 this.posts = postsData.content;
+                console.log('✅ Posts loaded:', this.posts.length, 'posts');
+                console.log('📝 Posts array:', this.posts);
             } else {
                 this.posts = [];
+                console.log('📭 No posts found or empty posts.json');
             }
 
             this.render();
         } catch (error) {
-            console.error('Error loading posts:', error);
-            this.showError('Failed to load posts. Please check your configuration.');
+            console.error('💥 Error loading posts:', error);
+            this.showError('Failed to load posts. Check console for details.');
         }
     }
 
     render() {
+        console.log('🎨 Rendering posts...');
         const grid = document.getElementById('gridBlogPosts');
         
         if (this.posts.length === 0) {
+            console.log('📭 No posts to display');
             grid.innerHTML = `
                 <div class="state-empty">
                     <h3>No posts yet</h3>
                     <p>Posts will appear here once they're published!</p>
+                    <button onclick="blog.loadPosts()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        🔄 Refresh Posts
+                    </button>
                 </div>
             `;
             return;
         }
 
-        // Sort posts by date (newest first)
-        const sortedPosts = [...this.posts].sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
+        console.log('📝 Rendering', this.posts.length, 'posts');
 
-        grid.innerHTML = sortedPosts.map(post => {
+        // Sort posts by date (newest first)
+        const sortedPosts = [...this.posts].sort((a, b) => {
+            const dateA = new Date(a.dateCreated || a.date);
+            const dateB = new Date(b.dateCreated || b.date);
+            return dateB - dateA;
+        });
+
+        console.log('📅 Sorted posts:', sortedPosts);
+
+        grid.innerHTML = sortedPosts.map((post, index) => {
+            console.log(`🎯 Rendering post ${index + 1}:`, post.title);
+            
             let imageDisplay;
             if (post.images && post.images.length > 1) {
                 imageDisplay = `
-                    <img src="${post.images[0]}" alt="${post.title}">
+                    <img src="${post.images[0]}" alt="${post.title}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==';">
                     <div class="badge-image-count">📸 ${post.images.length}</div>
                 `;
+            } else if (post.image) {
+                imageDisplay = `<img src="${post.image}" alt="${post.title}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==';">`;
             } else {
-                imageDisplay = post.image ? 
-                    `<img src="${post.image}" alt="${post.title}">` : 
-                    `<span>📝 ${post.title}</span>`;
+                imageDisplay = `<span>📝 ${post.title}</span>`;
             }
 
             return `
@@ -150,6 +179,8 @@ class GitHubBlog {
                 </div>
             `;
         }).join('');
+
+        console.log('✅ Posts rendered successfully!');
     }
 
     showError(message) {
@@ -170,7 +201,6 @@ class GitHubBlog {
         return this.posts.find(p => p.id === postId);
     }
 }
-
 // Global variables
 let currentPost = null;
 let blog = null;
@@ -274,3 +304,4 @@ document.addEventListener('DOMContentLoaded', function() {
     blog = new GitHubBlog();
 });
 </script>
+
