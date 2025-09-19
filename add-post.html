@@ -1,4 +1,4 @@
-new updated 2
+new updated 3
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -338,52 +338,58 @@ class GitHubAPI {
     }
 
     async updateFile(path, content, sha = null) {
-        const token = GITHUB_CONFIG.token || getGitHubToken();
-        if (!token) return false;
+    const token = GITHUB_CONFIG.token || getGitHubToken();
+    if (!token) return false;
 
-        try {
-            const body = {
-                message: `Update ${path}`,
-                content: btoa(JSON.stringify(content, null, 2)),
-                branch: this.config.branch
-            };
+    try {
+        // FIXED: Proper encoding for special characters
+        const jsonString = JSON.stringify(content, null, 2);
+        
+        // Convert to UTF-8 bytes then to base64
+        const utf8Bytes = new TextEncoder().encode(jsonString);
+        const base64String = btoa(String.fromCharCode(...utf8Bytes));
 
-            if (sha) {
-                body.sha = sha;
-            }
+        const body = {
+            message: `Update ${path}`,
+            content: base64String,
+            branch: this.config.branch
+        };
 
-            console.log('💾 Updating file:', path);
-            console.log('📤 Content size:', JSON.stringify(content).length, 'characters');
+        if (sha) {
+            body.sha = sha;
+        }
 
-            const response = await fetch(`${this.baseUrl}/${path}`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            });
+        console.log('💾 Updating file:', path);
+        console.log('📤 Content size:', jsonString.length, 'characters');
 
-            console.log('📡 Update response status:', response.status);
+        const response = await fetch(`${this.baseUrl}/${path}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
 
-            if (response.status === 401) {
-                alert('❌ Invalid GitHub token during update.');
-                GITHUB_CONFIG.token = null;
-                return false;
-            }
+        console.log('📡 Update response status:', response.status);
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('❌ Update failed:', errorData);
-                return false;
-            }
-
-            return true;
-        } catch (error) {
-            console.error('Error updating file:', error);
+        if (response.status === 401) {
+            alert('❌ Invalid GitHub token during update.');
+            GITHUB_CONFIG.token = null;
             return false;
         }
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('❌ Update failed:', errorData);
+            return false;
+        }
+
+        return true;
+    } catch (error) {
+        console.error('Error updating file:', error);
+        return false;
     }
 }
 
@@ -507,46 +513,58 @@ class GitHubPostForm {
         }
     }
 
-    async handleSubmit(e) {
-        e.preventDefault();
-        console.log('🚀 Form submitted!');
-        
-        // Clear any cached token to force fresh prompt
-        GITHUB_CONFIG.token = null;
-        
-        this.showLoading();
-        
-        const title = document.getElementById('title').value.trim();
-        const excerpt = document.getElementById('excerpt').value.trim();
-        const content = document.getElementById('content').value.trim();
-        const singleImage = document.getElementById('image').value.trim();
-        
-        const imageUrls = this.githubImages.getImageUrls();
-        const mainImage = imageUrls[0] || singleImage || '';
+    // Add this function to clean content
+function cleanContentForEncoding(text) {
+    return text
+        .replace(/[""]/g, '"')     // Replace smart quotes
+        .replace(/['']/g, "'")     // Replace smart apostrophes
+        .replace(/[–—]/g, '-')     // Replace em/en dashes
+        .replace(/[…]/g, '...')    // Replace ellipsis
+        .replace(/[^\x00-\x7F]/g, ''); // Remove non-ASCII characters
+}
 
-        if (!title || !excerpt || !content) {
-            this.showError('Please fill in all required fields.');
-            return;
-        }
+// Update your handleSubmit method to clean content:
+async handleSubmit(e) {
+    e.preventDefault();
+    console.log('🚀 Form submitted!');
+    
+    // Clear any cached token to force fresh prompt
+    GITHUB_CONFIG.token = null;
+    
+    this.showLoading();
+    
+    // FIXED: Clean content before processing
+    const title = cleanContentForEncoding(document.getElementById('title').value.trim());
+    const excerpt = cleanContentForEncoding(document.getElementById('excerpt').value.trim());
+    const content = cleanContentForEncoding(document.getElementById('content').value.trim());
+    const singleImage = document.getElementById('image').value.trim();
+    
+    const imageUrls = this.githubImages.getImageUrls();
+    const mainImage = imageUrls[0] || singleImage || '';
 
-        const post = {
-            id: Date.now().toString(),
-            title: title,
-            excerpt: excerpt,
-            content: content,
-            image: mainImage,
-            images: imageUrls.length > 0 ? imageUrls : (singleImage ? [singleImage] : []),
-            date: new Date().toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric' 
-            }),
-            dateCreated: new Date().toISOString()
-        };
-
-        console.log('📦 Post created:', post);
-        await this.savePostToGitHub(post);
+    if (!title || !excerpt || !content) {
+        this.showError('Please fill in all required fields.');
+        return;
     }
+
+    const post = {
+        id: Date.now().toString(),
+        title: title,
+        excerpt: excerpt,
+        content: content,
+        image: mainImage,
+        images: imageUrls.length > 0 ? imageUrls : (singleImage ? [singleImage] : []),
+        date: new Date().toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+        }),
+        dateCreated: new Date().toISOString()
+    };
+
+    console.log('📦 Post created:', post);
+    await this.savePostToGitHub(post);
+}
 
     async savePostToGitHub(post) {
         try {
@@ -682,5 +700,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
