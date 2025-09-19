@@ -1,4 +1,3 @@
-<script>
 // Secure GitHub Configuration - No token in code!
 const GITHUB_CONFIG = {
     owner: 'BishalChaudhary98',           // Replace with your actual GitHub username
@@ -303,5 +302,5 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
     blog = new GitHubBlog();
 });
-</script>
+
 
