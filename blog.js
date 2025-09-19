@@ -1,11 +1,33 @@
-
-// GitHub Configuration
+<script>
+// Secure GitHub Configuration - No token in code!
 const GITHUB_CONFIG = {
-    owner: 'BishalChaudhary98',           // Replace with your GitHub username
-    repo: 'Bantha-Cleaning',          // Replace with your repository name
-    token: prompt('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'),      // Replace with your personal access token
-    branch: 'main'                   // or 'master' depending on your default branch
+    owner: 'BishalChaudhary98',           // Replace with your actual GitHub username
+    repo: 'Bantha-Cleaning',          // Replace with your actual repository name
+    token: null,                     // Will be set securely
+    branch: 'main'
 };
+
+// Secure token management
+function getGitHubToken() {
+    if (!GITHUB_CONFIG.token) {
+        const token = prompt(`
+🔐 GitHub Token Required
+
+To load blog posts, please enter your GitHub Personal Access Token:
+
+(This is secure - the token is not stored in the code)
+        `);
+        
+        if (token && token.trim()) {
+            GITHUB_CONFIG.token = token.trim();
+            return token.trim();
+        } else {
+            alert('❌ Token is required to load blog posts.');
+            return null;
+        }
+    }
+    return GITHUB_CONFIG.token;
+}
 
 // GitHub API Helper
 class GitHubAPI {
@@ -15,20 +37,29 @@ class GitHubAPI {
     }
 
     async getFile(path) {
+        const token = getGitHubToken();
+        if (!token) return null;
+
         try {
             const response = await fetch(`${this.baseUrl}/${path}`, {
                 headers: {
-                    'Authorization': `token ${this.config.token}`,
+                    'Authorization': `token ${token}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
             
             if (response.status === 404) {
-                return null; // File doesn't exist
+                return null;
+            }
+            
+            if (response.status === 401) {
+                alert('❌ Invalid GitHub token. Please check your token.');
+                GITHUB_CONFIG.token = null; // Reset token
+                return null;
             }
             
             const data = await response.json();
-            const content = atob(data.content); // Decode base64
+            const content = atob(data.content);
             return {
                 content: JSON.parse(content),
                 sha: data.sha
@@ -36,35 +67,6 @@ class GitHubAPI {
         } catch (error) {
             console.error('Error fetching file:', error);
             return null;
-        }
-    }
-
-    async updateFile(path, content, sha = null) {
-        try {
-            const body = {
-                message: `Update ${path}`,
-                content: btoa(JSON.stringify(content, null, 2)), // Encode to base64
-                branch: this.config.branch
-            };
-
-            if (sha) {
-                body.sha = sha; // Required for updates
-            }
-
-            const response = await fetch(`${this.baseUrl}/${path}`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${this.config.token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            });
-
-            return response.ok;
-        } catch (error) {
-            console.error('Error updating file:', error);
-            return false;
         }
     }
 }
@@ -85,6 +87,7 @@ class GitHubBlog {
                 <div style="text-align: center; padding: 4rem; color: #64748b;">
                     <div style="font-size: 2rem; margin-bottom: 1rem;">🔄</div>
                     <h3>Loading posts...</h3>
+                    <p>You may be prompted for your GitHub token</p>
                 </div>
             `;
 
@@ -100,7 +103,7 @@ class GitHubBlog {
             this.render();
         } catch (error) {
             console.error('Error loading posts:', error);
-            this.showError('Failed to load posts. Please check your internet connection.');
+            this.showError('Failed to load posts. Please check your configuration.');
         }
     }
 
@@ -211,7 +214,7 @@ function showFullPost(postId) {
     document.body.style.overflow = 'hidden';
 }
 
-// Image gallery functions (same as before)
+// Image gallery functions
 function showImageGallery() {
     const modalImages = document.getElementById('sectionModalImages');
     
@@ -270,11 +273,4 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
     blog = new GitHubBlog();
 });
-
-// Refresh posts every 30 seconds to check for new posts
-setInterval(() => {
-    if (blog) {
-        blog.loadPosts();
-    }
-}, 30000);
-
+</script>
