@@ -220,186 +220,315 @@ image3.jpg" rows="4"></textarea>
     </div>
 
     <script>
-        // GitHub Images Handler
-        class GitHubImages {
-            constructor() {
-                this.setupGitHubFeatures();
+// GitHub Configuration (same as blog.html)
+const GITHUB_CONFIG = {
+    owner: 'your-username',           // Replace with your GitHub username
+    repo: 'your-repo-name',          // Replace with your repository name
+    token: 'your-github-token',      // Replace with your personal access token
+    branch: 'main'
+};
+
+// GitHub API Helper (same class as in blog.html)
+class GitHubAPI {
+    constructor(config) {
+        this.config = config;
+        this.baseUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/contents`;
+    }
+
+    async getFile(path) {
+        try {
+            const response = await fetch(`${this.baseUrl}/${path}`, {
+                headers: {
+                    'Authorization': `token ${this.config.token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            
+            if (response.status === 404) {
+                return null;
+            }
+            
+            const data = await response.json();
+            const content = atob(data.content);
+            return {
+                content: JSON.parse(content),
+                sha: data.sha
+            };
+        } catch (error) {
+            console.error('Error fetching file:', error);
+            return null;
+        }
+    }
+
+    async updateFile(path, content, sha = null) {
+        try {
+            const body = {
+                message: `Update ${path}`,
+                content: btoa(JSON.stringify(content, null, 2)),
+                branch: this.config.branch
+            };
+
+            if (sha) {
+                body.sha = sha;
             }
 
-            setupGitHubFeatures() {
-                // Load saved GitHub repo URL
-                const savedRepo = localStorage.getItem('githubRepoUrl');
-                if (savedRepo) {
-                    document.getElementById('githubRepo').value = savedRepo;
-                }
+            const response = await fetch(`${this.baseUrl}/${path}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${this.config.token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
 
-                // Save repo URL when changed
-                document.getElementById('githubRepo').addEventListener('blur', () => {
-                    const repoUrl = document.getElementById('githubRepo').value.trim();
-                    if (repoUrl) {
-                        localStorage.setItem('githubRepoUrl', repoUrl);
-                    }
-                });
+            return response.ok;
+        } catch (error) {
+            console.error('Error updating file:', error);
+            return false;
+        }
+    }
+}
 
-                // Preview images button
-                document.getElementById('previewBtn').addEventListener('click', () => {
-                    this.previewImages();
-                });
-            }
+// GitHub Images Handler (Enhanced)
+class GitHubImages {
+    constructor() {
+        this.setupGitHubFeatures();
+    }
 
-            previewImages() {
-                const repoUrl = document.getElementById('githubRepo').value.trim();
-                const filenames = document.getElementById('imageFiles').value
-                    .split('\n')
-                    .map(name => name.trim())
-                    .filter(name => name.length > 0);
-
-                if (!repoUrl) {
-                    alert('Please enter your GitHub repository URL first');
-                    return;
-                }
-
-                if (filenames.length === 0) {
-                    alert('Please enter at least one image filename');
-                    return;
-                }
-
-                const previewContainer = document.getElementById('imagePreview');
-                const previewGrid = document.getElementById('previewGrid');
-                
-                previewContainer.style.display = 'block';
-                previewGrid.innerHTML = '';
-
-                filenames.forEach(filename => {
-                    const fullUrl = repoUrl + (repoUrl.endsWith('/') ? '' : '/') + filename;
-                    
-                    const imgContainer = document.createElement('div');
-                    imgContainer.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 5px; overflow: hidden; text-align: center; padding: 0.5rem;';
-                    
-                    imgContainer.innerHTML = `
-                        <img src="${fullUrl}" alt="${filename}" 
-                             style="width: 100%; height: 80px; object-fit: cover; border-radius: 3px;"
-                             onload="this.nextElementSibling.textContent = '✅'"
-                             onerror="this.nextElementSibling.textContent = '❌'; this.style.background = '#fee2e2';">
-                        <div style="font-size: 0.8rem; margin-top: 0.25rem;">🔄</div>
-                        <div style="font-size: 0.7rem; color: #64748b;">${filename}</div>
-                    `;
-                    
-                    previewGrid.appendChild(imgContainer);
-                });
-            }
-
-            getImageUrls() {
-                const repoUrl = document.getElementById('githubRepo').value.trim();
-                const filenames = document.getElementById('imageFiles').value
-                    .split('\n')
-                    .map(name => name.trim())
-                    .filter(name => name.length > 0);
-
-                if (!repoUrl || filenames.length === 0) {
-                    return [];
-                }
-
-                const baseUrl = repoUrl.endsWith('/') ? repoUrl : repoUrl + '/';
-                return filenames.map(filename => baseUrl + filename);
-            }
+    setupGitHubFeatures() {
+        // Load saved GitHub repo URL
+        const savedRepo = localStorage.getItem('githubRepoUrl');
+        if (savedRepo) {
+            document.getElementById('githubRepo').value = savedRepo;
         }
 
-        // Post Form Handler
-        class PostForm {
-            constructor() {
-                this.form = document.getElementById('postForm');
-                this.successMessage = document.getElementById('successMessage');
-                this.errorMessage = document.getElementById('errorMessage');
-                this.githubImages = new GitHubImages();
-                
-                this.form.addEventListener('submit', this.handleSubmit.bind(this));
+        // Save repo URL when changed
+        document.getElementById('githubRepo').addEventListener('blur', () => {
+            const repoUrl = document.getElementById('githubRepo').value.trim();
+            if (repoUrl) {
+                localStorage.setItem('githubRepoUrl', repoUrl);
             }
-
-            handleSubmit(e) {
-                e.preventDefault();
-                
-                // Get form data
-                const title = document.getElementById('title').value.trim();
-                const excerpt = document.getElementById('excerpt').value.trim();
-                const content = document.getElementById('content').value.trim();
-                const singleImage = document.getElementById('image').value.trim();
-                
-                // Get GitHub images
-                const imageUrls = this.githubImages.getImageUrls();
-                const mainImage = imageUrls[0] || singleImage || ''; // First GitHub image or fallback
-
-                // Validate
-                if (!title || !excerpt || !content) {
-                    this.showError('Please fill in all required fields.');
-                    return;
-                }
-
-                // Create post object
-                const post = {
-                    id: Date.now(),
-                    title: title,
-                    excerpt: excerpt,
-                    content: content,
-                    image: mainImage, // Main image for display
-                    images: imageUrls.length > 0 ? imageUrls : (singleImage ? [singleImage] : []), // All images array
-                    date: new Date().toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'short', 
-                        day: 'numeric' 
-                    })
-                };
-
-                // Save post
-                this.savePost(post);
-            }
-
-            savePost(post) {
-                try {
-                    // Get existing posts
-                    const existingPosts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
-                    
-                    // Add new post to beginning
-                    existingPosts.unshift(post);
-                    
-                    // Save back to localStorage
-                    localStorage.setItem('blogPosts', JSON.stringify(existingPosts));
-                    
-                    // Show success and redirect
-                    this.showSuccess();
-                    
-                    setTimeout(() => {
-                        window.location.href = 'blog.html';
-                    }, 2000);
-                    
-                } catch (error) {
-                    this.showError('Error saving post. Please try again.');
-                    console.error('Error:', error);
-                }
-            }
-
-            showSuccess() {
-                this.errorMessage.style.display = 'none';
-                this.successMessage.style.display = 'block';
-                this.form.style.opacity = '0.5';
-                this.form.style.pointerEvents = 'none';
-            }
-
-            showError(message) {
-                this.successMessage.style.display = 'none';
-                this.errorMessage.textContent = `❌ ${message}`;
-                this.errorMessage.style.display = 'block';
-                
-                setTimeout(() => {
-                    this.errorMessage.style.display = 'none';
-                }, 5000);
-            }
-        }
-
-        // Initialize form
-        document.addEventListener('DOMContentLoaded', function() {
-            new PostForm();
         });
-    </script>
+
+        // Preview images button
+        document.getElementById('previewBtn').addEventListener('click', () => {
+            this.previewImages();
+        });
+    }
+
+    previewImages() {
+        const repoUrl = document.getElementById('githubRepo').value.trim();
+        const filenames = document.getElementById('imageFiles').value
+            .split('\n')
+            .map(name => name.trim())
+            .filter(name => name.length > 0);
+
+        if (!repoUrl) {
+            alert('Please enter your GitHub repository URL first');
+            return;
+        }
+
+        if (filenames.length === 0) {
+            alert('Please enter at least one image filename');
+            return;
+        }
+
+        const previewContainer = document.getElementById('imagePreview');
+        const previewGrid = document.getElementById('previewGrid');
+        
+        previewContainer.style.display = 'block';
+        previewGrid.innerHTML = '';
+
+        filenames.forEach(filename => {
+            const fullUrl = repoUrl + (repoUrl.endsWith('/') ? '' : '/') + filename;
+            
+            const imgContainer = document.createElement('div');
+            imgContainer.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 5px; overflow: hidden; text-align: center; padding: 0.5rem;';
+            
+            imgContainer.innerHTML = `
+                <img src="${fullUrl}" alt="${filename}" 
+                     style="width: 100%; height: 80px; object-fit: cover; border-radius: 3px;"
+                     onload="this.nextElementSibling.textContent = '✅'"
+                     onerror="this.nextElementSibling.textContent = '❌'; this.style.background = '#fee2e2';">
+                <div style="font-size: 0.8rem; margin-top: 0.25rem;">🔄</div>
+                <div style="font-size: 0.7rem; color: #64748b;">${filename}</div>
+            `;
+            
+            previewGrid.appendChild(imgContainer);
+        });
+    }
+
+    getImageUrls() {
+        const repoUrl = document.getElementById('githubRepo').value.trim();
+        const filenames = document.getElementById('imageFiles').value
+            .split('\n')
+            .map(name => name.trim())
+            .filter(name => name.length > 0);
+
+        if (!repoUrl || filenames.length === 0) {
+            return [];
+        }
+
+        const baseUrl = repoUrl.endsWith('/') ? repoUrl : repoUrl + '/';
+        return filenames.map(filename => baseUrl + filename);
+    }
+}
+
+// GitHub Post Form Handler
+class GitHubPostForm {
+    constructor() {
+        this.api = new GitHubAPI(GITHUB_CONFIG);
+        this.form = document.getElementById('postForm');
+        this.successMessage = document.getElementById('successMessage');
+        this.errorMessage = document.getElementById('errorMessage');
+        this.githubImages = new GitHubImages();
+        
+        this.form.addEventListener('submit', this.handleSubmit.bind(this));
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        this.showLoading();
+        
+        // Get form data
+        const title = document.getElementById('title').value.trim();
+        const excerpt = document.getElementById('excerpt').value.trim();
+        const content = document.getElementById('content').value.trim();
+        const singleImage = document.getElementById('image').value.trim();
+        
+        // Get GitHub images
+        const imageUrls = this.githubImages.getImageUrls();
+        const mainImage = imageUrls[0] || singleImage || '';
+
+        // Validate
+        if (!title || !excerpt || !content) {
+            this.showError('Please fill in all required fields.');
+            return;
+        }
+
+        // Create post object
+        const post = {
+            id: Date.now().toString(),
+            title: title,
+            excerpt: excerpt,
+            content: content,
+            image: mainImage,
+            images: imageUrls.length > 0 ? imageUrls : (singleImage ? [singleImage] : []),
+            date: new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            }),
+            dateCreated: new Date().toISOString()
+        };
+
+        // Save post to GitHub
+        await this.savePostToGitHub(post);
+    }
+
+    async savePostToGitHub(post) {
+        try {
+            // Get existing posts
+            const postsData = await this.api.getFile('posts/posts.json');
+            let posts = [];
+            let sha = null;
+
+            if (postsData) {
+                posts = postsData.content || [];
+                sha = postsData.sha;
+            }
+
+            // Add new post to the beginning
+            posts.unshift(post);
+
+            // Save updated posts index
+            const success = await this.api.updateFile('posts/posts.json', posts, sha);
+
+            if (success) {
+                // Also save individual post file
+                await this.api.updateFile(`posts/post-${post.id}.json`, post);
+                
+                this.showSuccess();
+                
+                // Redirect after 3 seconds
+                setTimeout(() => {
+                    window.location.href = 'blog.html';
+                }, 3000);
+            } else {
+                this.showError('Failed to save post to GitHub. Please check your configuration.');
+            }
+
+        } catch (error) {
+            console.error('Error saving post:', error);
+            this.showError('Error saving post. Please try again.');
+        }
+    }
+
+    showLoading() {
+        this.errorMessage.style.display = 'none';
+        this.successMessage.style.display = 'none';
+        
+        // Disable form
+        this.form.style.opacity = '0.6';
+        this.form.style.pointerEvents = 'none';
+        
+        // Show loading message
+        const loadingDiv = document.createElement('div');
+        loadingDiv.id = 'loadingMessage';
+        loadingDiv.style.cssText = `
+            background: #3b82f6; 
+            color: white; 
+            padding: 1rem; 
+            border-radius: 8px; 
+            margin-bottom: 1rem; 
+            text-align: center;
+        `;
+        loadingDiv.innerHTML = '🔄 Saving post to GitHub...';
+        
+        this.form.parentNode.insertBefore(loadingDiv, this.form);
+    }
+
+    showSuccess() {
+        // Remove loading message
+        const loadingMsg = document.getElementById('loadingMessage');
+        if (loadingMsg) {
+            loadingMsg.remove();
+        }
+        
+        this.errorMessage.style.display = 'none';
+        this.successMessage.style.display = 'block';
+        this.successMessage.innerHTML = '🎉 Post published successfully! Redirecting to blog...';
+    }
+
+    showError(message) {
+        // Remove loading message
+        const loadingMsg = document.getElementById('loadingMessage');
+        if (loadingMsg) {
+            loadingMsg.remove();
+        }
+        
+        // Re-enable form
+        this.form.style.opacity = '1';
+        this.form.style.pointerEvents = 'auto';
+        
+        this.successMessage.style.display = 'none';
+        this.errorMessage.textContent = `❌ ${message}`;
+        this.errorMessage.style.display = 'block';
+        
+        setTimeout(() => {
+            this.errorMessage.style.display = 'none';
+        }, 8000);
+    }
+}
+
+// Initialize form when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    new GitHubPostForm();
+});
+</script>
 </body>
+
 </html>
