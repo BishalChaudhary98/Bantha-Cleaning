@@ -654,7 +654,7 @@
         }
         
         .contact-label {
-            color: #95a5a6;
+            color: #EEEEEE;
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -767,4 +767,5 @@
             .footer-links a:not(:last-child)::after {
                 display: none;
             }
+
         }
