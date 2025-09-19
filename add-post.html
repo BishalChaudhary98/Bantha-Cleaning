@@ -1,6 +1,4 @@
-Here's the complete **add-post.html** file with all fixes:
-
-```html
+new updated
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -475,86 +473,156 @@ To publish blog posts, please enter your GitHub Personal Access Token:
                 await this.savePostToGitHub(post);
             }
 
-            async savePostToGitHub(post) {
-                try {
-                    console.log('🔍 Starting save process...');
-                    
-                    post = this.validateAndCleanPost(post);
-                    
-                    const postSize = JSON.stringify(post).length;
-                    console.log('📏 Post size:', postSize, 'characters');
-                    
-                    if (postSize > 100000) {
-                        this.showError('Post is too large. Please reduce content length.');
-                        return;
-                    }
+           async savePostToGitHub(post) {
+    try {
+        console.log('🔍 Starting save process...');
+        console.log('📝 Original post:', post);
+        
+        // Validate and clean content
+        post = this.validateAndCleanPost(post);
+        console.log('🧹 Cleaned post:', post);
+        
+        // Check content size
+        const postSize = JSON.stringify(post).length;
+        console.log('📏 Post size:', postSize, 'characters');
+        
+        if (postSize > 50000) { // Reduced limit for testing
+            this.showError('Post is too large. Please reduce content length.');
+            return;
+        }
 
-                    const postsData = await this.api.getFile('posts/posts.json');
-                    let posts = [];
-                    let sha = null;
-
-                    if (postsData) {
-                        posts = postsData.content || [];
-                        sha = postsData.sha;
-                    }
-
-                    posts.unshift(post);
-
-                    const totalSize = JSON.stringify(posts).length;
-                    console.log('📊 Total posts file size:', totalSize, 'characters');
-                    
-                    if (totalSize > 1000000) {
-                        posts = posts.slice(0, 50);
-                        console.log('✂️ Trimmed to 50 most recent posts');
-                    }
-
-                    const success = await this.api.updateFile('posts/posts.json', posts, sha);
-
-                    if (success) {
-                        console.log('✅ Posts saved successfully!');
-                        this.showSuccess();
-                        
-                        setTimeout(() => {
-                            window.location.href = 'blog.html';
-                        }, 3000);
-                    } else {
-                        this.showError('Failed to save post to GitHub. Please try again with shorter content.');
-                    }
-
-                } catch (error) {
-                    console.error('💥 Error in savePostToGitHub:', error);
-                    if (error.message.includes('too large') || error.message.includes('size')) {
-                        this.showError('Post content is too large. Please make it shorter.');
-                    } else {
-                        this.showError(`Error saving post: ${error.message}`);
-                    }
-                }
+        // Test GitHub API access first
+        console.log('🔐 Testing GitHub API access...');
+        const testResponse = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}`, {
+            headers: {
+                'Authorization': `token ${GITHUB_CONFIG.token}`,
+                'Accept': 'application/vnd.github.v3+json'
             }
+        });
+        
+        console.log('🏠 Repository access status:', testResponse.status);
+        if (!testResponse.ok) {
+            const errorData = await testResponse.json();
+            console.error('❌ Repository access failed:', errorData);
+            this.showError(`Repository access failed: ${errorData.message}`);
+            return;
+        }
 
-            validateAndCleanPost(post) {
-                post.title = post.title.trim().substring(0, 200);
-                post.excerpt = post.excerpt.trim().substring(0, 500);
-                post.content = post.content
-                    .trim()
-                    .replace(/\n{3,}/g, '\n\n')
-                    .replace(/\s{2,}/g, ' ')
-                    .substring(0, 10000);
-                
-                if (post.image) {
-                    post.image = post.image.trim();
-                    if (!this.isValidUrl(post.image)) {
-                        post.image = '';
-                    }
-                }
-                
-                if (post.images && Array.isArray(post.images)) {
-                    post.images = post.images
-                        .filter(img => img && this.isValidUrl(img.trim()))
-                        .slice(0, 10);
-                }
-                
-                return post;
-            }
+        // Get existing posts
+        console.log('📂 Getting existing posts...');
+        const postsData = await this.api.getFile('posts/posts.json');
+        let posts = [];
+        let sha = null;
+
+        if (postsData) {
+            posts = postsData.content || [];
+            sha = postsData.sha;
+            console.log('✅ Found existing posts:', posts.length);
+        } else {
+            console.log('📝 No existing posts file found, creating new one');
+        }
+
+        // Add new post to the beginning
+        posts.unshift(post);
+        console.log('📋 Total posts after adding:', posts.length);
+
+        // Check total file size
+        const totalSize = JSON.stringify(posts).length;
+        console.log('📊 Total posts file size:', totalSize, 'characters');
+        
+        if (totalSize > 500000) { // Reduced limit for testing
+            posts = posts.slice(0, 20); // Keep fewer posts
+            console.log('✂️ Trimmed to 20 most recent posts');
+        }
+
+        // Prepare the update
+        const updateData = {
+            message: `Add new blog post: ${post.title}`,
+            content: btoa(JSON.stringify(posts, null, 2)),
+            branch: GITHUB_CONFIG.branch
+        };
+
+        if (sha) {
+            updateData.sha = sha;
+        }
+
+        console.log('💾 Attempting to save to GitHub...');
+        console.log('📤 Update data size:', JSON.stringify(updateData).length, 'characters');
+
+        // Save updated posts index
+        const updateResponse = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/posts/posts.json`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${GITHUB_CONFIG.token}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateData)
+        });
+
+        console.log('📡 GitHub API response status:', updateResponse.status);
+
+        if (updateResponse.ok) {
+            console.log('✅ Posts saved successfully!');
+            const responseData = await updateResponse.json();
+            console.log('📄 GitHub response:', responseData);
+            
+            this.showSuccess();
+            
+            setTimeout(() => {
+                window.location.href = 'blog.html';
+            }, 3000);
+        } else {
+            const errorData = await updateResponse.json();
+            console.error('❌ GitHub API error:', errorData);
+            this.showError(`GitHub API Error: ${errorData.message || 'Unknown error'}`);
+        }
+
+    } catch (error) {
+        console.error('💥 Error in savePostToGitHub:', error);
+        this.showError(`Error saving post: ${error.message}`);
+    }
+}
+           validateAndCleanPost(post) {
+    console.log('🧹 Validating and cleaning post...');
+    
+    // Clean and validate title
+    post.title = post.title.trim().substring(0, 100); // Reduced limit
+    console.log('📝 Title length:', post.title.length);
+    
+    // Clean and validate excerpt
+    post.excerpt = post.excerpt.trim().substring(0, 300); // Reduced limit
+    console.log('📝 Excerpt length:', post.excerpt.length);
+    
+    // Clean content - remove excessive whitespace and limit length
+    post.content = post.content
+        .trim()
+        .replace(/\n{3,}/g, '\n\n') // Replace multiple line breaks with double
+        .replace(/\s{2,}/g, ' ')    // Replace multiple spaces with single
+        .substring(0, 5000);        // Much smaller limit for testing
+    
+    console.log('📝 Content length:', post.content.length);
+    
+    // Validate and clean image URLs
+    if (post.image) {
+        post.image = post.image.trim();
+        if (!this.isValidUrl(post.image)) {
+            console.log('❌ Invalid main image URL, removing');
+            post.image = '';
+        }
+    }
+    
+    if (post.images && Array.isArray(post.images)) {
+        const originalLength = post.images.length;
+        post.images = post.images
+            .filter(img => img && this.isValidUrl(img.trim()))
+            .slice(0, 5); // Reduced limit
+        console.log(`🖼️ Images: ${originalLength} → ${post.images.length}`);
+    }
+    
+    console.log('✅ Post validation complete');
+    return post;
+}
 
             isValidUrl(string) {
                 try {
@@ -657,3 +725,4 @@ To publish blog posts, please enter your GitHub Personal Access Token:
     </script>
 </body>
 </html>
+
