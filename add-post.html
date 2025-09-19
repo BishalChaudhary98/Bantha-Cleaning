@@ -1,3 +1,6 @@
+Here's the complete **add-post.html** file with all fixes:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,6 +136,12 @@
             display: none;
         }
 
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -161,26 +170,26 @@
                 ❌ Please fill in all fields.
             </div>
 
-            <!-- Update your form fields with character counters -->
-<div class="form-group">
-    <label for="title">Post Title * <span id="titleCount" style="color: #64748b; font-size: 0.8rem;">(0/200)</span></label>
-    <input type="text" id="title" required placeholder="Enter your post title" maxlength="200">
-</div>
+            <form id="postForm">
+                <div class="form-group">
+                    <label for="title">Post Title * <span id="titleCount" style="color: #64748b; font-size: 0.8rem;">(0/200)</span></label>
+                    <input type="text" id="title" required placeholder="Enter your post title" maxlength="200">
+                </div>
 
-<div class="form-group">
-    <label for="excerpt">Short Description * <span id="excerptCount" style="color: #64748b; font-size: 0.8rem;">(0/500)</span></label>
-    <textarea id="excerpt" required placeholder="Brief description (2-3 sentences)" maxlength="500"></textarea>
-</div>
+                <div class="form-group">
+                    <label for="excerpt">Short Description * <span id="excerptCount" style="color: #64748b; font-size: 0.8rem;">(0/500)</span></label>
+                    <textarea id="excerpt" required placeholder="Brief description (2-3 sentences)" maxlength="500"></textarea>
+                </div>
 
-<div class="form-group">
-    <label for="content">Full Content * <span id="contentCount" style="color: #64748b; font-size: 0.8rem;">(0/10000)</span></label>
-    <textarea id="content" required placeholder="Write your full article here..." style="min-height: 200px;" maxlength="10000"></textarea>
-</div>
+                <div class="form-group">
+                    <label for="content">Full Content * <span id="contentCount" style="color: #64748b; font-size: 0.8rem;">(0/10000)</span></label>
+                    <textarea id="content" required placeholder="Write your full article here..." style="min-height: 200px;" maxlength="10000"></textarea>
+                </div>
 
                 <!-- GitHub Image Section -->
                 <div class="form-group">
                     <label for="githubRepo">Your GitHub Image Repository</label>
-                    <input type="url" id="githubRepo" placeholder="https://raw.githubusercontent.com/username/repo/main/" 
+                    <input type="url" id="githubRepo" placeholder="https://raw.githubusercontent.com/BishalChaudhary98/Bantha-Cleaning/main/" 
                            style="margin-bottom: 0.5rem;">
                     <small style="color: #64748b;">Enter your GitHub raw URL base (saves automatically)</small>
                 </div>
@@ -212,7 +221,7 @@ image3.jpg" rows="4"></textarea>
                 </div>
 
                 <div class="button-group">
-                    <button type="submit" class="btn btn-primary">📝 Publish Post</button>
+                    <button type="submit" class="btn btn-primary" id="publishBtn">📝 Publish Post</button>
                     <a href="blog.html" class="btn btn-secondary">← Back to Blog</a>
                 </div>
             </form>
@@ -220,464 +229,431 @@ image3.jpg" rows="4"></textarea>
     </div>
 
     <script>
-// Secure GitHub Configuration - No token in code!
-const GITHUB_CONFIG = {
-    owner: 'BishalChaudhary98',           // Replace with your actual GitHub username
-    repo: 'Bantha-Cleaning',          // Replace with your actual repository name
-    token: null,                     // Will be set securely
-    branch: 'main'
-};
+        // Secure GitHub Configuration - No token in code!
+        const GITHUB_CONFIG = {
+            owner: 'BishalChaudhary98',
+            repo: 'Bantha-Cleaning',
+            token: null,
+            branch: 'main'
+        };
 
-// Secure token management
-function getGitHubToken() {
-    if (!GITHUB_CONFIG.token) {
-        const token = prompt(`
+        // Secure token management
+        function getGitHubToken() {
+            if (!GITHUB_CONFIG.token) {
+                const token = prompt(`
 🔐 GitHub Token Required
 
 To publish blog posts, please enter your GitHub Personal Access Token:
 
 (This is secure - the token is not stored in the code)
-        `);
-        
-        if (token && token.trim()) {
-            GITHUB_CONFIG.token = token.trim();
-            return token.trim();
-        } else {
-            alert('❌ Token is required to publish posts.');
-            return null;
-        }
-    }
-    return GITHUB_CONFIG.token;
-}
-
-        // Add character counters
-document.addEventListener('DOMContentLoaded', function() {
-    // Character counters
-    const titleInput = document.getElementById('title');
-    const excerptInput = document.getElementById('excerpt');
-    const contentInput = document.getElementById('content');
-    
-    const titleCount = document.getElementById('titleCount');
-    const excerptCount = document.getElementById('excerptCount');
-    const contentCount = document.getElementById('contentCount');
-    
-    function updateCounter(input, counter, max) {
-        const current = input.value.length;
-        counter.textContent = `(${current}/${max})`;
-        counter.style.color = current > max * 0.9 ? '#e74c3c' : '#64748b';
-    }
-    
-    titleInput.addEventListener('input', () => updateCounter(titleInput, titleCount, 200));
-    excerptInput.addEventListener('input', () => updateCounter(excerptInput, excerptCount, 500));
-    contentInput.addEventListener('input', () => updateCounter(contentInput, contentCount, 10000));
-    
-    // Initialize form handler
-    new GitHubPostForm();
-});
-        
-// GitHub API Helper
-class GitHubAPI {
-    constructor(config) {
-        this.config = config;
-        this.baseUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/contents`;
-    }
-
-    async getFile(path) {
-        const token = getGitHubToken();
-        if (!token) return null;
-
-        try {
-            const response = await fetch(`${this.baseUrl}/${path}`, {
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json'
+                `);
+                
+                if (token && token.trim()) {
+                    GITHUB_CONFIG.token = token.trim();
+                    return token.trim();
+                } else {
+                    alert('❌ Token is required to publish posts.');
+                    return null;
                 }
-            });
-            
-            if (response.status === 404) {
-                return null;
             }
-            
-            if (response.status === 401) {
-                alert('❌ Invalid GitHub token. Please check your token.');
-                GITHUB_CONFIG.token = null;
-                return null;
-            }
-            
-            const data = await response.json();
-            const content = atob(data.content);
-            return {
-                content: JSON.parse(content),
-                sha: data.sha
-            };
-        } catch (error) {
-            console.error('Error fetching file:', error);
-            return null;
-        }
-    }
-
-    async updateFile(path, content, sha = null) {
-        const token = getGitHubToken();
-        if (!token) return false;
-
-        try {
-            const body = {
-                message: `Update ${path}`,
-                content: btoa(JSON.stringify(content, null, 2)),
-                branch: this.config.branch
-            };
-
-            if (sha) {
-                body.sha = sha;
-            }
-
-            const response = await fetch(`${this.baseUrl}/${path}`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            });
-
-            if (response.status === 401) {
-                alert('❌ Invalid GitHub token. Please check your token.');
-                GITHUB_CONFIG.token = null;
-                return false;
-            }
-
-            return response.ok;
-        } catch (error) {
-            console.error('Error updating file:', error);
-            return false;
-        }
-    }
-}
-
-// GitHub Images Handler
-class GitHubImages {
-    constructor() {
-        this.setupGitHubFeatures();
-    }
-
-    setupGitHubFeatures() {
-        const savedRepo = localStorage.getItem('githubRepoUrl');
-        if (savedRepo) {
-            document.getElementById('githubRepo').value = savedRepo;
+            return GITHUB_CONFIG.token;
         }
 
-        document.getElementById('githubRepo').addEventListener('blur', () => {
-            const repoUrl = document.getElementById('githubRepo').value.trim();
-            if (repoUrl) {
-                localStorage.setItem('githubRepoUrl', repoUrl);
+        // GitHub API Helper
+        class GitHubAPI {
+            constructor(config) {
+                this.config = config;
+                this.baseUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/contents`;
             }
+
+            async getFile(path) {
+                const token = getGitHubToken();
+                if (!token) return null;
+
+                try {
+                    const response = await fetch(`${this.baseUrl}/${path}`, {
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
+                    
+                    if (response.status === 404) {
+                        return null;
+                    }
+                    
+                    if (response.status === 401) {
+                        alert('❌ Invalid GitHub token. Please check your token.');
+                        GITHUB_CONFIG.token = null;
+                        return null;
+                    }
+                    
+                    const data = await response.json();
+                    const content = atob(data.content);
+                    return {
+                        content: JSON.parse(content),
+                        sha: data.sha
+                    };
+                } catch (error) {
+                    console.error('Error fetching file:', error);
+                    return null;
+                }
+            }
+
+            async updateFile(path, content, sha = null) {
+                const token = getGitHubToken();
+                if (!token) return false;
+
+                try {
+                    const body = {
+                        message: `Update ${path}`,
+                        content: btoa(JSON.stringify(content, null, 2)),
+                        branch: this.config.branch
+                    };
+
+                    if (sha) {
+                        body.sha = sha;
+                    }
+
+                    const response = await fetch(`${this.baseUrl}/${path}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    });
+
+                    if (response.status === 401) {
+                        alert('❌ Invalid GitHub token. Please check your token.');
+                        GITHUB_CONFIG.token = null;
+                        return false;
+                    }
+
+                    return response.ok;
+                } catch (error) {
+                    console.error('Error updating file:', error);
+                    return false;
+                }
+            }
+        }
+
+        // GitHub Images Handler
+        class GitHubImages {
+            constructor() {
+                this.setupGitHubFeatures();
+            }
+
+            setupGitHubFeatures() {
+                const savedRepo = localStorage.getItem('githubRepoUrl');
+                if (savedRepo) {
+                    document.getElementById('githubRepo').value = savedRepo;
+                }
+
+                document.getElementById('githubRepo').addEventListener('blur', () => {
+                    const repoUrl = document.getElementById('githubRepo').value.trim();
+                    if (repoUrl) {
+                        localStorage.setItem('githubRepoUrl', repoUrl);
+                    }
+                });
+
+                document.getElementById('previewBtn').addEventListener('click', () => {
+                    this.previewImages();
+                });
+            }
+
+            previewImages() {
+                const repoUrl = document.getElementById('githubRepo').value.trim();
+                const filenames = document.getElementById('imageFiles').value
+                    .split('\n')
+                    .map(name => name.trim())
+                    .filter(name => name.length > 0);
+
+                if (!repoUrl) {
+                    alert('Please enter your GitHub repository URL first');
+                    return;
+                }
+
+                if (filenames.length === 0) {
+                    alert('Please enter at least one image filename');
+                    return;
+                }
+
+                const previewContainer = document.getElementById('imagePreview');
+                const previewGrid = document.getElementById('previewGrid');
+                
+                previewContainer.style.display = 'block';
+                previewGrid.innerHTML = '';
+
+                filenames.forEach(filename => {
+                    const fullUrl = repoUrl + (repoUrl.endsWith('/') ? '' : '/') + filename;
+                    
+                    const imgContainer = document.createElement('div');
+                    imgContainer.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 5px; overflow: hidden; text-align: center; padding: 0.5rem;';
+                    
+                    imgContainer.innerHTML = `
+                        <img src="${fullUrl}" alt="${filename}" 
+                             style="width: 100%; height: 80px; object-fit: cover; border-radius: 3px;"
+                             onload="this.nextElementSibling.textContent = '✅'"
+                             onerror="this.nextElementSibling.textContent = '❌'; this.style.background = '#fee2e2';">
+                        <div style="font-size: 0.8rem; margin-top: 0.25rem;">🔄</div>
+                        <div style="font-size: 0.7rem; color: #64748b;">${filename}</div>
+                    `;
+                    
+                    previewGrid.appendChild(imgContainer);
+                });
+            }
+
+            getImageUrls() {
+                const repoUrl = document.getElementById('githubRepo').value.trim();
+                const filenames = document.getElementById('imageFiles').value
+                    .split('\n')
+                    .map(name => name.trim())
+                    .filter(name => name.length > 0);
+
+                if (!repoUrl || filenames.length === 0) {
+                    return [];
+                }
+
+                const baseUrl = repoUrl.endsWith('/') ? repoUrl : repoUrl + '/';
+                return filenames.map(filename => baseUrl + filename);
+            }
+        }
+
+        // GitHub Post Form Handler
+        class GitHubPostForm {
+            constructor() {
+                this.api = new GitHubAPI(GITHUB_CONFIG);
+                this.form = document.getElementById('postForm');
+                this.successMessage = document.getElementById('successMessage');
+                this.errorMessage = document.getElementById('errorMessage');
+                this.githubImages = new GitHubImages();
+                
+                if (this.form) {
+                    this.form.addEventListener('submit', this.handleSubmit.bind(this));
+                    console.log('✅ Form event listener added');
+                } else {
+                    console.error('❌ Form not found!');
+                }
+            }
+
+            async handleSubmit(e) {
+                e.preventDefault();
+                console.log('🚀 Form submitted!');
+                
+                this.showLoading();
+                
+                const title = document.getElementById('title').value.trim();
+                const excerpt = document.getElementById('excerpt').value.trim();
+                const content = document.getElementById('content').value.trim();
+                const singleImage = document.getElementById('image').value.trim();
+                
+                const imageUrls = this.githubImages.getImageUrls();
+                const mainImage = imageUrls[0] || singleImage || '';
+
+                if (!title || !excerpt || !content) {
+                    this.showError('Please fill in all required fields.');
+                    return;
+                }
+
+                const post = {
+                    id: Date.now().toString(),
+                    title: title,
+                    excerpt: excerpt,
+                    content: content,
+                    image: mainImage,
+                    images: imageUrls.length > 0 ? imageUrls : (singleImage ? [singleImage] : []),
+                    date: new Date().toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric' 
+                    }),
+                    dateCreated: new Date().toISOString()
+                };
+
+                await this.savePostToGitHub(post);
+            }
+
+            async savePostToGitHub(post) {
+                try {
+                    console.log('🔍 Starting save process...');
+                    
+                    post = this.validateAndCleanPost(post);
+                    
+                    const postSize = JSON.stringify(post).length;
+                    console.log('📏 Post size:', postSize, 'characters');
+                    
+                    if (postSize > 100000) {
+                        this.showError('Post is too large. Please reduce content length.');
+                        return;
+                    }
+
+                    const postsData = await this.api.getFile('posts/posts.json');
+                    let posts = [];
+                    let sha = null;
+
+                    if (postsData) {
+                        posts = postsData.content || [];
+                        sha = postsData.sha;
+                    }
+
+                    posts.unshift(post);
+
+                    const totalSize = JSON.stringify(posts).length;
+                    console.log('📊 Total posts file size:', totalSize, 'characters');
+                    
+                    if (totalSize > 1000000) {
+                        posts = posts.slice(0, 50);
+                        console.log('✂️ Trimmed to 50 most recent posts');
+                    }
+
+                    const success = await this.api.updateFile('posts/posts.json', posts, sha);
+
+                    if (success) {
+                        console.log('✅ Posts saved successfully!');
+                        this.showSuccess();
+                        
+                        setTimeout(() => {
+                            window.location.href = 'blog.html';
+                        }, 3000);
+                    } else {
+                        this.showError('Failed to save post to GitHub. Please try again with shorter content.');
+                    }
+
+                } catch (error) {
+                    console.error('💥 Error in savePostToGitHub:', error);
+                    if (error.message.includes('too large') || error.message.includes('size')) {
+                        this.showError('Post content is too large. Please make it shorter.');
+                    } else {
+                        this.showError(`Error saving post: ${error.message}`);
+                    }
+                }
+            }
+
+            validateAndCleanPost(post) {
+                post.title = post.title.trim().substring(0, 200);
+                post.excerpt = post.excerpt.trim().substring(0, 500);
+                post.content = post.content
+                    .trim()
+                    .replace(/\n{3,}/g, '\n\n')
+                    .replace(/\s{2,}/g, ' ')
+                    .substring(0, 10000);
+                
+                if (post.image) {
+                    post.image = post.image.trim();
+                    if (!this.isValidUrl(post.image)) {
+                        post.image = '';
+                    }
+                }
+                
+                if (post.images && Array.isArray(post.images)) {
+                    post.images = post.images
+                        .filter(img => img && this.isValidUrl(img.trim()))
+                        .slice(0, 10);
+                }
+                
+                return post;
+            }
+
+            isValidUrl(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            showLoading() {
+                this.errorMessage.style.display = 'none';
+                this.successMessage.style.display = 'none';
+                
+                this.form.style.opacity = '0.6';
+                this.form.style.pointerEvents = 'none';
+                
+                const loadingDiv = document.createElement('div');
+                loadingDiv.id = 'loadingMessage';
+                loadingDiv.style.cssText = `
+                    background: #3b82f6; 
+                    color: white; 
+                    padding: 1rem; 
+                    border-radius: 8px; 
+                    margin-bottom: 1rem; 
+                    text-align: center;
+                    animation: pulse 2s infinite;
+                `;
+                loadingDiv.innerHTML = '🔄 Saving post to GitHub... Please wait.';
+                
+                this.form.parentNode.insertBefore(loadingDiv, this.form);
+            }
+
+            showSuccess() {
+                const loadingMsg = document.getElementById('loadingMessage');
+                if (loadingMsg) {
+                    loadingMsg.remove();
+                }
+                
+                this.errorMessage.style.display = 'none';
+                this.successMessage.style.display = 'block';
+                this.successMessage.innerHTML = '🎉 Post published successfully! Redirecting to blog...';
+                
+                this.form.style.opacity = '0.5';
+                this.form.style.pointerEvents = 'none';
+            }
+
+            showError(message) {
+                const loadingMsg = document.getElementById('loadingMessage');
+                if (loadingMsg) {
+                    loadingMsg.remove();
+                }
+                
+                this.form.style.opacity = '1';
+                this.form.style.pointerEvents = 'auto';
+                
+                this.successMessage.style.display = 'none';
+                this.errorMessage.textContent = `❌ ${message}`;
+                this.errorMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    this.errorMessage.style.display = 'none';
+                }, 8000);
+            }
+        }
+
+        // Character counters and initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔄 DOM loaded, initializing...');
+            
+            const titleInput = document.getElementById('title');
+            const excerptInput = document.getElementById('excerpt');
+            const contentInput = document.getElementById('content');
+            
+            const titleCount = document.getElementById('titleCount');
+            const excerptCount = document.getElementById('excerptCount');
+            const contentCount = document.getElementById('contentCount');
+            
+            function updateCounter(input, counter, max) {
+                const current = input.value.length;
+                counter.textContent = `(${current}/${max})`;
+                counter.style.color = current > max * 0.9 ? '#e74c3c' : '#64748b';
+            }
+            
+            if (titleInput && titleCount) {
+                titleInput.addEventListener('input', () => updateCounter(titleInput, titleCount, 200));
+            }
+            if (excerptInput && excerptCount) {
+                excerptInput.addEventListener('input', () => updateCounter(excerptInput, excerptCount, 500));
+            }
+            if (contentInput && contentCount) {
+                contentInput.addEventListener('input', () => updateCounter(contentInput, contentCount, 10000));
+            }
+            
+            console.log('🎯 Initializing GitHubPostForm...');
+            new GitHubPostForm();
+            
+            console.log('✅ Initialization complete!');
         });
-
-        document.getElementById('previewBtn').addEventListener('click', () => {
-            this.previewImages();
-        });
-    }
-
-    previewImages() {
-        const repoUrl = document.getElementById('githubRepo').value.trim();
-        const filenames = document.getElementById('imageFiles').value
-            .split('\n')
-            .map(name => name.trim())
-            .filter(name => name.length > 0);
-
-        if (!repoUrl) {
-            alert('Please enter your GitHub repository URL first');
-            return;
-        }
-
-        if (filenames.length === 0) {
-            alert('Please enter at least one image filename');
-            return;
-        }
-
-        const previewContainer = document.getElementById('imagePreview');
-        const previewGrid = document.getElementById('previewGrid');
-        
-        previewContainer.style.display = 'block';
-        previewGrid.innerHTML = '';
-
-        filenames.forEach(filename => {
-            const fullUrl = repoUrl + (repoUrl.endsWith('/') ? '' : '/') + filename;
-            
-            const imgContainer = document.createElement('div');
-            imgContainer.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 5px; overflow: hidden; text-align: center; padding: 0.5rem;';
-            
-            imgContainer.innerHTML = `
-                <img src="${fullUrl}" alt="${filename}" 
-                     style="width: 100%; height: 80px; object-fit: cover; border-radius: 3px;"
-                     onload="this.nextElementSibling.textContent = '✅'"
-                     onerror="this.nextElementSibling.textContent = '❌'; this.style.background = '#fee2e2';">
-                <div style="font-size: 0.8rem; margin-top: 0.25rem;">🔄</div>
-                <div style="font-size: 0.7rem; color: #64748b;">${filename}</div>
-            `;
-            
-            previewGrid.appendChild(imgContainer);
-        });
-    }
-
-    getImageUrls() {
-        const repoUrl = document.getElementById('githubRepo').value.trim();
-        const filenames = document.getElementById('imageFiles').value
-            .split('\n')
-            .map(name => name.trim())
-            .filter(name => name.length > 0);
-
-        if (!repoUrl || filenames.length === 0) {
-            return [];
-        }
-
-        const baseUrl = repoUrl.endsWith('/') ? repoUrl : repoUrl + '/';
-        return filenames.map(filename => baseUrl + filename);
-    }
-}
-
-// GitHub Post Form Handler
-class GitHubPostForm {
-    constructor() {
-        this.api = new GitHubAPI(GITHUB_CONFIG);
-        this.form = document.getElementById('postForm');
-        this.successMessage = document.getElementById('successMessage');
-        this.errorMessage = document.getElementById('errorMessage');
-        this.githubImages = new GitHubImages();
-        
-        this.form.addEventListener('submit', this.handleSubmit.bind(this));
-    }
-
-    async handleSubmit(e) {
-        e.preventDefault();
-        
-        // Show loading state
-        this.showLoading();
-        
-        // Get form data
-        const title = document.getElementById('title').value.trim();
-        const excerpt = document.getElementById('excerpt').value.trim();
-        const content = document.getElementById('content').value.trim();
-        const singleImage = document.getElementById('image').value.trim();
-        
-        // Get GitHub images
-        const imageUrls = this.githubImages.getImageUrls();
-        const mainImage = imageUrls[0] || singleImage || '';
-
-        // Validate
-        if (!title || !excerpt || !content) {
-            this.showError('Please fill in all required fields.');
-            return;
-        }
-
-        // Create post object
-        const post = {
-            id: Date.now().toString(),
-            title: title,
-            excerpt: excerpt,
-            content: content,
-            image: mainImage,
-            images: imageUrls.length > 0 ? imageUrls : (singleImage ? [singleImage] : []),
-            date: new Date().toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric' 
-            }),
-            dateCreated: new Date().toISOString()
-        };
-
-        // Save post to GitHub
-        await this.savePostToGitHub(post);
-    }
-
-    async savePostToGitHub(post) {
-    try {
-        console.log('🔍 Starting save process...');
-        
-        // Validate and clean content
-        post = this.validateAndCleanPost(post);
-        
-        // Check content size
-        const postSize = JSON.stringify(post).length;
-        console.log('📏 Post size:', postSize, 'characters');
-        
-        if (postSize > 100000) { // 100KB limit
-            this.showError('Post is too large. Please reduce content length.');
-            return;
-        }
-
-        // Get existing posts
-        const postsData = await this.api.getFile('posts/posts.json');
-        let posts = [];
-        let sha = null;
-
-        if (postsData) {
-            posts = postsData.content || [];
-            sha = postsData.sha;
-        }
-
-        // Add new post to the beginning
-        posts.unshift(post);
-
-        // Check total file size
-        const totalSize = JSON.stringify(posts).length;
-        console.log('📊 Total posts file size:', totalSize, 'characters');
-        
-        if (totalSize > 1000000) { // 1MB limit
-            // Keep only last 50 posts to prevent file getting too large
-            posts = posts.slice(0, 50);
-            console.log('✂️ Trimmed to 50 most recent posts');
-        }
-
-        // Save updated posts index
-        const success = await this.api.updateFile('posts/posts.json', posts, sha);
-
-        if (success) {
-            console.log('✅ Posts saved successfully!');
-            this.showSuccess();
-            
-            setTimeout(() => {
-                window.location.href = 'blog.html';
-            }, 3000);
-        } else {
-            this.showError('Failed to save post to GitHub. Please try again with shorter content.');
-        }
-
-    } catch (error) {
-        console.error('💥 Error in savePostToGitHub:', error);
-        if (error.message.includes('too large') || error.message.includes('size')) {
-            this.showError('Post content is too large. Please make it shorter.');
-        } else {
-            this.showError(`Error saving post: ${error.message}`);
-        }
-    }
-}
-
-// Add this new validation function
-validateAndCleanPost(post) {
-    // Clean and validate title
-    post.title = post.title.trim().substring(0, 200); // Max 200 chars
-    
-    // Clean and validate excerpt
-    post.excerpt = post.excerpt.trim().substring(0, 500); // Max 500 chars
-    
-    // Clean content - remove excessive whitespace and limit length
-    post.content = post.content
-        .trim()
-        .replace(/\n{3,}/g, '\n\n') // Replace multiple line breaks with double
-        .replace(/\s{2,}/g, ' ')    // Replace multiple spaces with single
-        .substring(0, 10000);       // Max 10,000 chars
-    
-    // Validate and clean image URLs
-    if (post.image) {
-        post.image = post.image.trim();
-        if (!this.isValidUrl(post.image)) {
-            post.image = '';
-        }
-    }
-    
-    if (post.images && Array.isArray(post.images)) {
-        post.images = post.images
-            .filter(img => img && this.isValidUrl(img.trim()))
-            .slice(0, 10); // Max 10 images
-    }
-    
-    return post;
-}
-
-// Add URL validation
-isValidUrl(string) {
-    try {
-        new URL(string);
-        return true;
-    } catch (_) {
-        return false;
-    }
-}
-    showLoading() {
-        this.errorMessage.style.display = 'none';
-        this.successMessage.style.display = 'none';
-        
-        // Disable form
-        this.form.style.opacity = '0.6';
-        this.form.style.pointerEvents = 'none';
-        
-        // Show loading message
-        const loadingDiv = document.createElement('div');
-        loadingDiv.id = 'loadingMessage';
-        loadingDiv.style.cssText = `
-            background: #3b82f6; 
-            color: white; 
-            padding: 1rem; 
-            border-radius: 8px; 
-            margin-bottom: 1rem; 
-            text-align: center;
-            animation: pulse 2s infinite;
-        `;
-        loadingDiv.innerHTML = '🔄 Saving post to GitHub... Please wait.';
-        
-        this.form.parentNode.insertBefore(loadingDiv, this.form);
-    }
-
-    showSuccess() {
-        // Remove loading message
-        const loadingMsg = document.getElementById('loadingMessage');
-        if (loadingMsg) {
-            loadingMsg.remove();
-        }
-        
-        this.errorMessage.style.display = 'none';
-        this.successMessage.style.display = 'block';
-        this.successMessage.innerHTML = '🎉 Post published successfully! Redirecting to blog...';
-        
-        // Keep form disabled
-        this.form.style.opacity = '0.5';
-        this.form.style.pointerEvents = 'none';
-    }
-
-    showError(message) {
-        // Remove loading message
-        const loadingMsg = document.getElementById('loadingMessage');
-        if (loadingMsg) {
-            loadingMsg.remove();
-        }
-        
-        // Re-enable form
-        this.form.style.opacity = '1';
-        this.form.style.pointerEvents = 'auto';
-        
-        this.successMessage.style.display = 'none';
-        this.errorMessage.textContent = `❌ ${message}`;
-        this.errorMessage.style.display = 'block';
-        
-        // Auto-hide error after 8 seconds
-        setTimeout(() => {
-            this.errorMessage.style.display = 'none';
-        }, 8000);
-    }
-}
-
-// Initialize form when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    new GitHubPostForm();
-});
-
-// Add some CSS for loading animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: 0.7; }
-        100% { opacity: 1; }
-    }
-`;
-document.head.appendChild(style);
-</script>
+    </script>
 </body>
-
 </html>
-
-
-
-
