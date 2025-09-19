@@ -2,7 +2,7 @@
         .hero-section {
             width: 100%;
             height: 50vh;
-            background-image: url('studio-cleaning.jpg');
+            background-image: url('studio-cleaning.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -233,4 +233,5 @@
             .pricing-table td {
                 padding: 6px 3px;
             }
+
         }
