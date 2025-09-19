@@ -220,15 +220,37 @@ image3.jpg" rows="4"></textarea>
     </div>
 
     <script>
-// GitHub Configuration (same as blog.html)
+// Secure GitHub Configuration - No token in code!
 const GITHUB_CONFIG = {
-    owner: 'BishalChaudhary98',           // Replace with your GitHub username
-    repo: 'Bantha-Cleaning',          // Replace with your repository name
-    token: prompt('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'),      // Replace with your personal access token
+    owner: 'your-username',           // Replace with your actual GitHub username
+    repo: 'your-repo-name',          // Replace with your actual repository name
+    token: null,                     // Will be set securely
     branch: 'main'
 };
 
-// GitHub API Helper (same class as in blog.html)
+// Secure token management
+function getGitHubToken() {
+    if (!GITHUB_CONFIG.token) {
+        const token = prompt(`
+🔐 GitHub Token Required
+
+To publish blog posts, please enter your GitHub Personal Access Token:
+
+(This is secure - the token is not stored in the code)
+        `);
+        
+        if (token && token.trim()) {
+            GITHUB_CONFIG.token = token.trim();
+            return token.trim();
+        } else {
+            alert('❌ Token is required to publish posts.');
+            return null;
+        }
+    }
+    return GITHUB_CONFIG.token;
+}
+
+// GitHub API Helper
 class GitHubAPI {
     constructor(config) {
         this.config = config;
@@ -236,15 +258,24 @@ class GitHubAPI {
     }
 
     async getFile(path) {
+        const token = getGitHubToken();
+        if (!token) return null;
+
         try {
             const response = await fetch(`${this.baseUrl}/${path}`, {
                 headers: {
-                    'Authorization': `token ${this.config.token}`,
+                    'Authorization': `token ${token}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
             
             if (response.status === 404) {
+                return null;
+            }
+            
+            if (response.status === 401) {
+                alert('❌ Invalid GitHub token. Please check your token.');
+                GITHUB_CONFIG.token = null;
                 return null;
             }
             
@@ -261,6 +292,9 @@ class GitHubAPI {
     }
 
     async updateFile(path, content, sha = null) {
+        const token = getGitHubToken();
+        if (!token) return false;
+
         try {
             const body = {
                 message: `Update ${path}`,
@@ -275,12 +309,18 @@ class GitHubAPI {
             const response = await fetch(`${this.baseUrl}/${path}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `token ${this.config.token}`,
+                    'Authorization': `token ${token}`,
                     'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(body)
             });
+
+            if (response.status === 401) {
+                alert('❌ Invalid GitHub token. Please check your token.');
+                GITHUB_CONFIG.token = null;
+                return false;
+            }
 
             return response.ok;
         } catch (error) {
@@ -290,20 +330,18 @@ class GitHubAPI {
     }
 }
 
-// GitHub Images Handler (Enhanced)
+// GitHub Images Handler
 class GitHubImages {
     constructor() {
         this.setupGitHubFeatures();
     }
 
     setupGitHubFeatures() {
-        // Load saved GitHub repo URL
         const savedRepo = localStorage.getItem('githubRepoUrl');
         if (savedRepo) {
             document.getElementById('githubRepo').value = savedRepo;
         }
 
-        // Save repo URL when changed
         document.getElementById('githubRepo').addEventListener('blur', () => {
             const repoUrl = document.getElementById('githubRepo').value.trim();
             if (repoUrl) {
@@ -311,7 +349,6 @@ class GitHubImages {
             }
         });
 
-        // Preview images button
         document.getElementById('previewBtn').addEventListener('click', () => {
             this.previewImages();
         });
@@ -448,7 +485,7 @@ class GitHubPostForm {
             const success = await this.api.updateFile('posts/posts.json', posts, sha);
 
             if (success) {
-                // Also save individual post file
+                // Also save individual post file (optional, for backup)
                 await this.api.updateFile(`posts/post-${post.id}.json`, post);
                 
                 this.showSuccess();
@@ -458,7 +495,7 @@ class GitHubPostForm {
                     window.location.href = 'blog.html';
                 }, 3000);
             } else {
-                this.showError('Failed to save post to GitHub. Please check your configuration.');
+                this.showError('Failed to save post to GitHub. Please check your token and repository settings.');
             }
 
         } catch (error) {
@@ -485,8 +522,9 @@ class GitHubPostForm {
             border-radius: 8px; 
             margin-bottom: 1rem; 
             text-align: center;
+            animation: pulse 2s infinite;
         `;
-        loadingDiv.innerHTML = '🔄 Saving post to GitHub...';
+        loadingDiv.innerHTML = '🔄 Saving post to GitHub... Please wait.';
         
         this.form.parentNode.insertBefore(loadingDiv, this.form);
     }
@@ -501,6 +539,10 @@ class GitHubPostForm {
         this.errorMessage.style.display = 'none';
         this.successMessage.style.display = 'block';
         this.successMessage.innerHTML = '🎉 Post published successfully! Redirecting to blog...';
+        
+        // Keep form disabled
+        this.form.style.opacity = '0.5';
+        this.form.style.pointerEvents = 'none';
     }
 
     showError(message) {
@@ -518,6 +560,7 @@ class GitHubPostForm {
         this.errorMessage.textContent = `❌ ${message}`;
         this.errorMessage.style.display = 'block';
         
+        // Auto-hide error after 8 seconds
         setTimeout(() => {
             this.errorMessage.style.display = 'none';
         }, 8000);
@@ -528,8 +571,20 @@ class GitHubPostForm {
 document.addEventListener('DOMContentLoaded', function() {
     new GitHubPostForm();
 });
+
+// Add some CSS for loading animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.7; }
+        100% { opacity: 1; }
+    }
+`;
+document.head.appendChild(style);
 </script>
 </body>
 
 </html>
+
 
