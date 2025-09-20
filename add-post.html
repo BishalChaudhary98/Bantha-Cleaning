@@ -75,7 +75,7 @@ image3.jpg" rows="4"></textarea>
 
                 <div class="button-group">
                     <button type="submit" class="btn btn-primary" id="publishBtn">📝 Publish Post</button>
-                    <a href="blog.html" class="btn btn-secondary">← Back to Blog</a>
+                    <a href="blog/" class="btn btn-secondary">← Back to Blog</a>
                 </div>
             </form>
         </div>
@@ -452,7 +452,7 @@ Please enter your GitHub Personal Access Token:
                         this.showSuccess();
                         
                         setTimeout(() => {
-                            window.location.href = 'blog.html';
+                            window.location.href = 'blog/';
                         }, 3000);
                     } else {
                         this.showError('Failed to save post to GitHub. Please check your token and try again.');

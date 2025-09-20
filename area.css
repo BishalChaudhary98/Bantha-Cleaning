@@ -1,49 +1,67 @@
 /* Areas Dropdown Specific Styles */
 .areas-dropdown {
-    min-width: 250px; /* Wider dropdown for area names */
-    max-height: 300px; /* Limit height for scrolling if needed */
-    overflow-y: auto; /* Enable scrolling if too many items */
-    columns: 2; /* Split into 2 columns for better layout */
-    column-gap: 0; /* No gap between columns */
+    min-width: 250px;
+    /* Wider dropdown for area names */
+    max-height: 300px;
+    /* Limit height for scrolling if needed */
+    overflow-y: auto;
+    /* Enable scrolling if too many items */
+    columns: 2;
+    /* Split into 2 columns for better layout */
+    column-gap: 0;
+    /* No gap between columns */
 }
 
 .areas-dropdown a {
     display: block;
     color: #333;
     text-decoration: none;
-    padding: 0.6rem 1rem; /* Slightly smaller padding for more items */
+    padding: 0.6rem 1rem;
+    /* Slightly smaller padding for more items */
     transition: all 0.3s ease;
-    border-radius: 6px; /* Smaller border radius */
-    margin: 0.2rem; /* Smaller margin */
+    border-radius: 6px;
+    /* Smaller border radius */
+    margin: 0.2rem;
+    /* Smaller margin */
     font-weight: 500;
-    font-size: 0.95rem; /* Slightly smaller font */
-    break-inside: avoid; /* Prevent breaking across columns */
+    font-size: 0.95rem;
+    /* Slightly smaller font */
+    break-inside: avoid;
+    /* Prevent breaking across columns */
 }
 
 .areas-dropdown a:hover {
     background: linear-gradient(135deg, #333 0%, #555 100%);
     color: white;
-    transform: translateX(3px); /* Smaller transform */
+    transform: translateX(3px);
+    /* Smaller transform */
 }
 
 /* Mobile adjustments for areas dropdown */
 @media (max-width: 940px) {
     .areas-dropdown {
-        columns: 1; /* Single column on mobile */
-        max-height: none; /* Remove height limit on mobile */
+        columns: 1;
+        /* Single column on mobile */
+        max-height: none;
+        /* Remove height limit on mobile */
     }
-    
+
     .areas-dropdown a {
-        padding: 1rem 3rem; /* Standard mobile padding */
-        margin: 0; /* Remove margin on mobile */
-        border-radius: 0; /* Remove border radius on mobile */
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        font-size: 1.1rem; /* Standard mobile font size */
+        padding: 1rem 3rem;
+        /* Standard mobile padding */
+        margin: 0;
+        /* Remove margin on mobile */
+        border-radius: 0;
+        /* Remove border radius on mobile */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 1.1rem;
+        /* Standard mobile font size */
     }
-    
+
     .areas-dropdown a:hover {
-        background: rgba(0,0,0,0.1);
-        transform: none; /* Remove transform on mobile */
+        background: rgba(0, 0, 0, 0.1);
+        transform: none;
+        /* Remove transform on mobile */
     }
 }
 
@@ -321,7 +339,7 @@
         gap: 2rem;
     }
 
-        .content-block {
+    .content-block {
         padding: 2rem;
     }
 
