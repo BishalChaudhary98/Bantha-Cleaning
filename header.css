@@ -121,6 +121,7 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* DESKTOP DROPDOWN STYLES - RESTORED ORIGINAL DESIGN */
 .dropdown {
     position: absolute;
     top: 100%;
@@ -161,7 +162,7 @@ body {
     transform: translateX(5px);
 }
 
-/* Areas Dropdown Specific Styles */
+/* DESKTOP AREAS DROPDOWN - RESTORED ORIGINAL DESIGN */
 .areas-dropdown {
     min-width: 250px;
     max-height: 300px;
@@ -295,7 +296,7 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* Responsive - Below 940px */
+/* MOBILE RESPONSIVE STYLES */
 @media (max-width: 940px) {
     .opening-hours {
         display: none;
@@ -349,61 +350,71 @@ body {
         box-shadow: none;
     }
 
-    /* FIXED: Standard dropdown behavior for mobile */
-    .dropdown {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        border: none;
-        margin: 0;
-        background: rgba(0,0,0,0.05);
-        border-radius: 0;
-        columns: 1; /* Force single column */
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-    }
-
-    /* FIXED: When dropdown is active, show content */
-    .nav-item.dropdown-active .dropdown {
-        max-height: 500px; /* Enough for both services and areas */
-        overflow-y: auto;
-    }
-
-    /* FIXED: All dropdown links (both services and areas) */
-    .dropdown a {
-        display: block;
-        width: 100%;
-        margin: 0;
-        border-radius: 0;
-        padding: 1.2rem 3rem;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        font-size: 1.1rem;
-        color: #333;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
-
-    .dropdown a:hover {
-        background: rgba(0,0,0,0.1);
-        transform: none;
-        color: #333;
-    }
-
-    /* FIXED: Remove desktop-specific areas dropdown styling on mobile */
+    /* MOBILE DROPDOWN - RESET ALL DESKTOP STYLES */
+    .dropdown,
     .areas-dropdown {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        background: rgba(0,0,0,0.05) !important;
+        border-radius: 0 !important;
         columns: 1 !important;
-        max-height: none !important;
-        overflow-y: visible !important;
+        column-gap: 0 !important;
+        min-width: auto !important;
+        
+        /* COLLAPSIBLE BEHAVIOR */
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: max-height 0.4s ease-out !important;
     }
 
-    /* Remove icons on mobile */
+    /* SHOW DROPDOWN WHEN ACTIVE */
+    .nav-item.dropdown-active .dropdown,
+    .nav-item.dropdown-active .areas-dropdown {
+        max-height: 600px !important;
+        overflow-y: auto !important;
+    }
+
+    /* MOBILE DROPDOWN LINKS - UNIFIED STYLING */
+    .dropdown a,
+    .areas-dropdown a {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        padding: 1.2rem 3rem !important;
+        border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+        font-size: 1.1rem !important;
+        color: #333 !important;
+        text-decoration: none !important;
+        transition: background-color 0.3s ease !important;
+        background: transparent !important;
+        
+        /* PREVENT COLUMN BREAKS */
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    /* FIXED: Remove bottom border from last item to prevent extra space */
+    .dropdown a:last-child,
+    .areas-dropdown a:last-child {
+        border-bottom: none !important;
+    }
+
+    .dropdown a:hover,
+    .areas-dropdown a:hover {
+        background: rgba(0,0,0,0.1) !important;
+        transform: none !important;
+        color: #333 !important;
+    }
+
+    /* REMOVE DESKTOP-SPECIFIC STYLING ON MOBILE */
     .areas-dropdown a::before {
-        display: none;
+        display: none !important;
     }
 
     /* Mobile opening hours positioning */
