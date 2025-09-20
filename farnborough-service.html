@@ -16,75 +16,84 @@
     </head>
     <body>
         <header class="header">
-            <div class="header-container">
-                <!-- Logo -->
-                <div class="logo-section">
-                    <a href="/">
-                        <img src="logo.png" alt="Company Logo" class="logo"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    </a>
-                    <div
-                        style="display:none; font-weight:bold; font-size:1.2rem; color:#333;">LOGO</div>
-                </div>
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo-section">
+            <a href="/">
+                <img src="logo.png" alt="Company Logo" class="logo">
+            </a>
+        </div>
 
-                <!-- Opening Hours (Desktop) -->
-                <div class="opening-hours">
-                    <h3 id="hours-title">Opening Hours Today</h3>
-                    <div class="current-hours">
-                        <span class="status-dot" id="status-dot"></span>
-                        <span id="current-day"></span> - <span
-                            id="current-hours"></span>
-                    </div>
-                </div>
+        <!-- Opening Hours (Desktop) -->
+        <div class="opening-hours">
+            <h3 id="hours-title">Opening Hours Today</h3>
+            <div class="current-hours">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="current-day"></span> - <span id="current-hours"></span>
+            </div>
+        </div>
 
-                <!-- Navigation -->
-                <nav class="nav-menu">
-                    <div class="nav-item">
-                        <a href="/" class="nav-link">Home</a>
-                    </div>
-
-                    <div class="nav-item">
-                        <a href="#" class="nav-link services-toggle">
-                            Services
-                            <span class="dropdown-arrow">▼</span>
-                        </a>
-                        <div class="dropdown">
-                            <a href="generalcleaning.html">General Cleaning</a>
-                            <a href="deepcleaning.html">Deep Cleaning</a>
-                        </div>
-                    </div>
-
-                    <div class="nav-item">
-                        <a href="blog.html" class="nav-link">Blog</a>
-                    </div>
-
-                    <div class="nav-item">
-                        <a href="contact.html" class="nav-link">Contact</a>
-                    </div>
-
-                    <!-- ADDED: Mobile Opening Hours (shows at bottom of mobile menu) -->
-                    <div class="mobile-opening-hours">
-                        <h3>Opening Hours Today</h3>
-                        <div class="current-hours">
-                            <span class="status-dot"
-                                id="mobile-status-dot"></span>
-                            <span id="mobile-current-day"></span> - <span
-                                id="mobile-current-hours"></span>
-                        </div>
-                    </div>
-                </nav>
-
-                <!-- Hamburger Menu -->
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="/" class="nav-link">Home</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link services-toggle">
+                    Services
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown">
+                    <a href="generalcleaning.html">General Cleaning</a>
+                    <a href="deepcleaning.html">Deep Cleaning</a>
                 </div>
             </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link areas-toggle">
+                    Areas We Cover
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                                <div class="dropdown">
+                    <a href="winchester-service.html">Winchester</a>
+                    <a href="andover-service.html">Andover</a>
+                    <a href="basingstoke-service.html">Basingstoke</a>
+                    <a href="aldershot-service.html">Aldershot</a>
+                    <a href="fleet-service.html">Fleet</a>
+                    <a href="farnborough-service.html">Farnborough</a>
+                    <a href="farnham-service.html">Farnham</a>
+                    <a href="hook-service.html">Hook</a>
+                    <a href="woking-service.html">Woking</a>
+                    <a href="ash-vale-service.html">Ash Vale</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="blog.html" class="nav-link">Blog</a>
+            </div>
+            <div class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </nav>
 
-            <!-- Mobile Overlay -->
-            <div class="mobile-overlay"></div>
-        </header>
+        <!-- Hamburger Menu -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay"></div>
+    
+    <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
+    <div class="mobile-opening-hours">
+        <h3>Opening Hours Today</h3>
+        <div class="current-hours">
+            <span class="status-dot" id="mobile-status-dot"></span>
+            <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
+        </div>
+    </div>
+</header>
 
         <!-- Welcome Section -->
         <section class="welcome-section">
