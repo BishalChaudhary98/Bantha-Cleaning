@@ -385,10 +385,7 @@
         .company-name {
             font-weight: 600;
             margin-bottom: 10px;
-        }
-
-        .addressofcomp{
-            color:#000000
+            color: #000000;
         }
         
         @media (max-width: 768px) {
