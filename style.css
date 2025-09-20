@@ -634,13 +634,13 @@
     font-weight: 500;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    text-decoration: none; /* ADDED: Remove underline */
-    display: flex; /* ADDED: Flexbox for layout */
-    align-items: center; /* ADDED: Center content vertically */
-    justify-content: space-between; /* ADDED: Space between name and arrow */
-    cursor: pointer; /* ADDED: Pointer cursor */
-    position: relative; /* ADDED: For pseudo-elements */
-    overflow: hidden; /* ADDED: Hide overflow for effects */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* CHANGED: Center the content */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .area-item::before {
@@ -655,35 +655,21 @@
 }
 
 .area-item:hover::before {
-    left: 100%; /* ADDED: Shine effect on hover */
+    left: 100%;
 }
 
 .area-item:hover {
-    transform: translateY(-8px) scale(1.02); /* ENHANCED: More dramatic hover effect */
+    transform: translateY(-8px) scale(1.02);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .area-item:active {
-    transform: translateY(-4px) scale(0.98); /* ADDED: Click effect */
+    transform: translateY(-4px) scale(0.98);
 }
 
 .area-name {
-    font-weight: 600; /* ADDED: Bold area name */
-    flex-grow: 1; /* ADDED: Take available space */
-    text-align: left; /* ADDED: Left align text */
-}
-
-.area-arrow {
-    font-size: 1.3rem; /* ADDED: Larger arrow */
-    font-weight: bold;
-    opacity: 0.7; /* ADDED: Subtle arrow */
-    transition: all 0.3s ease;
-    transform: translateX(0); /* ADDED: Initial position */
-}
-
-.area-item:hover .area-arrow {
-    opacity: 1; /* ADDED: Full opacity on hover */
-    transform: translateX(5px); /* ADDED: Move arrow right on hover */
+    font-weight: 600;
+    text-align: center; /* CHANGED: Center the text */
 }
 
 /* Different gradient colors for variety */
@@ -735,7 +721,7 @@
     opacity: 0.7;
 }
 
-.area-item.loading .area-arrow {
+.area-item.loading .area-name {
     animation: pulse 1s infinite;
 }
 
@@ -779,17 +765,10 @@
     .area-item {
         padding: 15px;
         font-size: 1rem;
-        flex-direction: column; /* ADDED: Stack on mobile */
-        text-align: center; /* ADDED: Center on mobile */
-        gap: 5px; /* ADDED: Space between name and arrow */
     }
 
     .area-name {
-        text-align: center; /* ADDED: Center on mobile */
-    }
-
-    .area-arrow {
-        font-size: 1.1rem; /* ADDED: Smaller arrow on mobile */
+        text-align: center;
     }
 
     .more-areas {
