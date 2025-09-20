@@ -24,7 +24,7 @@
     margin: 0 auto;
     padding: 0 2rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr; /* CHANGED: Left side is now 2x wider than right */
     gap: 4rem;
     align-items: start;
     position: relative;
@@ -65,14 +65,18 @@
 
 .company-description {
     font-size: 1.1rem;
-    line-height: 1.7;
+    line-height: 1.6; /* REDUCED: From 1.7 to 1.6 for tighter spacing */
     color: #475569;
     font-family: Arial, sans-serif;
+    columns: 2; /* ADDED: Split text into 2 columns for wider layout */
+    column-gap: 2rem;
+    column-rule: 1px solid #e5e7eb;
 }
 
 .company-description p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem; /* REDUCED: From 1.5rem to 1.2rem */
     text-align: justify;
+    break-inside: avoid; /* Prevents paragraphs from breaking across columns */
 }
 
 .company-description p:last-child {
@@ -176,6 +180,12 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .company-description {
+        columns: 1; /* Single column on smaller screens */
+    }
+}
+
 @media (max-width: 940px) {
     .info-contact-container {
         grid-template-columns: 1fr;
@@ -194,6 +204,10 @@
 
     .company-subtitle {
         font-size: 1.2rem;
+    }
+
+    .company-description {
+        columns: 1; /* Single column on mobile */
     }
 
     .form-row {
