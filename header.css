@@ -161,35 +161,34 @@ body {
     transform: translateX(5px);
 }
 
-/* ADDED: Areas Dropdown Specific Styles */
+/* Areas Dropdown Specific Styles */
 .areas-dropdown {
-    min-width: 250px; /* Wider dropdown for area names */
-    max-height: 300px; /* Limit height for scrolling if needed */
-    overflow-y: auto; /* Enable scrolling if too many items */
-    columns: 2; /* Split into 2 columns for better layout */
-    column-gap: 0; /* No gap between columns */
+    min-width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    columns: 2;
+    column-gap: 0;
 }
 
 .areas-dropdown a {
     display: block;
     color: #333;
     text-decoration: none;
-    padding: 0.6rem 1rem; /* Slightly smaller padding for more items */
+    padding: 0.6rem 1rem;
     transition: all 0.3s ease;
-    border-radius: 6px; /* Smaller border radius */
-    margin: 0.2rem; /* Smaller margin */
+    border-radius: 6px;
+    margin: 0.2rem;
     font-weight: 500;
-    font-size: 0.95rem; /* Slightly smaller font */
-    break-inside: avoid; /* Prevent breaking across columns */
+    font-size: 0.95rem;
+    break-inside: avoid;
 }
 
 .areas-dropdown a:hover {
     background: linear-gradient(135deg, #333 0%, #555 100%);
     color: white;
-    transform: translateX(3px); /* Smaller transform */
+    transform: translateX(3px);
 }
 
-/* Optional: Add icons to area links */
 .areas-dropdown a::before {
     content: "📍 ";
     margin-right: 0.5rem;
@@ -255,7 +254,7 @@ body {
 
 /* Mobile opening hours section */
 .mobile-opening-hours {
-    display: none; /* Hidden by default */
+    display: none;
     width: 100%;
     background: rgba(0, 0, 0, 0.05);
     padding: 1.5rem 2rem;
@@ -299,7 +298,7 @@ body {
 /* Responsive - Below 940px */
 @media (max-width: 940px) {
     .opening-hours {
-        display: none; /* HIDE desktop opening hours */
+        display: none;
     }
 
     .hamburger {
@@ -320,7 +319,7 @@ body {
         transition: left 0.3s ease;
         z-index: 1001;
         gap: 0;
-        overflow-y: auto; /* Allow scrolling if content is too tall */
+        overflow-y: auto;
     }
 
     .nav-menu.active {
@@ -330,7 +329,7 @@ body {
 
     .nav-item {
         width: 100%;
-        flex-shrink: 0; /* Prevent items from shrinking */
+        flex-shrink: 0;
     }
 
     .nav-link {
@@ -350,6 +349,7 @@ body {
         box-shadow: none;
     }
 
+    /* FIXED: Standard dropdown behavior for mobile */
     .dropdown {
         position: static;
         opacity: 1;
@@ -360,76 +360,50 @@ body {
         margin: 0;
         background: rgba(0,0,0,0.05);
         border-radius: 0;
+        columns: 1; /* Force single column */
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.4s ease-out;
     }
 
+    /* FIXED: When dropdown is active, show content */
     .nav-item.dropdown-active .dropdown {
-        max-height: 300px; /* INCREASED: For services dropdown */
+        max-height: 500px; /* Enough for both services and areas */
         overflow-y: auto;
     }
 
-    /* ADDED: Mobile areas dropdown specific styles */
-    .areas-dropdown {
-        columns: 1 !important; /* Single column on mobile */
-        max-height: none !important;
-        position: static !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
-        box-shadow: none !important;
-        border: none !important;
-        margin: 0 !important;
-        background: rgba(0,0,0,0.05) !important;
-        border-radius: 0 !important;
-        
-        /* Collapsible behavior */
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-    }
-    
-    /* FIXED: Show all areas when dropdown is active */
-    .nav-item.dropdown-active .areas-dropdown {
-        max-height: 600px !important; /* Large enough for all 10 areas */
-        overflow-y: auto !important;
-    }
-    
-    .areas-dropdown a {
-        padding: 1.2rem 3rem !important; /* Standard mobile padding */
-        margin: 0 !important; /* Remove margin on mobile */
-        border-radius: 0 !important; /* Remove border radius on mobile */
-        border-bottom: 1px solid rgba(0,0,0,0.1) !important;
-        font-size: 1.1rem !important; /* Standard mobile font size */
-        display: block !important;
-        width: 100% !important;
-        
-        /* Ensure no column breaks */
-        break-inside: avoid !important;
-        page-break-inside: avoid !important;
-    }
-    
-    .areas-dropdown a:hover {
-        background: rgba(0,0,0,0.1) !important;
-        transform: none !important; /* Remove transform on mobile */
-    }
-
-    /* Remove icons on mobile for cleaner look */
-    .areas-dropdown a::before {
-        display: none !important;
-    }
-
+    /* FIXED: All dropdown links (both services and areas) */
     .dropdown a {
+        display: block;
+        width: 100%;
         margin: 0;
         border-radius: 0;
-        padding: 1rem 3rem;
+        padding: 1.2rem 3rem;
         border-bottom: 1px solid rgba(0,0,0,0.1);
+        font-size: 1.1rem;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        break-inside: avoid;
+        page-break-inside: avoid;
     }
 
     .dropdown a:hover {
         background: rgba(0,0,0,0.1);
         transform: none;
+        color: #333;
+    }
+
+    /* FIXED: Remove desktop-specific areas dropdown styling on mobile */
+    .areas-dropdown {
+        columns: 1 !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+
+    /* Remove icons on mobile */
+    .areas-dropdown a::before {
+        display: none;
     }
 
     /* Mobile opening hours positioning */
@@ -507,6 +481,6 @@ body {
     }
 
     .mobile-opening-hours {
-        display: none !important; /* HIDE on desktop */
+        display: none !important;
     }
 }
