@@ -15,7 +15,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4); /* INCREASED: From 0.3 to 0.4 for better text readability */
+    background: rgba(0, 0, 0, 0.6); /* INCREASED: From 0.4 to 0.6 for better contrast */
     z-index: 1;
 }
 
@@ -26,7 +26,7 @@
     display: grid;
     grid-template-columns: 3fr 1.5fr;
     gap: 6rem;
-    align-items: stretch; /* CHANGED: From 'start' to 'stretch' to match heights */
+    align-items: stretch;
     position: relative;
     z-index: 2;
 }
@@ -34,49 +34,49 @@
 .company-info {
     padding-right: 0;
     margin-left: -2rem;
-    display: flex; /* ADDED: For height matching */
-    align-items: stretch; /* ADDED: For height matching */
+    display: flex;
+    align-items: stretch;
 }
 
 .company-info-box {
-    background: rgba(255, 255, 255, 0.15); /* CHANGED: Much more transparent */
-    backdrop-filter: blur(15px); /* INCREASED: More blur for better effect */
+    background: rgba(0, 0, 0, 0.7); /* CHANGED: Dark background for better contrast */
+    backdrop-filter: blur(15px);
     padding: 3rem 4rem;
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* INCREASED: Stronger shadow */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* INCREASED: More visible border */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* REDUCED: Subtle border */
     max-width: none;
-    width: 100%; /* ADDED: Full width */
-    display: flex; /* ADDED: For content layout */
-    flex-direction: column; /* ADDED: Vertical layout */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .company-name {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #ffffff; /* CHANGED: White text for better contrast */
+    color: #ffffff;
     margin-bottom: 1rem;
     line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* INCREASED: Stronger text shadow */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* INCREASED: Stronger shadow */
     font-family: Arial, sans-serif;
 }
 
 .company-subtitle {
     font-size: 1.4rem;
     font-weight: 600;
-    color: #60a5fa; /* CHANGED: Lighter blue for better contrast */
+    color: #93c5fd; /* CHANGED: Lighter blue for better contrast */
     margin-bottom: 2rem;
     line-height: 1.3;
     font-family: Arial, sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* ADDED: Text shadow */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* INCREASED: Stronger shadow */
 }
 
 .company-description {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #f1f5f9; /* CHANGED: Light gray for better contrast */
+    color: #f8fafc; /* CHANGED: Very light gray */
     font-family: Arial, sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* ADDED: Text shadow */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* INCREASED: Stronger shadow */
 }
 
 .company-description p {
@@ -89,40 +89,40 @@
 }
 
 .company-description strong {
-    color: #ffffff; /* CHANGED: White for emphasis */
+    color: #fbbf24; /* CHANGED: Yellow for emphasis and contrast */
     font-weight: 700;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* ADDED: Text shadow */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .contact-form-container {
-    background: rgba(255, 255, 255, 0.15); /* CHANGED: Same transparency as company info */
-    backdrop-filter: blur(15px); /* INCREASED: More blur */
-    padding: 2.5rem; /* INCREASED: From 1.5rem to 2.5rem for more height */
+    background: rgba(255, 255, 255, 0.95); /* CHANGED: Much more opaque white background */
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* INCREASED: Stronger shadow */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* INCREASED: More visible border */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1); /* CHANGED: Dark border for definition */
     margin-right: -2rem;
-    display: flex; /* ADDED: For height matching */
-    flex-direction: column; /* ADDED: Vertical layout */
-    justify-content: space-between; /* ADDED: Distribute content evenly */
-    min-height: 100%; /* ADDED: Match parent height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
 }
 
 .form-title {
-    font-size: 1.8rem; /* INCREASED: From 1.6rem for better proportion */
-    color: #ffffff; /* CHANGED: White text */
-    margin-bottom: 2rem; /* INCREASED: From 1.2rem for more spacing */
+    font-size: 1.8rem;
+    color: #1e293b; /* CHANGED: Dark text on light background */
+    margin-bottom: 2rem;
     text-align: center;
     font-weight: 600;
     font-family: Arial, sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* ADDED: Text shadow */
+    text-shadow: none; /* REMOVED: No shadow needed on light background */
 }
 
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* INCREASED: From 1rem for more spacing */
-    flex-grow: 1; /* ADDED: Take available space */
+    gap: 1.5rem;
+    flex-grow: 1;
 }
 
 .form-row {
@@ -138,59 +138,85 @@
 
 .form-group label {
     font-weight: 600;
-    color: #f1f5f9; /* CHANGED: Light color for contrast */
+    color: #374151; /* CHANGED: Dark text on light background */
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
     font-family: Arial, sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* ADDED: Text shadow */
+    text-shadow: none; /* REMOVED: No shadow needed */
 }
 
 .form-group input,
 .form-group textarea {
-    padding: 1rem; /* INCREASED: From 0.75rem for better proportion */
-    border: 2px solid rgba(255, 255, 255, 0.3); /* CHANGED: Transparent border */
+    padding: 1rem;
+    border: 2px solid #d1d5db; /* CHANGED: Solid border for better definition */
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.9); /* SLIGHTLY: More opaque for readability */
+    background: #ffffff; /* CHANGED: Solid white background */
     font-family: Arial, sans-serif;
+    color: #1f2937; /* ADDED: Dark text color */
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #60a5fa; /* CHANGED: Light blue for contrast */
-    background: rgba(255, 255, 255, 0.95); /* SLIGHTLY: More opaque on focus */
-    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3); /* CHANGED: Light blue glow */
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 100px; /* INCREASED: From 80px for better proportion */
+    min-height: 100px;
 }
 
 .submit-btn {
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
-    padding: 1.2rem 2rem; /* INCREASED: From 1rem for better proportion */
+    padding: 1.2rem 2rem;
     border: none;
     border-radius: 10px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 1.5rem; /* INCREASED: From 1rem */
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); /* INCREASED: Stronger shadow */
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
     font-family: Arial, sans-serif;
 }
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5); /* INCREASED: Stronger hover shadow */
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
 }
 
 .submit-btn:active {
     transform: translateY(0);
+}
+
+/* Alternative: If you want both sections with better readability */
+.company-info-box-alt {
+    background: rgba(255, 255, 255, 0.95); /* White background option */
+    backdrop-filter: blur(10px);
+    padding: 3rem 4rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.company-name-alt {
+    color: #1e293b; /* Dark text for white background */
+    text-shadow: none;
+}
+
+.company-subtitle-alt {
+    color: #3b82f6; /* Blue text for white background */
+    text-shadow: none;
+}
+
+.company-description-alt {
+    color: #475569; /* Dark gray for white background */
+    text-shadow: none;
 }
 
 /* Responsive Design */
@@ -205,7 +231,7 @@
     
     .contact-form-container {
         margin-right: -1rem;
-        padding: 2rem; /* REDUCED: For smaller screens */
+        padding: 2rem;
     }
 }
 
@@ -215,14 +241,14 @@
         gap: 3rem;
         padding: 0 1rem;
         max-width: 1200px;
-        align-items: start; /* RESET: On mobile */
+        align-items: start;
     }
 
     .company-info {
         padding-right: 0;
         text-align: center;
         margin-left: 0;
-        display: block; /* RESET: On mobile */
+        display: block;
     }
 
     .company-name {
@@ -235,23 +261,23 @@
 
     .company-info-box {
         padding: 3rem 2rem;
-        display: block; /* RESET: On mobile */
+        display: block;
     }
 
     .contact-form-container {
         margin-right: 0;
-        padding: 2rem; /* RESET: On mobile */
-        display: block; /* RESET: On mobile */
-        min-height: auto; /* RESET: On mobile */
+        padding: 2rem;
+        display: block;
+        min-height: auto;
     }
 
     .contact-form {
-        gap: 1rem; /* RESET: On mobile */
+        gap: 1rem;
     }
 
     .form-title {
-        font-size: 1.6rem; /* RESET: On mobile */
-        margin-bottom: 1.2rem; /* RESET: On mobile */
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
     }
 
     .form-row {
@@ -281,7 +307,7 @@
     }
 
     .contact-form-container {
-        padding: 1.5rem; /* SLIGHTLY: More padding than before */
+        padding: 1.5rem;
     }
 
     .info-contact-container {
@@ -295,11 +321,11 @@
 
     .form-group input,
     .form-group textarea {
-        padding: 0.75rem; /* RESET: On mobile */
+        padding: 0.75rem;
     }
 
     .submit-btn {
-        padding: 1rem 2rem; /* RESET: On mobile */
+        padding: 1rem 2rem;
     }
 }
 
