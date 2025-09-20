@@ -18,64 +18,71 @@
     </head>
     <body>
         <header class="header">
-            <div class="header-container">
-                <!-- Logo -->
-                <div class="logo-section">
-                    <a href="/">
-                        <img src="logo.png" alt="Company Logo" class="logo"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    </a>
-                    <div
-                        style="display:none; font-weight:bold; font-size:1.2rem; color:#333;">LOGO</div>
-                </div>
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo-section">
+            <a href="/">
+                <img src="logo.png" alt="Company Logo" class="logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            </a>
+            <div style="display:none; font-weight:bold; font-size:1.2rem; color:#333;">LOGO</div>
+        </div>
 
-                <!-- Opening Hours -->
-                <div class="opening-hours">
-                    <h3 id="hours-title">Opening Hours Today</h3>
-                    <div class="current-hours">
-                        <span class="status-dot" id="status-dot"></span>
-                        <span id="current-day"></span> - <span
-                            id="current-hours"></span>
-                    </div>
-                </div>
+        <!-- Opening Hours (Desktop) -->
+        <div class="opening-hours">
+            <h3 id="hours-title">Opening Hours Today</h3>
+            <div class="current-hours">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="current-day"></span> - <span id="current-hours"></span>
+            </div>
+        </div>
 
-                <!-- Navigation -->
-                <nav class="nav-menu">
-                    <div class="nav-item">
-                        <a href="/" class="nav-link">Home</a>
-                    </div>
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="/" class="nav-link">Home</a>
+            </div>
 
-                    <div class="nav-item">
-                        <a href="#" class="nav-link services-toggle">
-                            Services
-                            <span class="dropdown-arrow">▼</span>
-                        </a>
-                        <div class="dropdown">
-                            <a href="generalcleaning.html">General Cleaning</a>
-                            <a href="deepcleaning.html">Deep Cleaning</a>
-                        </div>
-                    </div>
-
-                    <div class="nav-item">
-                        <a href="blog.html" class="nav-link">Blog</a>
-                    </div>
-
-                    <div class="nav-item">
-                        <a href="contact.html" class="nav-link">Contact</a>
-                    </div>
-                </nav>
-
-                <!-- Hamburger Menu -->
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <div class="nav-item">
+                <a href="#" class="nav-link services-toggle">
+                    Services
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown">
+                    <a href="generalcleaning.html">General Cleaning</a>
+                    <a href="deepcleaning.html">Deep Cleaning</a>
                 </div>
             </div>
 
-            <!-- Mobile Overlay -->
-            <div class="mobile-overlay"></div>
-        </header>
+            <div class="nav-item">
+                <a href="blog.html" class="nav-link">Blog</a>
+            </div>
+
+            <div class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <!-- ADDED: Mobile Opening Hours (shows at bottom of mobile menu) -->
+            <div class="mobile-opening-hours">
+                <h3>Opening Hours Today</h3>
+                <div class="current-hours">
+                    <span class="status-dot" id="mobile-status-dot"></span>
+                    <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay"></div>
+</header>
 
         <!-- Popup Modal -->
         <div class="popup-overlay" id="popupOverlay">
