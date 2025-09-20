@@ -22,8 +22,10 @@
         <!-- Logo -->
         <div class="logo-section">
             <a href="/">
-                <img src="logo.png" alt="Company Logo" class="logo">
+                <img src="logo.png" alt="Company Logo" class="logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             </a>
+            <div style="display:none; font-weight:bold; font-size:1.2rem; color:#333;">LOGO</div>
         </div>
 
         <!-- Opening Hours (Desktop) -->
@@ -40,6 +42,7 @@
             <div class="nav-item">
                 <a href="/" class="nav-link">Home</a>
             </div>
+
             <div class="nav-item">
                 <a href="#" class="nav-link services-toggle">
                     Services
@@ -50,11 +53,22 @@
                     <a href="deepcleaning.html">Deep Cleaning</a>
                 </div>
             </div>
+
             <div class="nav-item">
                 <a href="blog.html" class="nav-link">Blog</a>
             </div>
+
             <div class="nav-item">
                 <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <!-- ADDED: Mobile Opening Hours (shows at bottom of mobile menu) -->
+            <div class="mobile-opening-hours">
+                <h3>Opening Hours Today</h3>
+                <div class="current-hours">
+                    <span class="status-dot" id="mobile-status-dot"></span>
+                    <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
+                </div>
             </div>
         </nav>
 
@@ -68,15 +82,6 @@
 
     <!-- Mobile Overlay -->
     <div class="mobile-overlay"></div>
-    
-    <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
-    <div class="mobile-opening-hours">
-        <h3>Opening Hours Today</h3>
-        <div class="current-hours">
-            <span class="status-dot" id="mobile-status-dot"></span>
-            <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
-        </div>
-    </div>
 </header>
 
         <!-- Popup Modal -->

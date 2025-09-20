@@ -345,7 +345,7 @@ body {
     /* FIXED: Mobile opening hours positioning */
     .mobile-opening-hours {
         display: block;
-        margin-top: auto; /* Push to bottom */
+        margin-top: 0; /* Push to bottom */
         background: rgba(0, 0, 0, 0.08); /* ENHANCED: Slightly darker background */
         padding: 2rem; /* INCREASED: More padding for better visibility */
         border-top: 2px solid rgba(0, 0, 0, 0.15); /* ENHANCED: Stronger border */
