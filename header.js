@@ -62,15 +62,27 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const mobileOverlay = document.querySelector('.mobile-overlay');
 const servicesToggle = document.querySelector('.services-toggle');
-const areasToggle = document.querySelector('.areas-toggle'); // ADDED: Areas toggle
+const areasToggle = document.querySelector('.areas-toggle');
 const servicesDropdown = servicesToggle?.parentElement;
-const areasDropdown = areasToggle?.parentElement; // ADDED: Areas dropdown
+const areasDropdown = areasToggle?.parentElement;
+const mobileOpeningHours = document.querySelector('.mobile-opening-hours'); // ADDED: But made optional
 
+// FIXED: Check if elements exist before adding event listeners
 if (hamburger && navMenu && mobileOverlay) {
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
         mobileOverlay.classList.toggle('active');
+        
+        // FIXED: Only handle mobile opening hours if it exists
+        if (mobileOpeningHours) {
+            if (navMenu.classList.contains('active')) {
+                mobileOpeningHours.style.left = '0';
+            } else {
+                mobileOpeningHours.style.left = '-300px';
+            }
+        }
+        
         document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
     });
 
@@ -78,6 +90,12 @@ if (hamburger && navMenu && mobileOverlay) {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         mobileOverlay.classList.remove('active');
+        
+        // FIXED: Only handle mobile opening hours if it exists
+        if (mobileOpeningHours) {
+            mobileOpeningHours.style.left = '-300px';
+        }
+        
         document.body.style.overflow = '';
     });
 }
@@ -94,7 +112,7 @@ if (servicesToggle) {
     });
 }
 
-// ADDED: Areas dropdown toggle for mobile
+// Areas dropdown toggle for mobile
 if (areasToggle) {
     areasToggle.addEventListener('click', function(e) {
         if (window.innerWidth <= 940) {
@@ -106,31 +124,25 @@ if (areasToggle) {
     });
 }
 
-// Close mobile menu on window resize
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 940) {
-        if (hamburger) hamburger.classList.remove('active');
-        if (navMenu) navMenu.classList.remove('active');
-        if (mobileOverlay) mobileOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-        if (servicesDropdown) servicesDropdown.classList.remove('dropdown-active');
-        if (areasDropdown) areasDropdown.classList.remove('dropdown-active'); // ADDED: Close areas dropdown
-    }
-});
-
 // Close mobile menu when clicking on navigation links
 document.addEventListener('click', function(e) {
-    if (e.target.matches('.nav-link') && !e.target.matches('.services-toggle') && !e.target.matches('.areas-toggle')) { // UPDATED: Exclude areas toggle
+    if (e.target.matches('.nav-link') && !e.target.matches('.services-toggle') && !e.target.matches('.areas-toggle')) {
         if (window.innerWidth <= 940) {
             if (hamburger) hamburger.classList.remove('active');
             if (navMenu) navMenu.classList.remove('active');
             if (mobileOverlay) mobileOverlay.classList.remove('active');
+            
+            // FIXED: Only handle mobile opening hours if it exists
+            if (mobileOpeningHours) {
+                mobileOpeningHours.style.left = '-300px';
+            }
+            
             document.body.style.overflow = '';
         }
     }
 });
 
-// ADDED: Close dropdowns when clicking outside
+// Close dropdowns when clicking outside
 document.addEventListener('click', function(e) {
     if (window.innerWidth <= 940) {
         // Close services dropdown if clicking outside
@@ -143,6 +155,70 @@ document.addEventListener('click', function(e) {
             areasDropdown.classList.remove('dropdown-active');
         }
     }
+});
+
+// Dropdown management for better UX
+function closeAllDropdowns() {
+    if (servicesDropdown) servicesDropdown.classList.remove('dropdown-active');
+    if (areasDropdown) areasDropdown.classList.remove('dropdown-active');
+}
+
+// Keyboard navigation support
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeAllDropdowns();
+        
+        // Also close mobile menu if open
+        if (window.innerWidth <= 940) {
+            if (hamburger) hamburger.classList.remove('active');
+            if (navMenu) navMenu.classList.remove('active');
+            if (mobileOverlay) mobileOverlay.classList.remove('active');
+            
+            // FIXED: Only handle mobile opening hours if it exists
+            if (mobileOpeningHours) {
+                mobileOpeningHours.style.left = '-300px';
+            }
+            
+            document.body.style.overflow = '';
+        }
+    }
+});
+
+// Touch support for mobile dropdowns
+let touchStartY = 0;
+document.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchend', function(e) {
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchDiff = touchStartY - touchEndY;
+    
+    // If significant upward swipe, close dropdowns
+    if (touchDiff > 50 && window.innerWidth <= 940) {
+        closeAllDropdowns();
+    }
+});
+
+// Performance optimization - debounce resize events
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+        if (window.innerWidth > 940) {
+            if (hamburger) hamburger.classList.remove('active');
+            if (navMenu) navMenu.classList.remove('active');
+            if (mobileOverlay) mobileOverlay.classList.remove('active');
+            
+            // FIXED: Only handle mobile opening hours if it exists
+            if (mobileOpeningHours) {
+                mobileOpeningHours.style.left = '-300px';
+            }
+            
+            document.body.style.overflow = '';
+            closeAllDropdowns();
+        }
+    }, 250);
 });
 
 // Update on page load
@@ -201,61 +277,9 @@ function safeUpdateOpeningHours() {
     }
 }
 
-// ADDED: Dropdown management for better UX
-function closeAllDropdowns() {
-    if (servicesDropdown) servicesDropdown.classList.remove('dropdown-active');
-    if (areasDropdown) areasDropdown.classList.remove('dropdown-active');
-}
-
-// ADDED: Keyboard navigation support
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeAllDropdowns();
-        
-        // Also close mobile menu if open
-        if (window.innerWidth <= 940) {
-            if (hamburger) hamburger.classList.remove('active');
-            if (navMenu) navMenu.classList.remove('active');
-            if (mobileOverlay) mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    }
-});
-
-// ADDED: Touch support for mobile dropdowns
-let touchStartY = 0;
-document.addEventListener('touchstart', function(e) {
-    touchStartY = e.touches[0].clientY;
-});
-
-document.addEventListener('touchend', function(e) {
-    const touchEndY = e.changedTouches[0].clientY;
-    const touchDiff = touchStartY - touchEndY;
-    
-    // If significant upward swipe, close dropdowns
-    if (touchDiff > 50 && window.innerWidth <= 940) {
-        closeAllDropdowns();
-    }
-});
-
 // Use safe update function
 document.addEventListener('DOMContentLoaded', function() {
     safeUpdateOpeningHours();
 });
 
 setInterval(safeUpdateOpeningHours, 60000);
-
-// ADDED: Performance optimization - debounce resize events
-let resizeTimeout;
-window.addEventListener('resize', function() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(function() {
-        if (window.innerWidth > 940) {
-            if (hamburger) hamburger.classList.remove('active');
-            if (navMenu) navMenu.classList.remove('active');
-            if (mobileOverlay) mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-            closeAllDropdowns();
-        }
-    }, 250);
-});
