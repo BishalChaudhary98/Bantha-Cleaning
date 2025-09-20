@@ -121,7 +121,7 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* DESKTOP DROPDOWN STYLES - RESTORED ORIGINAL DESIGN */
+/* UNIFIED DROPDOWN STYLES - ALL DROPDOWNS LOOK THE SAME */
 .dropdown {
     position: absolute;
     top: 100%;
@@ -145,6 +145,7 @@ body {
     transform: translateY(0);
 }
 
+/* UNIFIED DROPDOWN LINKS - ALL LOOK THE SAME */
 .dropdown a {
     display: block;
     color: #333;
@@ -160,44 +161,6 @@ body {
     background: linear-gradient(135deg, #333 0%, #555 100%);
     color: white;
     transform: translateX(5px);
-}
-
-/* DESKTOP AREAS DROPDOWN - RESTORED ORIGINAL DESIGN */
-.areas-dropdown {
-    min-width: 250px;
-    max-height: 300px;
-    overflow-y: auto;
-    columns: 2;
-    column-gap: 0;
-}
-
-.areas-dropdown a {
-    display: block;
-    color: #333;
-    text-decoration: none;
-    padding: 0.6rem 1rem;
-    transition: all 0.3s ease;
-    border-radius: 6px;
-    margin: 0.2rem;
-    font-weight: 500;
-    font-size: 0.95rem;
-    break-inside: avoid;
-}
-
-.areas-dropdown a:hover {
-    background: linear-gradient(135deg, #333 0%, #555 100%);
-    color: white;
-    transform: translateX(3px);
-}
-
-.areas-dropdown a::before {
-    content: "📍 ";
-    margin-right: 0.5rem;
-    opacity: 0.7;
-}
-
-.areas-dropdown a:hover::before {
-    opacity: 1;
 }
 
 .dropdown-arrow {
@@ -350,9 +313,8 @@ body {
         box-shadow: none;
     }
 
-    /* MOBILE DROPDOWN - RESET ALL DESKTOP STYLES */
-    .dropdown,
-    .areas-dropdown {
+    /* MOBILE DROPDOWN - UNIFIED FOR ALL DROPDOWNS */
+    .dropdown {
         position: static !important;
         opacity: 1 !important;
         visibility: visible !important;
@@ -362,8 +324,6 @@ body {
         margin: 0 !important;
         background: rgba(0,0,0,0.05) !important;
         border-radius: 0 !important;
-        columns: 1 !important;
-        column-gap: 0 !important;
         min-width: auto !important;
         
         /* COLLAPSIBLE BEHAVIOR */
@@ -373,15 +333,13 @@ body {
     }
 
     /* SHOW DROPDOWN WHEN ACTIVE */
-    .nav-item.dropdown-active .dropdown,
-    .nav-item.dropdown-active .areas-dropdown {
-        max-height: 600px !important;
+    .nav-item.dropdown-active .dropdown {
+        max-height: 400px !important;
         overflow-y: auto !important;
     }
 
-    /* MOBILE DROPDOWN LINKS - UNIFIED STYLING */
-    .dropdown a,
-    .areas-dropdown a {
+    /* MOBILE DROPDOWN LINKS - UNIFIED STYLING FOR ALL */
+    .dropdown a {
         display: block !important;
         width: 100% !important;
         margin: 0 !important;
@@ -393,40 +351,29 @@ body {
         text-decoration: none !important;
         transition: background-color 0.3s ease !important;
         background: transparent !important;
-        
-        /* PREVENT COLUMN BREAKS */
-        break-inside: avoid !important;
-        page-break-inside: avoid !important;
     }
 
     /* FIXED: Remove bottom border from last item to prevent extra space */
-    .dropdown a:last-child,
-    .areas-dropdown a:last-child {
+    .dropdown a:last-child {
         border-bottom: none !important;
     }
 
-    .dropdown a:hover,
-    .areas-dropdown a:hover {
+    .dropdown a:hover {
         background: rgba(0,0,0,0.1) !important;
         transform: none !important;
         color: #333 !important;
     }
 
-    /* REMOVE DESKTOP-SPECIFIC STYLING ON MOBILE */
-    .areas-dropdown a::before {
-        display: none !important;
-    }
-
-    /* Mobile opening hours positioning */
+    /* FIXED: Mobile opening hours positioning - NOT sticky */
     .mobile-opening-hours {
         display: block;
-        margin-top: 0;
+        margin-top: auto; /* CHANGED: Push to bottom but not sticky */
         background: rgba(0, 0, 0, 0.08);
         padding: 2rem;
         border-top: 2px solid rgba(0, 0, 0, 0.15);
         border-bottom: none;
-        position: sticky;
-        bottom: 0;
+        position: relative; /* CHANGED: From sticky to relative */
+        bottom: auto; /* CHANGED: Remove bottom positioning */
         z-index: 10;
         flex-shrink: 0;
         min-height: 100px;
