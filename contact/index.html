@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <meta name="description"
+            content="Need a cleaning quote fast? Contact Bantha Cleaning, your trusted local cleaner in Aldershot, Basingstoke, Camberley & Winchester. Call or book online now!">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <link rel="stylesheet" href="header.css"> -->
+     <link rel="preconnect" href="https://maps.googleapis.com">
+    <link rel="stylesheet" href="/contact.css"> 
+    <link rel="icon" type="image/png" href="logontp.png">
+    <link rel="shortcut icon" type="image/png" href="logontp.png">
+    <link rel="apple-touch-icon" href="logontp.png">
+</head>
+<body>
+    <header class="header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo-section">
+            <a href="/">
+                <img src="logo.png" alt="Bantha Cleaning Logo" class="logo" fetchpriority="high">
+            </a>
+        </div>
+
+        <!-- Opening Hours (Desktop) -->
+        <div class="opening-hours">
+            <h3 id="hours-title">Opening Hours Today</h3>
+            <div class="current-hours">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="current-day"></span> - <span id="current-hours"></span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="/" class="nav-link">Home</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link services-toggle">
+                    Services
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown">
+                    <a href="generalcleaning.html">General Cleaning</a>
+                    <a href="deepcleaning.html">Deep Cleaning</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link areas-toggle">
+                    Areas We Cover
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                                <div class="dropdown">
+                    <a href="winchester-service.html">Winchester</a>
+                    <a href="andover-service.html">Andover</a>
+                    <a href="basingstoke-service.html">Basingstoke</a>
+                    <a href="aldershot-service.html">Aldershot</a>
+                    <a href="fleet-service.html">Fleet</a>
+                    <a href="farnborough-service.html">Farnborough</a>
+                    <a href="farnham-service.html">Farnham</a>
+                    <a href="hook-service.html">Hook</a>
+                    <a href="woking-service.html">Woking</a>
+                    <a href="ash-vale-service.html">Ash Vale</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="blog.html" class="nav-link">Blog</a>
+            </div>
+            <div class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay"></div>
+    
+    <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
+    <div class="mobile-opening-hours">
+        <h3>Opening Hours Today</h3>
+        <div class="current-hours">
+            <span class="status-dot" id="mobile-status-dot"></span>
+            <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
+        </div>
+    </div>
+</header>
+
+    <!-- contact form -->
+    <section class="premium-contact-section">
+        <div class="premium-form-wrapper">
+            <h2 class="premium-section-title">Get In Touch</h2>
+            <p class="premium-section-subtitle">Ready to transform your space? Let's discuss your cleaning needs!</p>
+            
+            <form class="premium-contact-form" action="https://formspree.io/f/mandkpgw" method="POST">
+                <!-- Row 1: Full Name and Postal Code -->
+                <div class="premium-form-row">
+                    <div class="premium-input-group" data-icon="user">
+                        <label for="fullname" class="premium-input-label">Full Name *</label>
+                        <input type="text" id="fullname" name="fullname" class="premium-form-input" required>
+                    </div>
+                    <div class="premium-input-group" data-icon="location">
+                        <label for="postal_code" class="premium-input-label">Postal Code</label>
+                        <input type="text" id="postal_code" name="postal_code" class="premium-form-input">
+                    </div>
+                </div>
+
+                <!-- Row 2: Email and Phone -->
+                <div class="premium-form-row">
+                    <div class="premium-input-group" data-icon="mail">
+                        <label for="email" class="premium-input-label">Email Address *</label>
+                        <input type="email" id="email" name="email" class="premium-form-input" required>
+                    </div>
+                    <div class="premium-input-group" data-icon="phone">
+                        <label for="phone" class="premium-input-label">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="premium-form-input">
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div class="premium-input-group">
+                    <label for="message" class="premium-input-label">Your Message *</label>
+                    <textarea id="message" name="message" class="premium-form-textarea" placeholder="Tell us about your cleaning requirements, preferred schedule, and any special requests..." required></textarea>
+                </div>
+
+                <button type="submit" class="premium-submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2 class="contact-title">Get In Touch With Us</h2>
+            <p class="contact-subtitle">Our Friendly Team are here to help You</p>
+            
+            <div class="contact-boxes">
+                <!-- Phone Contact Box -->
+                <div class="contact-box">
+                    <span class="contact-icon">📞</span>
+                    <h3>Phone</h3>
+                    <p class="contact-description">
+                        Our friendly and professional team are on hand to assist with all enquiries for businesses and individuals. Call us today.
+                    </p>
+                    <div class="contact-info">
+                        <a href="tel:+447825183734">07825183734</a>
+                    </div>
+                </div>
+                
+                <!-- Email Contact Box -->
+                <div class="contact-box">
+                    <span class="contact-icon">📧</span>
+                    <h3>Email</h3>
+                    <p class="contact-description">
+                        We understand it is not always convenient to call, so send us an email and one of our amazing team will get back to you as soon as possible.
+                    </p>
+                    <div class="contact-info">
+                        <a href="mailto:banthacleaningcompany@gmail.com">banthacleaningcompany@gmail.com</a>
+                    </div>
+                </div>
+                
+                <!-- Visit Us Contact Box -->
+                <div class="contact-box">
+                    <span class="contact-icon">📍</span>
+                    <h3>Visit Us</h3>
+                    <div class="address-info">
+                        <div class="company-name">Bantha Cleaning Ltd</div>
+                        <div >Victoria Rd, Aldershot, UK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2 class="map-title">Find Us</h2>
+            
+            <div class="map-embed">
+                <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d323.01086390960717!2d-0.7574975987998696!3d51.24791733454102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87cf0488dafe32bf%3A0x6674422e143c96cc!2sBantha%20Cleaning!5e1!3m2!1sen!2snp!4v1753790895985!5m2!1sen!2snp" 
+                width="600" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+        <!-- Service Areas Section -->
+<section class="service-areas-section">
+    <div class="areas-container">
+        <h2 class="areas-title">Our Professional Cleaning Service Areas</h2>
+        <p class="areas-description">Bantha Cleaning proudly offers
+            trusted, top-quality house and commercial cleaning within a
+            60-mile radius of Aldershot. We are your local experts
+            serving all major towns and communities in the area:</p>
+
+        <div class="areas-grid">
+            <a href="winchester-service.html" class="area-item">
+                <span class="area-name">Winchester</span>
+            </a>
+            <a href="andover-service.html" class="area-item">
+                <span class="area-name">Andover</span>
+            </a>
+            <a href="basingstoke-service.html" class="area-item">
+                <span class="area-name">Basingstoke</span>
+            </a>
+            <a href="aldershot-service.html" class="area-item">
+                <span class="area-name">Aldershot</span>
+            </a>
+            <a href="fleet-service.html" class="area-item">
+                <span class="area-name">Fleet</span>
+            </a>
+            <a href="farnborough-service.html" class="area-item">
+                <span class="area-name">Farnborough</span>
+            </a>
+            <a href="farnham-service.html" class="area-item">
+                <span class="area-name">Farnham</span>
+            </a>
+            <a href="hook-service.html" class="area-item">
+                <span class="area-name">Hook</span>
+            </a>
+            <a href="woking-service.html" class="area-item">
+                <span class="area-name">Woking</span>
+            </a>
+            <a href="ash-vale-service.html" class="area-item">
+                <span class="area-name">Ash Vale</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer Section -->
+    <section class="footer-section">
+        <div class="footer-container">
+            <!-- Column 1: Menu -->
+            <div class="footer-column">
+                <h3>Menu</h3>
+                <div class="menu-item">
+                    <a href="/">Home</a>
+                </div>
+                <div class="menu-item">
+                    <a href="javascript:void(0);" onclick="showHideMenu()">Service</a>
+                    <div class="service-submenu" id="submenu">
+                        <div class="submenu-item">
+                            <a href="generalcleaning.html">General Cleaning</a>
+                        </div>
+                        <div class="submenu-item">
+                            <a href="deepcleaning.html">Deep Cleaning</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="menu-item">
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            
+            <!-- Column 2: Follow Us -->
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61578910409312" class="social-link">
+                        <span class="social-icon">📘</span>
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/banthacleaning/" class="social-link">
+                        <span class="social-icon">📷</span>
+                        Instagram
+                    </a>
+                    <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="social-link">
+                        <span class="social-icon">💬</span>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Column 3: Contact Info -->
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:banthacleaningcompany.com">banthacleaningcompany.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">
+                        <a href="tel:+447825183734">+447825183734</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Website</div>
+                    <div class="contact-value">
+                        <a href="https://banthacleaning.com" target="_blank">banthacleaning.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Address</div>
+                    <div class="contact-value">Victoria Rd, Aldershot, UK</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright Section -->
+    <section class="copyright-section">
+        <div class="copyright-container">
+            <div class="copyright-text">
+                © 2025 Bantha Cleaning Ltd. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#privacy-policy">Privacy Policy</a>
+                <a href="#terms-of-service">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        function showHideMenu() {
+            var menu = document.getElementById('submenu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+            return false;
+        }
+    </script>
+    <script src="/header.js" defer></script>
+</body>
+</html>
+
+
+
+
+
