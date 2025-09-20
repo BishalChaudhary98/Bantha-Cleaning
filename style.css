@@ -36,30 +36,52 @@
 }
 
 .company-info-box {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    padding: 2.5rem;
+    padding: 3rem;
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .company-name {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: #1e293b;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     line-height: 1.2;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
 }
 
-.company-description {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #475569;
-    margin: 0;
+.company-subtitle {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #3b82f6;
+    margin-bottom: 2rem;
+    line-height: 1.3;
     font-family: Arial, sans-serif;
+}
+
+.company-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #475569;
+    font-family: Arial, sans-serif;
+}
+
+.company-description p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.company-description p:last-child {
+    margin-bottom: 0;
+}
+
+.company-description strong {
+    color: #1e293b;
+    font-weight: 700;
 }
 
 .contact-form-container {
@@ -167,7 +189,11 @@
     }
 
     .company-name {
-        font-size: 2.2rem;
+        font-size: 2rem;
+    }
+
+    .company-subtitle {
+        font-size: 1.2rem;
     }
 
     .form-row {
@@ -181,7 +207,11 @@
 
 @media (max-width: 600px) {
     .company-name {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+    }
+
+    .company-subtitle {
+        font-size: 1rem;
     }
 
     .company-description {
@@ -189,7 +219,7 @@
     }
 
     .company-info-box {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     .contact-form-container {
