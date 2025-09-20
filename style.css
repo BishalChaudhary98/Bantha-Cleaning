@@ -1,7 +1,7 @@
 /* Company Info & Contact Form Section */
 .info-contact-section {
     width: 100%;
-    background: url('flat-cleaning.png') center/cover no-repeat, linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: url('studio-cleaning.webp') center/cover no-repeat, linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     padding: 4rem 0;
     margin: 0;
     position: relative;
@@ -15,62 +15,68 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4); /* INCREASED: From 0.3 to 0.4 for better text readability */
     z-index: 1;
 }
 
 .info-contact-container {
-    max-width: 1600px; /* INCREASED: From 1400px to 1600px for more space */
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 2rem;
     display: grid;
-    grid-template-columns: 3fr 1.5fr; /* CHANGED: Left side much wider (3x vs 1.5x) */
-    gap: 6rem; /* INCREASED: From 4rem to 6rem for more separation */
-    align-items: start;
+    grid-template-columns: 3fr 1.5fr;
+    gap: 6rem;
+    align-items: stretch; /* CHANGED: From 'start' to 'stretch' to match heights */
     position: relative;
     z-index: 2;
 }
 
 .company-info {
-    padding-right: 0; /* REMOVED: Right padding to push content left */
-    margin-left: -2rem; /* ADDED: Push content more to the left */
+    padding-right: 0;
+    margin-left: -2rem;
+    display: flex; /* ADDED: For height matching */
+    align-items: stretch; /* ADDED: For height matching */
 }
 
 .company-info-box {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 3rem 4rem; /* INCREASED: Horizontal padding for wider content */
+    background: rgba(255, 255, 255, 0.15); /* CHANGED: Much more transparent */
+    backdrop-filter: blur(15px); /* INCREASED: More blur for better effect */
+    padding: 3rem 4rem;
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    max-width: none; /* REMOVED: Any width restrictions */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* INCREASED: Stronger shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* INCREASED: More visible border */
+    max-width: none;
+    width: 100%; /* ADDED: Full width */
+    display: flex; /* ADDED: For content layout */
+    flex-direction: column; /* ADDED: Vertical layout */
 }
 
 .company-name {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #1e293b;
+    color: #ffffff; /* CHANGED: White text for better contrast */
     margin-bottom: 1rem;
     line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* INCREASED: Stronger text shadow */
     font-family: Arial, sans-serif;
 }
 
 .company-subtitle {
     font-size: 1.4rem;
     font-weight: 600;
-    color: #3b82f6;
+    color: #60a5fa; /* CHANGED: Lighter blue for better contrast */
     margin-bottom: 2rem;
     line-height: 1.3;
     font-family: Arial, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* ADDED: Text shadow */
 }
 
 .company-description {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #475569;
+    color: #f1f5f9; /* CHANGED: Light gray for better contrast */
     font-family: Arial, sans-serif;
-    /* REMOVED: columns property - keeping single column but wider */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* ADDED: Text shadow */
 }
 
 .company-description p {
@@ -83,33 +89,40 @@
 }
 
 .company-description strong {
-    color: #1e293b;
+    color: #ffffff; /* CHANGED: White for emphasis */
     font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* ADDED: Text shadow */
 }
 
 .contact-form-container {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.15); /* CHANGED: Same transparency as company info */
+    backdrop-filter: blur(15px); /* INCREASED: More blur */
+    padding: 2.5rem; /* INCREASED: From 1.5rem to 2.5rem for more height */
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-right: -2rem; /* ADDED: Push form more to the right */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* INCREASED: Stronger shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* INCREASED: More visible border */
+    margin-right: -2rem;
+    display: flex; /* ADDED: For height matching */
+    flex-direction: column; /* ADDED: Vertical layout */
+    justify-content: space-between; /* ADDED: Distribute content evenly */
+    min-height: 100%; /* ADDED: Match parent height */
 }
 
 .form-title {
-    font-size: 1.6rem;
-    color: #1e293b;
-    margin-bottom: 1.2rem;
+    font-size: 1.8rem; /* INCREASED: From 1.6rem for better proportion */
+    color: #ffffff; /* CHANGED: White text */
+    margin-bottom: 2rem; /* INCREASED: From 1.2rem for more spacing */
     text-align: center;
     font-weight: 600;
     font-family: Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* ADDED: Text shadow */
 }
 
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem; /* INCREASED: From 1rem for more spacing */
+    flex-grow: 1; /* ADDED: Take available space */
 }
 
 .form-row {
@@ -125,54 +138,55 @@
 
 .form-group label {
     font-weight: 600;
-    color: #374151;
+    color: #f1f5f9; /* CHANGED: Light color for contrast */
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
     font-family: Arial, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* ADDED: Text shadow */
 }
 
 .form-group input,
 .form-group textarea {
-    padding: 0.75rem 1rem;
-    border: 2px solid #e5e7eb;
+    padding: 1rem; /* INCREASED: From 0.75rem for better proportion */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* CHANGED: Transparent border */
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9); /* SLIGHTLY: More opaque for readability */
     font-family: Arial, sans-serif;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #3b82f6;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #60a5fa; /* CHANGED: Light blue for contrast */
+    background: rgba(255, 255, 255, 0.95); /* SLIGHTLY: More opaque on focus */
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3); /* CHANGED: Light blue glow */
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 100px; /* INCREASED: From 80px for better proportion */
 }
 
 .submit-btn {
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2rem; /* INCREASED: From 1rem for better proportion */
     border: none;
     border-radius: 10px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 1rem;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    margin-top: 1.5rem; /* INCREASED: From 1rem */
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); /* INCREASED: Stronger shadow */
     font-family: Arial, sans-serif;
 }
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5); /* INCREASED: Stronger hover shadow */
 }
 
 .submit-btn:active {
@@ -182,15 +196,16 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
     .info-contact-container {
-        gap: 4rem; /* Reduce gap on smaller screens */
+        gap: 4rem;
     }
     
     .company-info {
-        margin-left: -1rem; /* Less negative margin on smaller screens */
+        margin-left: -1rem;
     }
     
     .contact-form-container {
-        margin-right: -1rem; /* Less negative margin on smaller screens */
+        margin-right: -1rem;
+        padding: 2rem; /* REDUCED: For smaller screens */
     }
 }
 
@@ -199,13 +214,15 @@
         grid-template-columns: 1fr;
         gap: 3rem;
         padding: 0 1rem;
-        max-width: 1200px; /* Reduce max-width on mobile */
+        max-width: 1200px;
+        align-items: start; /* RESET: On mobile */
     }
 
     .company-info {
         padding-right: 0;
         text-align: center;
-        margin-left: 0; /* Reset margin on mobile */
+        margin-left: 0;
+        display: block; /* RESET: On mobile */
     }
 
     .company-name {
@@ -217,11 +234,24 @@
     }
 
     .company-info-box {
-        padding: 3rem 2rem; /* Reduce horizontal padding on mobile */
+        padding: 3rem 2rem;
+        display: block; /* RESET: On mobile */
     }
 
     .contact-form-container {
-        margin-right: 0; /* Reset margin on mobile */
+        margin-right: 0;
+        padding: 2rem; /* RESET: On mobile */
+        display: block; /* RESET: On mobile */
+        min-height: auto; /* RESET: On mobile */
+    }
+
+    .contact-form {
+        gap: 1rem; /* RESET: On mobile */
+    }
+
+    .form-title {
+        font-size: 1.6rem; /* RESET: On mobile */
+        margin-bottom: 1.2rem; /* RESET: On mobile */
     }
 
     .form-row {
@@ -251,7 +281,7 @@
     }
 
     .contact-form-container {
-        padding: 1.2rem;
+        padding: 1.5rem; /* SLIGHTLY: More padding than before */
     }
 
     .info-contact-container {
@@ -261,6 +291,15 @@
 
     .info-contact-section {
         padding: 2rem 0;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 0.75rem; /* RESET: On mobile */
+    }
+
+    .submit-btn {
+        padding: 1rem 2rem; /* RESET: On mobile */
     }
 }
 
