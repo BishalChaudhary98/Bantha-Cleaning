@@ -15,9 +15,10 @@
         <link rel="shortcut icon" type="image/png" href="webimg/logontp.png">
         <link rel="apple-touch-icon" href="webimg/logontp.png">
         <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103">
+        <script async
+            src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103">
 </script>
-<script>
+        <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -27,84 +28,87 @@
     </head>
     <body>
         <header class="header">
-    <div class="header-container">
-        <!-- Logo -->
-        <div class="logo-section">
-            <a href="/">
-                <img src="webimg/logo.png" alt="Company Logo" class="logo">
-            </a>
-        </div>
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo-section">
+                    <a href="/">
+                        <img src="webimg/logo.png" alt="Company Logo"
+                            class="logo">
+                    </a>
+                </div>
 
-        <!-- Opening Hours (Desktop) -->
-        <div class="opening-hours">
-            <h3 id="hours-title">Opening Hours Today</h3>
-            <div class="current-hours">
-                <span class="status-dot" id="status-dot"></span>
-                <span id="current-day"></span> - <span id="current-hours"></span>
-            </div>
-        </div>
+                <!-- Opening Hours (Desktop) -->
+                <div class="opening-hours">
+                    <h3 id="hours-title">Opening Hours Today</h3>
+                    <div class="current-hours">
+                        <span class="status-dot" id="status-dot"></span>
+                        <span id="current-day"></span> - <span
+                            id="current-hours"></span>
+                    </div>
+                </div>
 
-        <!-- Navigation -->
-        <nav class="nav-menu">
-            <div class="nav-item">
-                <a href="/" class="nav-link">Home</a>
-            </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link services-toggle">
-                    Services
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <div class="dropdown">
-                    <a href="generalcleaning/">General Cleaning</a>
-                    <a href="deepcleaning/">Deep Cleaning</a>
+                <!-- Navigation -->
+                <nav class="nav-menu">
+                    <div class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link services-toggle">
+                            Services
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="dropdown">
+                            <a href="generalcleaning/">General Cleaning</a>
+                            <a href="deepcleaning/">Deep Cleaning</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link areas-toggle">
+                            Areas We Cover
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="dropdown">
+                            <a href="winchester-service/">Winchester</a>
+                            <a href="andover-service/">Andover</a>
+                            <a href="basingstoke-service/">Basingstoke</a>
+                            <a href="aldershot-service/">Aldershot</a>
+                            <a href="fleet-service/">Fleet</a>
+                            <a href="farnborough-service/">Farnborough</a>
+                            <a href="farnham-service/">Farnham</a>
+                            <a href="hook-service/">Hook</a>
+                            <a href="woking-service/">Woking</a>
+                            <a href="ash-vale-service/">Ash Vale</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="blog/" class="nav-link">Blog</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="contact/" class="nav-link">Contact</a>
+                    </div>
+                </nav>
+
+                <!-- Hamburger Menu -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link areas-toggle">
-                    Areas We Cover
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                                <div class="dropdown">
-                    <a href="winchester-service/">Winchester</a>
-                    <a href="andover-service/">Andover</a>
-                    <a href="basingstoke-service/">Basingstoke</a>
-                    <a href="aldershot-service/">Aldershot</a>
-                    <a href="fleet-service/">Fleet</a>
-                    <a href="farnborough-service/">Farnborough</a>
-                    <a href="farnham-service/">Farnham</a>
-                    <a href="hook-service/">Hook</a>
-                    <a href="woking-service/">Woking</a>
-                    <a href="ash-vale-service/">Ash Vale</a>
+
+            <!-- Mobile Overlay -->
+            <div class="mobile-overlay"></div>
+
+            <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
+            <div class="mobile-opening-hours">
+                <h3>Opening Hours Today</h3>
+                <div class="current-hours">
+                    <span class="status-dot" id="mobile-status-dot"></span>
+                    <span id="mobile-current-day"></span> - <span
+                        id="mobile-current-hours"></span>
                 </div>
             </div>
-            <div class="nav-item">
-                <a href="blog/" class="nav-link">Blog</a>
-            </div>
-            <div class="nav-item">
-                <a href="contact/" class="nav-link">Contact</a>
-            </div>
-        </nav>
-
-        <!-- Hamburger Menu -->
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay"></div>
-    
-    <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
-    <div class="mobile-opening-hours">
-        <h3>Opening Hours Today</h3>
-        <div class="current-hours">
-            <span class="status-dot" id="mobile-status-dot"></span>
-            <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
-        </div>
-    </div>
-</header>
+        </header>
 
         <!-- Popup Modal -->
         <div class="popup-overlay" id="popupOverlay">
@@ -203,8 +207,7 @@
                 <!-- Right Side - Contact Form -->
                 <div class="contact-form-container">
                     <h2 class="form-title">Get In Touch</h2>
-                    <form class="contact-form"
-                        action="https://formspree.io/f/mandkpgw" method="POST">
+                    <form class="contact-form" id="contactForm">
                         <!-- Row 1: Full Name and Postal Code -->
                         <div class="form-row">
                             <div class="form-group">
@@ -266,7 +269,8 @@
 
                 <!-- Service 2: Flat Cleaning -->
                 <div class="service-card">
-                    <div class="service-image"><img src="webimg/flatcleaning.webp"
+                    <div class="service-image"><img
+                            src="webimg/flatcleaning.webp"
                             alt="Flat Cleaning"></div>
                     <h3>Flat Cleaning</h3>
                     <p>Reliable Flat & Apartment Cleaning: Expert flat and
@@ -278,7 +282,8 @@
 
                 <!-- Service 3: House Cleaning -->
                 <div class="service-card">
-                    <div class="service-image"><img src="webimg/housecleaning.webp"
+                    <div class="service-image"><img
+                            src="webimg/housecleaning.webp"
                             alt="House Cleaning"></div>
                     <h3>House Cleaning</h3>
                     <p>Top-Rated House & Residential Deep Cleaning:
@@ -295,7 +300,8 @@
             <div class="about-container">
                 <!-- Left: Image -->
                 <div class="about-image">
-                    <img src="webimg/about-us.webp" alt="About Bantha Cleaning Ltd">
+                    <img src="webimg/about-us.webp"
+                        alt="About Bantha Cleaning Ltd">
                 </div>
 
                 <!-- Right: Content -->
@@ -330,7 +336,8 @@
                 <!-- Service Box 1: General Cleaning -->
                 <a href="generalcleaning/" class="service-box">
                     <div class="service-image">
-                        <img src="webimg/studio-cleaning.webp" alt="General Cleaning">
+                        <img src="webimg/studio-cleaning.webp"
+                            alt="General Cleaning">
                     </div>
                     <div class="service-text">
                         <h3>General Cleaning</h3>
@@ -340,7 +347,8 @@
                 <!-- Service Box 2: Deep Cleaning -->
                 <a href="deepcleaning/" class="service-box">
                     <div class="service-image">
-                        <img src="webimg/flat-cleaning.webp" alt="Deep Cleaning">
+                        <img src="webimg/flat-cleaning.webp"
+                            alt="Deep Cleaning">
                     </div>
                     <div class="service-text">
                         <h3>Deep Cleaning</h3>
@@ -350,48 +358,49 @@
         </section>
 
         <!-- Service Areas Section -->
-<section class="service-areas-section">
-    <div class="areas-container">
-        <h2 class="areas-title">Our Professional Cleaning Service Areas</h2>
-        <p class="areas-description">Bantha Cleaning proudly offers
-            trusted, top-quality house and commercial cleaning within a
-            60-mile radius of Aldershot. We are your local experts
-            serving all major towns and communities in the area:</p>
+        <section class="service-areas-section">
+            <div class="areas-container">
+                <h2 class="areas-title">Our Professional Cleaning Service
+                    Areas</h2>
+                <p class="areas-description">Bantha Cleaning proudly offers
+                    trusted, top-quality house and commercial cleaning within a
+                    60-mile radius of Aldershot. We are your local experts
+                    serving all major towns and communities in the area:</p>
 
-        <div class="areas-grid">
-            <a href="winchester-service/" class="area-item">
-                <span class="area-name">Winchester</span>
-            </a>
-            <a href="andover-service/" class="area-item">
-                <span class="area-name">Andover</span>
-            </a>
-            <a href="basingstoke-service/" class="area-item">
-                <span class="area-name">Basingstoke</span>
-            </a>
-            <a href="aldershot-service/" class="area-item">
-                <span class="area-name">Aldershot</span>
-            </a>
-            <a href="fleet-service/" class="area-item">
-                <span class="area-name">Fleet</span>
-            </a>
-            <a href="farnborough-service/" class="area-item">
-                <span class="area-name">Farnborough</span>
-            </a>
-            <a href="farnham-service/" class="area-item">
-                <span class="area-name">Farnham</span>
-            </a>
-            <a href="hook-service/" class="area-item">
-                <span class="area-name">Hook</span>
-            </a>
-            <a href="woking-service/" class="area-item">
-                <span class="area-name">Woking</span>
-            </a>
-            <a href="ash-vale-service/" class="area-item">
-                <span class="area-name">Ash Vale</span>
-            </a>
-        </div>
-    </div>
-</section>
+                <div class="areas-grid">
+                    <a href="winchester-service/" class="area-item">
+                        <span class="area-name">Winchester</span>
+                    </a>
+                    <a href="andover-service/" class="area-item">
+                        <span class="area-name">Andover</span>
+                    </a>
+                    <a href="basingstoke-service/" class="area-item">
+                        <span class="area-name">Basingstoke</span>
+                    </a>
+                    <a href="aldershot-service/" class="area-item">
+                        <span class="area-name">Aldershot</span>
+                    </a>
+                    <a href="fleet-service/" class="area-item">
+                        <span class="area-name">Fleet</span>
+                    </a>
+                    <a href="farnborough-service/" class="area-item">
+                        <span class="area-name">Farnborough</span>
+                    </a>
+                    <a href="farnham-service/" class="area-item">
+                        <span class="area-name">Farnham</span>
+                    </a>
+                    <a href="hook-service/" class="area-item">
+                        <span class="area-name">Hook</span>
+                    </a>
+                    <a href="woking-service/" class="area-item">
+                        <span class="area-name">Woking</span>
+                    </a>
+                    <a href="ash-vale-service/" class="area-item">
+                        <span class="area-name">Ash Vale</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
         <!-- Footer Section -->
         <section class="footer-section">
@@ -502,6 +511,50 @@
             }
             return false;
         }
+
+        // for form
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Create FormData object
+    const formData = new FormData();
+    formData.append('access_key', '5b06d515-1c93-48db-a3f9-ca1007495dc2');
+    formData.append('name', document.getElementById('fullname').value);
+    formData.append('email', document.getElementById('email').value);
+    formData.append('phone', document.getElementById('phone').value);
+    formData.append('postal_code', document.getElementById('postal_code').value);
+    formData.append('message', document.getElementById('message').value);
+    
+    // Update button state
+    const submitBtn = document.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Redirect to thank you page
+            window.location.href = 'thankyou/';
+        } else {
+            throw new Error('Failed to send message');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to send message. Please try again.');
+        
+        // Reset button state on error
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+});
+</script>
     </script>
         <script src="header.js"></script>
     </body>
