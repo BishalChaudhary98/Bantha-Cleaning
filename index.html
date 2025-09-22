@@ -111,7 +111,7 @@
         </header>
 
         <!-- Popup Modal -->
-        <div class="popup-overlay" id="popupOverlay">
+        <!-- <div class="popup-overlay" id="popupOverlay">
             <div class="popup-content">
                 <button class="close-btn" id="closeBtn">&times;</button>
                 <div class="offer-image"></div>
@@ -126,38 +126,38 @@
                 <button class="cta-button" onclick="bookService()">BOOK
                     NOW</button>
             </div>
-        </div>
+        </div> -->
 
         <script>
         // Show popup when page loads
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('popupOverlay').classList.add('active');
-            }, 500); // Small delay for better user experience
-        });
+        // window.addEventListener('load', function() {
+        //     setTimeout(function() {
+        //         document.getElementById('popupOverlay').classList.add('active');
+        //     }, 500); // Small delay for better user experience
+        // });
 
-        // Close popup functionality
-        document.getElementById('closeBtn').addEventListener('click', closePopup);
-        document.getElementById('popupOverlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePopup();
-            }
-        });
+        // // Close popup functionality
+        // document.getElementById('closeBtn').addEventListener('click', closePopup);
+        // document.getElementById('popupOverlay').addEventListener('click', function(e) {
+        //     if (e.target === this) {
+        //         closePopup();
+        //     }
+        // });
 
-        function closePopup() {
-            document.getElementById('popupOverlay').classList.remove('active');
-        }
+        // function closePopup() {
+        //     document.getElementById('popupOverlay').classList.remove('active');
+        // }
 
-        function bookService() {
-            window.location.href = 'contact/';
-        }
+        // function bookService() {
+        //     window.location.href = 'contact/';
+        // }
 
-        // Close popup with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closePopup();
-            }
-        });
+        // // Close popup with Escape key
+        // document.addEventListener('keydown', function(e) {
+        //     if (e.key === 'Escape') {
+        //         closePopup();
+        //     }
+        // });
     </script>
 
         <!-- Company Info & Contact Form Section -->
