@@ -12,9 +12,10 @@
         <link rel="shortcut icon" type="image/png" href="../webimg/logontp.png">
         <link rel="apple-touch-icon" href="../webimg/logontp.png">
         <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103">
+        <script async
+            src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103">
 </script>
-<script>
+        <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -24,84 +25,87 @@
     </head>
     <body>
         <header class="header">
-    <div class="header-container">
-        <!-- Logo -->
-        <div class="logo-section">
-            <a href="/">
-                <img src="../webimg/logo.png" alt="Company Logo" class="logo">
-            </a>
-        </div>
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo-section">
+                    <a href="/">
+                        <img src="../webimg/logo.png" alt="Company Logo"
+                            class="logo">
+                    </a>
+                </div>
 
-        <!-- Opening Hours (Desktop) -->
-        <div class="opening-hours">
-            <h3 id="hours-title">Opening Hours Today</h3>
-            <div class="current-hours">
-                <span class="status-dot" id="status-dot"></span>
-                <span id="current-day"></span> - <span id="current-hours"></span>
-            </div>
-        </div>
+                <!-- Opening Hours (Desktop) -->
+                <div class="opening-hours">
+                    <h3 id="hours-title">Opening Hours Today</h3>
+                    <div class="current-hours">
+                        <span class="status-dot" id="status-dot"></span>
+                        <span id="current-day"></span> - <span
+                            id="current-hours"></span>
+                    </div>
+                </div>
 
-        <!-- Navigation -->
-        <nav class="nav-menu">
-            <div class="nav-item">
-                <a href="/" class="nav-link">Home</a>
-            </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link services-toggle">
-                    Services
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <div class="dropdown">
-                    <a href="../generalcleaning/">General Cleaning</a>
-                    <a href="../deepcleaning/">Deep Cleaning</a>
+                <!-- Navigation -->
+                <nav class="nav-menu">
+                    <div class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link services-toggle">
+                            Services
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="dropdown">
+                            <a href="../generalcleaning/">General Cleaning</a>
+                            <a href="../deepcleaning/">Deep Cleaning</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link areas-toggle">
+                            Areas We Cover
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="dropdown">
+                            <a href="../winchester-service/">Winchester</a>
+                            <a href="../andover-service/">Andover</a>
+                            <a href="../basingstoke-service/">Basingstoke</a>
+                            <a href="../aldershot-service/">Aldershot</a>
+                            <a href="../fleet-service/">Fleet</a>
+                            <a href="../farnborough-service/">Farnborough</a>
+                            <a href="../farnham-service/">Farnham</a>
+                            <a href="../hook-service/">Hook</a>
+                            <a href="../woking-service/">Woking</a>
+                            <a href="../ash-vale-service/">Ash Vale</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="../blog/" class="nav-link">Blog</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="../contact/" class="nav-link">Contact</a>
+                    </div>
+                </nav>
+
+                <!-- Hamburger Menu -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link areas-toggle">
-                    Areas We Cover
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                                <div class="dropdown">
-                    <a href="../winchester-service/">Winchester</a>
-                    <a href="../andover-service/">Andover</a>
-                    <a href="../basingstoke-service/">Basingstoke</a>
-                    <a href="../aldershot-service/">Aldershot</a>
-                    <a href="../fleet-service/">Fleet</a>
-                    <a href="../farnborough-service/">Farnborough</a>
-                    <a href="../farnham-service/">Farnham</a>
-                    <a href="../hook-service/">Hook</a>
-                    <a href="../woking-service/">Woking</a>
-                    <a href="../ash-vale-service/">Ash Vale</a>
+
+            <!-- Mobile Overlay -->
+            <div class="mobile-overlay"></div>
+
+            <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
+            <div class="mobile-opening-hours">
+                <h3>Opening Hours Today</h3>
+                <div class="current-hours">
+                    <span class="status-dot" id="mobile-status-dot"></span>
+                    <span id="mobile-current-day"></span> - <span
+                        id="mobile-current-hours"></span>
                 </div>
             </div>
-            <div class="nav-item">
-                <a href="../blog/" class="nav-link">Blog</a>
-            </div>
-            <div class="nav-item">
-                <a href="../contact/" class="nav-link">Contact</a>
-            </div>
-        </nav>
-
-        <!-- Hamburger Menu -->
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay"></div>
-    
-    <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
-    <div class="mobile-opening-hours">
-        <h3>Opening Hours Today</h3>
-        <div class="current-hours">
-            <span class="status-dot" id="mobile-status-dot"></span>
-            <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
-        </div>
-    </div>
-</header>
+        </header>
 
         <!-- Welcome Section -->
         <section class="welcome-section">
@@ -111,25 +115,27 @@
                     hook</h1>
 
                 <!-- Subtitle -->
-                <h2 class="welcome-subtitle">Your Professional House &
-                    Commercial Cleaning Partner in hook and Surrounding
-                    Areas</h2>
+                <h2 class="welcome-subtitle">Zero-Stress Cleaning for Busy
+                    Commuters & Families</h2>
 
                 <!-- Content Grid -->
                 <div class="welcome-content">
                     <!-- Professionalism & Expertise -->
                     <div class="content-block">
-                        <h3 class="block-title">Professionalism & Expertise</h3>
+                        <h3 class="block-title">Focus on Recurring
+                            Reliability</h3>
                         <p class="block-text">
-                            <strong>Impeccable Cleaning by Vetted
-                                Experts:</strong> Our fully employed team
-                            members are professionally trained and
-                            comprehensively insured for all House, Flat, and
-                            Commercial Cleaning. We are dedicated to upholding
-                            the highest standards with each and every visit.
-                            Experience a bespoke cleaning service, meticulously
-                            tailored to your preferences and needs in hook
-                            and the surrounding area.
+                            <strong>Dependable Cleaning for a Commuter
+                                Lifestyle:</strong> Bantha Cleaning provides
+                            ultra-reliable, consistent cleaning services
+                            tailored for the busy professionals and families of
+                            Hook. We understand your need for seamless home
+                            maintenance while you focus on work and family. Our
+                            fully employed team members are professionally
+                            trained, insured, and focused on recurring service,
+                            ensuring you return to a spotless home every time.
+                            Experience the relief of having one less thing to
+                            worry about.
                         </p>
                     </div>
 
@@ -138,28 +144,29 @@
                         <h3 class="block-title">Our 100% Satisfaction
                             Guarantee</h3>
                         <p class="block-text">
-                            <strong>Guaranteed Clean, Guaranteed Trust:</strong>
-                            Bantha Cleaning thrives on delivering exceptional
-                            customer service and maintaining a truly sparkling
-                            home or business. We confidently offer a 100%
-                            Satisfaction Guarantee for all our professional
-                            cleaning services, ensuring you're delighted after
-                            every visit. As your reliable, trusted local partner
-                            in hook, your peace of mind is our priority.
+                            <strong>Time Saved, Stress Eliminated:</strong>
+                            Bantha Cleaning is built on the promise of
+                            reliability and peace of mind in Hook. We
+                            confidently offer a 100% Satisfaction Guarantee for
+                            all our services, ensuring you are delighted with
+                            the immaculate condition of your property. Trust us
+                            to be your consistent partner for a clean,
+                            stress-free environment.
                         </p>
                     </div>
 
                     <!-- Serving hook and Beyond -->
                     <div class="content-block">
-                        <h3 class="block-title">Serving hook and
-                            Beyond</h3>
+                        <h3 class="block-title">Serving Hook and the Local
+                            Area</h3>
                         <p class="block-text">
-                            <strong>Local Experts Serving Hampshire:</strong>
-                            Our professional domestic and commercial cleaning
-                            services in hook extend to Winchester, Basingstoke,
-                            Andover, Fleet, Farnham, Aldershot, Camberley, Farnborough, and a host of other
-                            neighbouring communities within our 60-mile service
-                            radius.
+                            <strong>Convenient Coverage for Hampshire
+                                Commuters:</strong>
+                            Our professional cleaning services are readily
+                            available throughout Hook, extending our reliable
+                            service to nearby areas like Basingstoke, Fleet,
+                            Woking, and Farnborough, serving all communities
+                            within our immediate 60-mile service radius.
                         </p>
                     </div>
 
@@ -167,11 +174,12 @@
                     <div class="content-block">
                         <h3 class="block-title">Commitment to Community</h3>
                         <p class="block-text">
-                            <strong>More Than Clean Homes – Building a Stronger
-                                Community:</strong> At Bantha Cleaning, we take
-                            pride in not only delivering exceptional cleaning
-                            but also in supporting the local hook community
-                            that we cherish.
+                            <strong>More Than Clean Spaces – Supporting Local
+                                Families:</strong> At Bantha Cleaning, we take
+                            pride in supporting the busy lives of families in
+                            the Hook community. We view our work as essential to
+                            giving residents their valuable time back to spend
+                            with family and friends.
                         </p>
                     </div>
 

@@ -12,9 +12,10 @@
         <link rel="shortcut icon" type="image/png" href="../webimg/logontp.png">
         <link rel="apple-touch-icon" href="../webimg/logontp.png">
         <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103">
+        <script async
+            src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103">
 </script>
-<script>
+        <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -24,84 +25,87 @@
     </head>
     <body>
         <header class="header">
-    <div class="header-container">
-        <!-- Logo -->
-        <div class="logo-section">
-            <a href="/">
-                <img src="../webimg/logo.png" alt="Company Logo" class="logo">
-            </a>
-        </div>
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo-section">
+                    <a href="/">
+                        <img src="../webimg/logo.png" alt="Company Logo"
+                            class="logo">
+                    </a>
+                </div>
 
-        <!-- Opening Hours (Desktop) -->
-        <div class="opening-hours">
-            <h3 id="hours-title">Opening Hours Today</h3>
-            <div class="current-hours">
-                <span class="status-dot" id="status-dot"></span>
-                <span id="current-day"></span> - <span id="current-hours"></span>
-            </div>
-        </div>
+                <!-- Opening Hours (Desktop) -->
+                <div class="opening-hours">
+                    <h3 id="hours-title">Opening Hours Today</h3>
+                    <div class="current-hours">
+                        <span class="status-dot" id="status-dot"></span>
+                        <span id="current-day"></span> - <span
+                            id="current-hours"></span>
+                    </div>
+                </div>
 
-        <!-- Navigation -->
-        <nav class="nav-menu">
-            <div class="nav-item">
-                <a href="/" class="nav-link">Home</a>
-            </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link services-toggle">
-                    Services
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                <div class="dropdown">
-                    <a href="../generalcleaning/">General Cleaning</a>
-                    <a href="../deepcleaning/">Deep Cleaning</a>
+                <!-- Navigation -->
+                <nav class="nav-menu">
+                    <div class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link services-toggle">
+                            Services
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="dropdown">
+                            <a href="../generalcleaning/">General Cleaning</a>
+                            <a href="../deepcleaning/">Deep Cleaning</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link areas-toggle">
+                            Areas We Cover
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="dropdown">
+                            <a href="../winchester-service/">Winchester</a>
+                            <a href="../andover-service/">Andover</a>
+                            <a href="../basingstoke-service/">Basingstoke</a>
+                            <a href="../aldershot-service/">Aldershot</a>
+                            <a href="../fleet-service/">Fleet</a>
+                            <a href="../farnborough-service/">Farnborough</a>
+                            <a href="../farnham-service/">Farnham</a>
+                            <a href="../hook-service/">Hook</a>
+                            <a href="../woking-service/">Woking</a>
+                            <a href="../ash-vale-service/">Ash Vale</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="../blog/" class="nav-link">Blog</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="../contact/" class="nav-link">Contact</a>
+                    </div>
+                </nav>
+
+                <!-- Hamburger Menu -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link areas-toggle">
-                    Areas We Cover
-                    <span class="dropdown-arrow">▼</span>
-                </a>
-                                <div class="dropdown">
-                    <a href="../winchester-service/">Winchester</a>
-                    <a href="../andover-service/">Andover</a>
-                    <a href="../basingstoke-service/">Basingstoke</a>
-                    <a href="../aldershot-service/">Aldershot</a>
-                    <a href="../fleet-service/">Fleet</a>
-                    <a href="../farnborough-service/">Farnborough</a>
-                    <a href="../farnham-service/">Farnham</a>
-                    <a href="../hook-service/">Hook</a>
-                    <a href="../woking-service/">Woking</a>
-                    <a href="../ash-vale-service/">Ash Vale</a>
+
+            <!-- Mobile Overlay -->
+            <div class="mobile-overlay"></div>
+
+            <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
+            <div class="mobile-opening-hours">
+                <h3>Opening Hours Today</h3>
+                <div class="current-hours">
+                    <span class="status-dot" id="mobile-status-dot"></span>
+                    <span id="mobile-current-day"></span> - <span
+                        id="mobile-current-hours"></span>
                 </div>
             </div>
-            <div class="nav-item">
-                <a href="../blog/" class="nav-link">Blog</a>
-            </div>
-            <div class="nav-item">
-                <a href="../contact/" class="nav-link">Contact</a>
-            </div>
-        </nav>
-
-        <!-- Hamburger Menu -->
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay"></div>
-    
-    <!-- MOVED: Mobile Opening Hours (outside nav-menu for fixed positioning) -->
-    <div class="mobile-opening-hours">
-        <h3>Opening Hours Today</h3>
-        <div class="current-hours">
-            <span class="status-dot" id="mobile-status-dot"></span>
-            <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
-        </div>
-    </div>
-</header>
+        </header>
 
         <!-- Welcome Section -->
         <section class="welcome-section">
@@ -111,25 +115,27 @@
                     ash vale</h1>
 
                 <!-- Subtitle -->
-                <h2 class="welcome-subtitle">Your Professional House &
-                    Commercial Cleaning Partner in ash vale and Surrounding
-                    Areas</h2>
+                <h2 class="welcome-subtitle">Reliable Residential Care on the
+                    Surrey/Hampshire Border</h2>
 
                 <!-- Content Grid -->
                 <div class="welcome-content">
                     <!-- Professionalism & Expertise -->
                     <div class="content-block">
-                        <h3 class="block-title">Professionalism & Expertise</h3>
+                        <h3 class="block-title">Expertise in Detail-Focused
+                            Cleaning</h3>
                         <p class="block-text">
-                            <strong>Impeccable Cleaning by Vetted
-                                Experts:</strong> Our fully employed team
-                            members are professionally trained and
-                            comprehensively insured for all House, Flat, and
-                            Commercial Cleaning. We are dedicated to upholding
-                            the highest standards with each and every visit.
-                            Experience a bespoke cleaning service, meticulously
-                            tailored to your preferences and needs in ash vale
-                            and the surrounding area.
+                            <strong>Meticulous Service for a Peaceful
+                                Home:</strong> Bantha Cleaning provides
+                            dedicated, detail-focused service tailored for the
+                            quiet, residential community of Ash Vale. We
+                            understand that reliability and consistency are key
+                            for your peaceful home life. Our fully employed team
+                            members are professionally trained, insured, and
+                            focused entirely on residential home care, ensuring
+                            a meticulous finish with every visit. Experience the
+                            kind of attention to detail that only a local expert
+                            provides.
                         </p>
                     </div>
 
@@ -138,28 +144,30 @@
                         <h3 class="block-title">Our 100% Satisfaction
                             Guarantee</h3>
                         <p class="block-text">
-                            <strong>Guaranteed Clean, Guaranteed Trust:</strong>
-                            Bantha Cleaning thrives on delivering exceptional
-                            customer service and maintaining a truly sparkling
-                            home or business. We confidently offer a 100%
-                            Satisfaction Guarantee for all our professional
-                            cleaning services, ensuring you're delighted after
-                            every visit. As your reliable, trusted local partner
-                            in ash vale, your peace of mind is our priority.
+                            <strong>Dependable Service, Zero Stress:</strong>
+                            Bantha Cleaning is built on the foundation of
+                            consistent results and zero stress for our Ash Vale
+                            clients. We confidently offer a 100% Satisfaction
+                            Guarantee for all our cleaning services, ensuring
+                            you are delighted with the immaculate condition of
+                            your property. Trust us to be your discreet and
+                            dependable partner.
                         </p>
                     </div>
 
                     <!-- Serving ash vale and Beyond -->
                     <div class="content-block">
-                        <h3 class="block-title">Serving ash vale and
-                            Beyond</h3>
+                        <h3 class="block-title">Serving Ash Vale and the Local
+                            Area</h3>
                         <p class="block-text">
-                            <strong>Local Experts Serving Hampshire:</strong>
-                            Our professional domestic and commercial cleaning
-                            services in ash vale extend to Winchester, Basingstoke,
-                            Andover, Fleet, Farnham, Aldershot, Camberley, Farnborough, and a host of other
-                            neighbouring communities within our 60-mile service
-                            radius.
+                            <strong>Expert Coverage for Border
+                                Communities:</strong>
+                            Our professional cleaning services are readily
+                            available throughout Ash Vale, extending our
+                            comprehensive coverage to nearby areas like
+                            Aldershot, Farnborough, Fleet, and Camberley,
+                            serving all communities within our immediate 60-mile
+                            service radius.
                         </p>
                     </div>
 
@@ -167,11 +175,12 @@
                     <div class="content-block">
                         <h3 class="block-title">Commitment to Community</h3>
                         <p class="block-text">
-                            <strong>More Than Clean Homes – Building a Stronger
-                                Community:</strong> At Bantha Cleaning, we take
-                            pride in not only delivering exceptional cleaning
-                            but also in supporting the local ash vale community
-                            that we cherish.
+                            <strong>More Than Clean Spaces – Supporting the
+                                Local Vibe:</strong> At Bantha Cleaning, we take
+                            pride in supporting the strong local community of
+                            Ash Vale. We view our work as essential to
+                            maintaining the clean, quiet, and comfortable
+                            environment that residents expect.
                         </p>
                     </div>
 
