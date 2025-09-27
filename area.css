@@ -422,3 +422,260 @@
         font-size: 0.9rem;
     }
 }
+
+/* Import better fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Rest of your CSS below */
+.location-specific-section {
+    font-family: 'Inter', sans-serif;
+    /* ... */
+}
+
+/* Location Specific Section - Improved */
+.location-specific-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 4rem 0;
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.location-specific-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #28a745, #007bff);
+}
+
+.location-specific-section h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+}
+
+.location-specific-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #007bff;
+  border-radius: 2px;
+}
+
+.winchester-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.location-specific-section .content-block {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #007bff;
+  position: relative;
+  overflow: hidden;
+}
+
+.location-specific-section .content-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.location-specific-section .content-block h3 {
+  color: #2c3e50;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location-specific-section .content-block h3::before {
+  content: '🏛️';
+  font-size: 1.1rem;
+}
+
+.location-specific-section .content-block:nth-child(2) h3::before {
+  content: '📍';
+}
+
+.location-specific-section .content-block:nth-child(3) h3::before {
+  content: '🎓';
+}
+
+.location-specific-section .content-block p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.location-specific-section .content-block a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.location-specific-section .content-block a:hover {
+  color: #0056b3;
+  border-bottom-color: #0056b3;
+}
+
+/* FAQ Section - Complete Styling */
+.faq-section {
+  padding: 4rem 0;
+  background: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.faq-section h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+}
+
+.faq-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #28a745;
+  border-radius: 2px;
+}
+
+.faq-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid #28a745;
+}
+
+.faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-left-color: #007bff;
+}
+
+.faq-item h3 {
+  color: #2c3e50;
+  margin: 0;
+  padding: 1.5rem 2rem 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.faq-item h3::before {
+  content: '❓';
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.faq-item p {
+  color: #555;
+  margin: 0;
+  padding: 0 2rem 1.5rem 2rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Alternating colors for FAQ items */
+.faq-item:nth-child(1) {
+  border-left-color: #007bff;
+}
+
+.faq-item:nth-child(2) {
+  border-left-color: #28a745;
+}
+
+.faq-item:nth-child(3) {
+  border-left-color: #ffc107;
+}
+
+.faq-item:nth-child(1):hover {
+  border-left-color: #0056b3;
+}
+
+.faq-item:nth-child(2):hover {
+  border-left-color: #1e7e34;
+}
+
+.faq-item:nth-child(3):hover {
+  border-left-color: #e0a800;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .location-specific-section,
+  .faq-section {
+    padding: 3rem 0;
+  }
+  
+  .location-specific-section h2,
+  .faq-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  .winchester-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .location-specific-section .content-block,
+  .faq-item {
+    margin: 0 1rem;
+  }
+  
+  .location-specific-section .content-block {
+    padding: 1.5rem;
+  }
+  
+  .faq-item h3 {
+    padding: 1.25rem 1.5rem 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .faq-item p {
+    padding: 0 1.5rem 1.25rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
