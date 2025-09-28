@@ -171,6 +171,8 @@
     position: relative;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
     animation: modalSlideIn 0.3s ease-out;
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
 
 @keyframes modalSlideIn {
@@ -211,8 +213,8 @@
 
 .section-images-modal {
     width: 100%;
-    max-height: 400px;
-    overflow: hidden;
+    min-height: 200px;
+    overflow: visible;
     position: relative;
     border-radius: 20px 20px 0 0;
 }
@@ -229,6 +231,8 @@
     gap: 0.5rem;
     padding: 1rem;
     background: #f8fafc;
+    min-height: auto;
+    height: auto;
 }
 
 .grid-images-modal img {
@@ -246,6 +250,8 @@
 
 .body-modal {
     padding: 2rem;
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
 
 .title-modal {
@@ -254,6 +260,9 @@
     color: #1e293b;
     margin-bottom: 1rem;
     line-height: 1.2;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .date-modal {
@@ -273,11 +282,20 @@
     color: #374151;
     margin-bottom: 3rem;
     text-align: left;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    white-space: pre-wrap;
 }
 
 .text-content-modal p {
     margin-bottom: 1.5rem;
     text-align: justify;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .text-content-modal p:last-child {
@@ -331,75 +349,6 @@
     color: #667eea;
 }
 
-/* FIXED: Force long words to break and wrap */
-.text-content-modal {
-    font-size: 1.1rem !important;
-    line-height: 1.8 !important;
-    color: #374151 !important;
-    margin-bottom: 3rem !important;
-    text-align: left !important;
-
-    /* THESE ARE THE KEY FIXES FOR WORD WRAPPING */
-    word-wrap: break-word !important;
-    word-break: break-word !important;
-    overflow-wrap: break-word !important;
-    hyphens: auto !important;
-    white-space: pre-wrap !important;
-}
-
-.text-content-modal p {
-    margin-bottom: 1.2rem !important;
-    line-height: 1.7 !important;
-    text-align: left !important;
-
-    /* FORCE LONG WORDS TO BREAK */
-    word-wrap: break-word !important;
-    word-break: break-word !important;
-    overflow-wrap: break-word !important;
-    hyphens: auto !important;
-}
-
-/* Also fix the modal content container */
-.container-modal {
-    background-color: white;
-    margin: 2% auto;
-    padding: 0;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    animation: modalSlideIn 0.3s ease-out;
-
-    /* PREVENT MODAL FROM EXPANDING */
-    overflow-x: hidden !important;
-    word-wrap: break-word !important;
-}
-
-.body-modal {
-    padding: 2rem;
-
-    /* PREVENT CONTENT FROM EXPANDING MODAL */
-    overflow-x: hidden !important;
-    word-wrap: break-word !important;
-}
-
-/* Fix for very long words in titles too */
-.title-modal {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #1e293b;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-
-    /* BREAK LONG TITLES TOO */
-    word-wrap: break-word !important;
-    word-break: break-word !important;
-    overflow-wrap: break-word !important;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .section-header h1 {
@@ -420,6 +369,7 @@
     .container-modal {
         width: 95%;
         margin: 5% auto;
+        max-height: 95vh;
     }
 
     .title-modal {
@@ -430,8 +380,67 @@
         padding: 1.5rem;
     }
 
+    .section-images-modal {
+        max-height: none;
+        height: auto;
+        overflow: visible;
+    }
+
     .section-images-modal img {
         height: 250px;
     }
 
+    /* FIXED: Mobile image gallery - Force 2 columns */
+    .grid-images-modal {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
+        padding: 1rem !important;
+        background: #f8fafc;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    
+    .grid-images-modal img {
+        width: 100% !important;
+        height: 120px !important;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .container-modal {
+        width: 98%;
+        margin: 2% auto;
+    }
+
+    .grid-images-modal {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.25rem !important;
+        padding: 0.5rem !important;
+    }
+    
+    .grid-images-modal img {
+        height: 100px !important;
+    }
+
+    .body-modal {
+        padding: 1rem;
+    }
+}
+
+/* For extra small screens */
+@media (max-width: 360px) {
+    .grid-images-modal {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .grid-images-modal img {
+        height: 150px !important;
+    }
 }
