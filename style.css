@@ -406,63 +406,112 @@
     }
 }
 
+/* Mobile: Form First, Better Width */
 @media (max-width: 940px) {
     .info-contact-container {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2rem;  /* REDUCED gap */
         padding: 0 1rem;
-        max-width: 1200px;
+        max-width: 100%;  /* CHANGED: from 1200px to 100% */
         align-items: start;
+        display: flex;
+        flex-direction: column;
     }
 
+    /* Form on top, full width */
+    .contact-form-container {
+        order: 1;
+        margin: 0;  /* CHANGED: removed negative margin */
+        padding: 2rem 1.5rem;  /* ADJUSTED padding */
+        width: 100%;  /* ADDED: full width */
+        max-width: 100%;  /* ADDED: no max-width restriction */
+        box-sizing: border-box;  /* ADDED: includes padding in width */
+    }
+
+    /* Company info below, full width */
     .company-info {
-        padding-right: 0;
-        text-align: center;
-        margin-left: 0;
-        display: block;
-    }
-
-    .company-name {
-        font-size: 2rem;
-    }
-
-    .company-subtitle {
-        font-size: 1.2rem;
+        order: 2;
+        padding: 0;  /* CHANGED: removed padding */
+        margin: 0;  /* CHANGED: removed negative margin */
+        width: 100%;  /* ADDED: full width */
+        text-align: left;  /* CHANGED: from center to left for readability */
     }
 
     .company-info-box {
-        padding: 3rem 2rem;
-        display: block;
+        padding: 2rem 1.5rem;  /* REDUCED padding */
+        margin: 0;  /* ADDED: no margins */
+        width: 100%;  /* ADDED: full width */
+        max-width: 100%;  /* ADDED: no restrictions */
+        box-sizing: border-box;
     }
 
-    .contact-form-container {
-        margin-right: 0;
-        padding: 2rem;
-        display: block;
-        min-height: auto;
+    .company-name {
+        font-size: 1.8rem;  /* SLIGHTLY reduced */
+        text-align: center;  /* ADDED: center the title */
+    }
+
+    .company-subtitle {
+        font-size: 1.1rem;
+        text-align: center;  /* ADDED: center subtitle */
+    }
+
+    .company-description {
+        font-size: 1rem;
+        text-align: left;  /* Body text left-aligned */
     }
 
     .contact-form {
-        gap: 1rem;
+        gap: 1.2rem;  /* SLIGHTLY increased */
     }
 
     .form-title {
         font-size: 1.6rem;
-        margin-bottom: 1.2rem;
+        margin-bottom: 1.5rem;
     }
 
     .form-row {
         grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    /* ADDED: Better input sizing */
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;  /* Prevents zoom on iOS */
+    }
+
+    /* ADDED: Better button */
+    .submit-btn {
+        width: 100%;
+        padding: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .info-contact-section {
-        padding: 3rem 0;
+        padding: 2rem 0;
     }
 }
 
+/* Extra small phones */
 @media (max-width: 600px) {
+    .info-contact-container {
+        padding: 0 0.75rem;  /* REDUCED side padding */
+    }
+
+    .contact-form-container {
+        padding: 1.5rem 1rem;
+        border-radius: 12px;  /* SLIGHTLY reduced radius */
+    }
+
+    .company-info-box {
+        padding: 1.5rem 1rem;
+        border-radius: 12px;
+    }
+
     .company-name {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .company-subtitle {
@@ -470,33 +519,20 @@
     }
 
     .company-description {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
-    .company-info-box {
-        padding: 2rem;
-    }
-
-    .contact-form-container {
-        padding: 1.5rem;
-    }
-
-    .info-contact-container {
-        padding: 0 1rem;
-        gap: 2rem;
-    }
-
-    .info-contact-section {
-        padding: 2rem 0;
+    .form-title {
+        font-size: 1.4rem;
     }
 
     .form-group input,
     .form-group textarea {
-        padding: 0.75rem;
+        padding: 0.9rem;
     }
 
     .submit-btn {
-        padding: 1rem 2rem;
+        padding: 1rem;
     }
 }
 
