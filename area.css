@@ -679,3 +679,294 @@
     font-size: 0.9rem;
   }
 }
+
+/* ====================================
+   Location Specific Section Styles
+   ==================================== */
+
+.location-specific-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 4rem 0;
+  position: relative;
+}
+
+.location-specific-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #28a745, #007bff);
+}
+
+.location-specific-section h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.location-specific-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #007bff;
+  border-radius: 2px;
+}
+
+/* Generic content grid for all location pages */
+.winchester-content,
+.andover-content,
+.basingstoke-content,
+.aldershot-content,
+.fleet-content,
+.farnborough-content,
+.farnham-content,
+.hook-content,
+.woking-content,
+.ash-vale-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.location-specific-section .content-block {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #007bff;
+  position: relative;
+  overflow: hidden;
+}
+
+.location-specific-section .content-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, rgba(0, 123, 255, 0.1), transparent);
+  border-radius: 50%;
+  transform: translate(30px, -30px);
+}
+
+.location-specific-section .content-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border-left-color: #28a745;
+}
+
+.location-specific-section .content-block h3 {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location-specific-section .content-block p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.location-specific-section .content-block p:last-child {
+  margin-bottom: 0;
+}
+
+.location-specific-section .content-block a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.location-specific-section .content-block a:hover {
+  color: #0056b3;
+  border-bottom-color: #0056b3;
+}
+
+/* Color variations for content blocks */
+.location-specific-section .content-block:nth-child(1) {
+  border-left-color: #007bff;
+}
+
+.location-specific-section .content-block:nth-child(2) {
+  border-left-color: #28a745;
+}
+
+.location-specific-section .content-block:nth-child(3) {
+  border-left-color: #ffc107;
+}
+
+.location-specific-section .content-block:nth-child(1):hover {
+  border-left-color: #0056b3;
+}
+
+.location-specific-section .content-block:nth-child(2):hover {
+  border-left-color: #1e7e34;
+}
+
+.location-specific-section .content-block:nth-child(3):hover {
+  border-left-color: #e0a800;
+}
+
+/* ====================================
+   FAQ Section Styles
+   ==================================== */
+
+.faq-section {
+  background: #ffffff;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.faq-section h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.faq-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #28a745;
+  border-radius: 2px;
+}
+
+.faq-content {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.faq-item {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #28a745;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-left-color: #007bff;
+}
+
+.faq-item h3 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.faq-item p {
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.faq-item a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.faq-item a:hover {
+  color: #0056b3;
+  border-bottom-color: #0056b3;
+}
+
+/* ====================================
+   Responsive Styles
+   ==================================== */
+
+@media (max-width: 768px) {
+  .location-specific-section {
+    padding: 3rem 0;
+  }
+  
+  .location-specific-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .winchester-content,
+  .andover-content,
+  .basingstoke-content,
+  .aldershot-content,
+  .fleet-content,
+  .farnborough-content,
+  .farnham-content,
+  .hook-content,
+  .woking-content,
+  .ash-vale-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .location-specific-section .content-block {
+    padding: 1.5rem;
+  }
+  
+  .location-specific-section .content-block h3 {
+    font-size: 1.2rem;
+  }
+
+  .faq-section {
+    padding: 3rem 0;
+  }
+
+  .faq-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .faq-item {
+    padding: 1.5rem;
+  }
+
+  .faq-item h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .location-specific-section h2,
+  .faq-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .location-specific-section .content-block,
+  .faq-item {
+    padding: 1.25rem;
+  }
+}
