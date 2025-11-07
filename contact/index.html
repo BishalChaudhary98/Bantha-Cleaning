@@ -1,59 +1,494 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Enhanced Title with Local Keywords -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Contact Bantha Cleaning | Professional Cleaners in Aldershot, Basingstoke & Winchester | Get a Free Quote</title>
-    
-    <!-- Enhanced Meta Description -->
     <meta name="description" content="Contact Bantha Cleaning for professional cleaning services in Aldershot, Basingstoke, Winchester & surrounding areas. Call 07825183734 or request a free quote online. Fast response guaranteed!">
-    
-    <!-- Keywords Meta Tag -->
     <meta name="keywords" content="contact cleaning service, Aldershot cleaners, Basingstoke cleaning company, Winchester cleaning services, professional cleaners contact, cleaning quote, local cleaning service">
-    
-    <!-- Open Graph Tags for Social Sharing -->
-    <meta property="og:title" content="Contact Bantha Cleaning | Professional Cleaning Services">
-    <meta property="og:description" content="Get in touch with Bantha Cleaning for professional cleaning services in Aldershot, Basingstoke, Winchester & surrounding areas. Request a free quote today!">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://banthacleaning.com/contact/">
-    <meta property="og:image" content="https://banthacleaning.com/webimg/logo.png">
-    <meta property="og:locale" content="en_GB">
-    
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contact Bantha Cleaning | Professional Cleaning Services">
-    <meta name="twitter:description" content="Get in touch with Bantha Cleaning for professional cleaning services. Call 07825183734 or request a free quote online.">
-    <meta name="twitter:image" content="https://banthacleaning.com/webimg/logo.png">
-    
-    <!-- Canonical URL -->
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://banthacleaning.com/contact/">
-    
-    <!-- Geo Tags for Local SEO -->
-    <meta name="geo.region" content="GB-HAM">
-    <meta name="geo.placename" content="Aldershot">
-    <meta name="geo.position" content="51.247917;-0.757497">
-    <meta name="ICBM" content="51.247917, -0.757497">
-    
-    <!-- Robots Meta -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    
-    <!-- Author and Copyright -->
-    <meta name="author" content="Bantha Cleaning Ltd">
-    <meta name="copyright" content="Bantha Cleaning Ltd">
-    
-    <!-- Preconnect for Performance -->
-    <link rel="preconnect" href="https://maps.googleapis.com">
-    <link rel="preconnect" href="https://www.google.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    
-    <link rel="stylesheet" href="contact.css">
     <link rel="icon" type="image/png" href="../webimg/logontp.png">
-    <link rel="shortcut icon" type="image/png" href="../webimg/logontp.png">
-    <link rel="apple-touch-icon" href="../webimg/logontp.png">
-    
-    <!-- Structured Data - Local Business Schema -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    colors: {
+                        "bantha-blue": "#007bff",
+                        "bantha-green": "#28a745",
+                        "bantha-dark": "#1f2937",
+                        "bantha-light": "#f9fafb",
+                        "primary-blue": "#1D4ED8",
+                        "secondary-green": "#059669"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Prevent horizontal scroll */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        /* Make map responsive */
+        .map-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .map-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
+        }
+
+        .dropdown {
+            transition: all .3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .dropdown.open {
+            max-height: 500px;
+        }
+
+        .mobile-overlay {
+            transition: transform .3s ease-in-out;
+            transform: translateX(100%);
+            z-index: 9999;
+        }
+
+        .mobile-overlay.open {
+            transform: translateX(0);
+        }
+
+        #mobile-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease;
+            z-index: 9998;
+        }
+
+        #mobile-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .dot-open {
+            background-color: #28a745;
+        }
+
+        .dot-closed {
+            background-color: #dc3545;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: #333;
+            transition: all .3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Contact Form Styles */
+        .premium-contact-section {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .premium-form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .premium-section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .premium-section-subtitle {
+            font-size: 1.1rem;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .premium-contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .premium-form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .premium-form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .premium-input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .premium-input-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .premium-form-input,
+        .premium-form-textarea {
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+        }
+
+        .premium-form-input:focus,
+        .premium-form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .premium-form-textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .premium-submit-button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .premium-submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .premium-submit-button:active {
+            transform: translateY(0);
+        }
+
+        .premium-submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Contact Boxes Section */
+        .contact-section {
+            padding: 4rem 1rem;
+            background-color: #f9fafb;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1.2rem;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-boxes {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .contact-boxes {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .contact-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .contact-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .contact-description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* .contact-info a {
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+        } */
+
+        .address-info {
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        .company-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 4rem 1rem;
+            background-color: white;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Service Areas Section */
+        .service-areas-section {
+            padding: 4rem 1rem;
+            background-color: #f9fafb;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .areas-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .areas-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .areas-description {
+            font-size: 1.1rem;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .area-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .area-item:hover {
+            background: #007bff;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,123,255,0.3);
+        }
+
+        .area-name {
+            display: block;
+        }
+
+        @media (max-width: 767px) {
+            body.menu-open {
+                overflow: hidden;
+                position: fixed;
+                width: 100%;
+            }
+
+            .premium-section-title,
+            .contact-title,
+            .map-title,
+            .areas-title {
+                font-size: 1.875rem;
+            }
+
+            .premium-form-wrapper {
+                padding: 2rem 1.5rem;
+            }
+
+            .premium-section-subtitle,
+            .contact-subtitle,
+            .areas-description {
+                font-size: 1rem;
+            }
+
+            .map-container,
+            .areas-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+    <style>
+    .areas-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+    }
+
+    .area-item {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1rem 0.75rem;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        position: relative;
+    }
+
+    .area-item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    }
+
+    .area-name {
+        display: block;
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+
+    @media (max-width: 1024px) {
+        .areas-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .areas-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .area-item {
+            padding: 0.875rem 0.625rem;
+        }
+        
+        .area-name {
+            font-size: 0.875rem;
+        }
+    }
+</style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -112,183 +547,171 @@
       ]
     }
     </script>
-    
-    <!-- Breadcrumb Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://banthacleaning.com/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Contact",
-        "item": "https://banthacleaning.com/contact/"
-      }]
-    }
-    </script>
-    
-    <!-- Contact Page Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "name": "Contact Bantha Cleaning",
-      "description": "Get in touch with Bantha Cleaning for professional cleaning services in Aldershot and surrounding areas",
-      "url": "https://banthacleaning.com/contact/"
-    }
-    </script>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-17423777103');
-    </script>
 </head>
-<body>
-    <header class="header">
-    <div class="header-container">
-        <!-- Logo -->
-        <div class="logo-section">
-            <a href="/" aria-label="Bantha Cleaning Home">
-                <img src="../webimg/logo.png" alt="Bantha Cleaning - Professional Cleaning Services Logo" class="logo" fetchpriority="high" width="200" height="80">
-            </a>
-        </div>
 
-        <!-- Opening Hours (Desktop) -->
-        <div class="opening-hours">
-            <h3 id="hours-title">Opening Hours Today</h3>
-            <div class="current-hours">
-                <span class="status-dot" id="status-dot" aria-label="Current status"></span>
-                <span id="current-day"></span> - <span id="current-hours"></span>
+<body class="font-sans antialiased bg-bantha-light text-gray-800">
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="logo-section flex-shrink-0">
+                    <a href="../" aria-label="Bantha Cleaning Home">
+                        <img src="https://banthacleaning.com/webimg/logo.png" alt="Bantha Cleaning - Professional Cleaning Services Logo" class="h-10 w-auto" width="150" height="60">
+                    </a>
+                </div>
+                <div class="hidden md:flex flex-col items-end text-sm text-gray-600">
+                    <h3 class="font-semibold text-bantha-dark" id="hours-title">Opening Hours Today</h3>
+                    <div class="flex items-center mt-1">
+                        <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+                        <span id="current-day" class="font-medium"></span> - 
+                        <span id="current-hours" class="ml-1"></span>
+                    </div>
+                </div>
+                <nav class="hidden md:flex nav-menu space-x-6 lg:space-x-10 text-bantha-dark font-medium" aria-label="Main navigation">
+                    <div class="nav-item">
+                        <a href="../" class="nav-link hover:text-bantha-blue transition duration-150">Home</a>
+                    </div>
+                    <div class="nav-item relative group" id="services-desktop-toggle">
+                        <a href="#" class="nav-link flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
+                            Services
+                            <span class="dropdown-arrow ml-1 transition-transform duration-150" aria-hidden="true">▼</span>
+                        </a>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-xl z-50 origin-top-left">
+                            <a href="../generalcleaning/" class="block px-4 py-3 hover:bg-bantha-light">General Cleaning</a>
+                            <a href="../deepcleaning/" class="block px-4 py-3 hover:bg-bantha-light">Deep Cleaning</a>
+                        </div>
+                    </div>
+                    <div class="nav-item relative group" id="areas-desktop-toggle">
+                        <a href="#" class="nav-link flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
+                            Areas We Cover
+                            <span class="dropdown-arrow ml-1 transition-transform duration-150" aria-hidden="true">▼</span>
+                        </a>
+                        <div class="dropdown absolute right-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-xl z-50 origin-top-right">
+                            <a href="../winchester-service/" class="block px-4 py-3 hover:bg-bantha-light">Winchester</a>
+                            <a href="../andover-service/" class="block px-4 py-3 hover:bg-bantha-light">Andover</a>
+                            <a href="../basingstoke-service/" class="block px-4 py-3 hover:bg-bantha-light">Basingstoke</a>
+                            <a href="../aldershot-service/" class="block px-4 py-3 hover:bg-bantha-light">Aldershot</a>
+                            <a href="../fleet-service/" class="block px-4 py-3 hover:bg-bantha-light">Fleet</a>
+                            <a href="../farnborough-service/" class="block px-4 py-3 hover:bg-bantha-light">Farnborough</a>
+                            <a href="../farnham-service/" class="block px-4 py-3 hover:bg-bantha-light">Farnham</a>
+                            <a href="../hook-service/" class="block px-4 py-3 hover:bg-bantha-light">Hook</a>
+                            <a href="../woking-service/" class="block px-4 py-3 hover:bg-bantha-light">Woking</a>
+                            <a href="../ash-vale-service/" class="block px-4 py-3 hover:bg-bantha-light">Ash Vale</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="../blog/" class="nav-link hover:text-bantha-blue transition duration-150">Blog</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="../contact/" class="nav-link hover:text-bantha-blue transition duration-150" aria-current="page">Contact</a>
+                    </div>
+                </nav>
+                <button class="hamburger md:hidden p-2" aria-label="Toggle navigation menu" aria-expanded="false" id="mobile-menu-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
+    </header>
 
-        <!-- Navigation -->
-        <nav class="nav-menu" aria-label="Main navigation">
-            <div class="nav-item">
-                <a href="/" class="nav-link">Home</a>
+    <div class="mobile-overlay fixed top-0 right-0 h-full w-64 bg-white shadow-2xl p-6 md:hidden flex flex-col justify-between overflow-y-auto" id="mobile-nav" style="max-height:100vh">
+        <div>
+            <div class="flex justify-between items-center mb-6">
+                <a href="../" class="text-xl font-bold text-bantha-dark">Menu</a>
+                <button class="text-2xl font-bold text-gray-500" id="close-mobile-nav">&times;</button>
             </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link services-toggle" aria-expanded="false" aria-haspopup="true">
-                    Services
-                    <span class="dropdown-arrow" aria-hidden="true">▼</span>
-                </a>
-                <div class="dropdown" role="menu">
-                    <a href="../generalcleaning/" role="menuitem">General Cleaning</a>
-                    <a href="../deepcleaning/" role="menuitem">Deep Cleaning</a>
+            <div class="mobile-opening-hours mb-6 p-3 bg-bantha-light rounded-lg">
+                <h3 class="font-bold text-bantha-dark">Opening Hours Today</h3>
+                <div class="flex items-center mt-1 text-sm text-gray-600">
+                    <span class="status-dot" id="mobile-status-dot" aria-hidden="true"></span>
+                    <span id="mobile-current-day" class="font-medium"></span> - 
+                    <span id="mobile-current-hours" class="ml-1"></span>
                 </div>
             </div>
-            <div class="nav-item">
-                <a href="#" class="nav-link areas-toggle" aria-expanded="false" aria-haspopup="true">
-                    Areas We Cover
-                    <span class="dropdown-arrow" aria-hidden="true">▼</span>
-                </a>
-                <div class="dropdown" role="menu">
-                    <a href="../winchester-service/" role="menuitem">Winchester</a>
-                    <a href="../andover-service/" role="menuitem">Andover</a>
-                    <a href="../basingstoke-service/" role="menuitem">Basingstoke</a>
-                    <a href="../aldershot-service/" role="menuitem">Aldershot</a>
-                    <a href="../fleet-service/" role="menuitem">Fleet</a>
-                    <a href="../farnborough-service/" role="menuitem">Farnborough</a>
-                    <a href="../farnham-service/" role="menuitem">Farnham</a>
-                    <a href="../hook-service/" role="menuitem">Hook</a>
-                    <a href="../woking-service/" role="menuitem">Woking</a>
-                    <a href="../ash-vale-service/" role="menuitem">Ash Vale</a>
+            <nav class="flex flex-col space-y-2 text-lg font-medium">
+                <a href="../" class="p-3 rounded-lg hover:bg-bantha-light">Home</a>
+                <div class="services-toggle-mobile">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-bantha-light flex justify-between items-center" aria-expanded="false" onclick='toggleDropdown(this,"mobile-services-dropdown")'>
+                        Services
+                        <span class="text-sm">▼</span>
+                    </button>
+                    <div class="dropdown ml-4 border-l pl-2 border-gray-200" id="mobile-services-dropdown">
+                        <a href="../generalcleaning/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">General Cleaning</a>
+                        <a href="../deepcleaning/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Deep Cleaning</a>
+                    </div>
                 </div>
-            </div>
-            <div class="nav-item">
-                <a href="../blog/" class="nav-link">Blog</a>
-            </div>
-            <div class="nav-item">
-                <a href="../contact/" class="nav-link" aria-current="page">Contact</a>
-            </div>
-        </nav>
-
-        <!-- Hamburger Menu -->
-        <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay"></div>
-    
-    <!-- Mobile Opening Hours -->
-    <div class="mobile-opening-hours">
-        <h3>Opening Hours Today</h3>
-        <div class="current-hours">
-            <span class="status-dot" id="mobile-status-dot" aria-label="Current status"></span>
-            <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
+                <div class="areas-toggle-mobile">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-bantha-light flex justify-between items-center" aria-expanded="false" onclick='toggleDropdown(this,"mobile-areas-dropdown")'>
+                        Areas We Cover
+                        <span class="text-sm">▼</span>
+                    </button>
+                    <div class="dropdown ml-4 border-l pl-2 border-gray-200" id="mobile-areas-dropdown">
+                        <a href="../winchester-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Winchester</a>
+                        <a href="../andover-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Andover</a>
+                        <a href="../basingstoke-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Basingstoke</a>
+                        <a href="../aldershot-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Aldershot</a>
+                        <a href="../fleet-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Fleet</a>
+                        <a href="../farnborough-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Farnborough</a>
+                        <a href="../farnham-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Farnham</a>
+                        <a href="../hook-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Hook</a>
+                        <a href="../woking-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Woking</a>
+                        <a href="../ash-vale-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Ash Vale</a>
+                    </div>
+                </div>
+                <a href="../blog/" class="p-3 rounded-lg hover:bg-bantha-light">Blog</a>
+                <a href="../contact/" class="p-3 rounded-lg hover:bg-bantha-light">Contact</a>
+            </nav>
+        </div>
+        <div class="mt-6 sticky bottom-0 bg-white pt-4">
+            <a href="tel:+447825183734" class="block w-full text-center bg-bantha-green text-white py-3 rounded-lg font-bold shadow-lg hover:bg-green-700 transition duration-150">Call Now: 07825 183734</a>
         </div>
     </div>
-</header>
 
-    <!-- Contact Form Section with Enhanced SEO Content -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 md:hidden transition-opacity duration-300" id="mobile-backdrop" style="opacity:0;pointer-events:none"></div>
+
     <section class="premium-contact-section">
         <div class="premium-form-wrapper">
             <h1 class="premium-section-title">Contact Bantha Cleaning</h1>
-            <p class="premium-section-subtitle">Ready to transform your space with professional cleaning? Get a free quote for house cleaning, office cleaning, or deep cleaning services in Aldershot, Basingstoke, Winchester, and surrounding areas. Our friendly team responds quickly to all enquiries!</p>
-            
+            <p class="premium-section-subtitle">Transform your space today! Get a free quote for home, office, or deep cleaning in Aldershot, Basingstoke & nearby areas. Fast, friendly service!</p>
             <form class="premium-contact-form" aria-label="Contact form">
-                <!-- Row 1: Full Name and Postal Code -->
                 <div class="premium-form-row">
-                    <div class="premium-input-group" data-icon="user">
+                    <div class="premium-input-group">
                         <label for="fullname" class="premium-input-label">Full Name *</label>
                         <input type="text" id="fullname" name="fullname" class="premium-form-input" required aria-required="true" autocomplete="name">
                     </div>
-                    <div class="premium-input-group" data-icon="location">
+                    <div class="premium-input-group">
                         <label for="postal_code" class="premium-input-label">Postal Code</label>
-                        <input type="text" id="postal_code" name="postal_code" class="premium-form-input" autocomplete="postal-code" placeholder="e.g., GU11 1AA">
+                        <input type="text" id="postal_code" name="postal_code" class="premium-form-input" autocomplete="postal-code">
                     </div>
                 </div>
-
-                <!-- Row 2: Email and Phone -->
                 <div class="premium-form-row">
-                    <div class="premium-input-group" data-icon="mail">
+                    <div class="premium-input-group">
                         <label for="email" class="premium-input-label">Email Address *</label>
                         <input type="email" id="email" name="email" class="premium-form-input" required aria-required="true" autocomplete="email">
                     </div>
-                    <div class="premium-input-group" data-icon="phone">
+                    <div class="premium-input-group">
                         <label for="phone" class="premium-input-label">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" class="premium-form-input" autocomplete="tel" placeholder="07825183734">
+                        <input type="tel" id="phone" name="phone" class="premium-form-input" autocomplete="tel">
                     </div>
                 </div>
-
-                <!-- Message -->
                 <div class="premium-input-group">
                     <label for="message" class="premium-input-label">Your Message *</label>
                     <textarea id="message" name="message" class="premium-form-textarea" placeholder="Tell us about your cleaning requirements, preferred schedule, and any special requests..." required aria-required="true"></textarea>
                 </div>
-
                 <button type="submit" class="premium-submit-button">Send Message - Get Your Free Quote</button>
             </form>
         </div>
     </section>
 
-    <!-- Contact Section with Enhanced Content -->
     <section class="contact-section">
         <div class="contact-container">
             <h2 class="contact-title">Multiple Ways to Reach Bantha Cleaning</h2>
             <p class="contact-subtitle">Our Friendly Professional Cleaning Team is Here to Help You</p>
-            
             <div class="contact-boxes">
-                <!-- Phone Contact Box -->
                 <div class="contact-box" itemscope itemtype="https://schema.org/ContactPoint">
                     <span class="contact-icon" aria-hidden="true">📞</span>
                     <h3>Call Us for Immediate Service</h3>
-                    <p class="contact-description">
-                        Speak directly with our friendly and professional cleaning team. We're on hand to assist with all cleaning enquiries for residential and commercial properties. Get instant quotes and book your cleaning service today.
-                    </p>
+                    <p class="contact-description">Speak directly with our friendly and professional cleaning team. We're on hand to assist with all cleaning enquiries for residential and commercial properties. Get instant quotes and book your cleaning service today.</p>
                     <div class="contact-info">
                         <a href="tel:+447825183734" itemprop="telephone" aria-label="Call Bantha Cleaning">07825 183734</a>
                     </div>
@@ -296,21 +719,15 @@
                     <meta itemprop="areaServed" content="GB">
                     <meta itemprop="availableLanguage" content="English">
                 </div>
-                
-                <!-- Email Contact Box -->
                 <div class="contact-box" itemscope itemtype="https://schema.org/ContactPoint">
                     <span class="contact-icon" aria-hidden="true">📧</span>
                     <h3>Email Your Cleaning Enquiry</h3>
-                    <p class="contact-description">
-                        Prefer to write? Send us an email with your cleaning requirements and one of our professional team members will respond within 24 hours with a detailed quote for your cleaning needs.
-                    </p>
+                    <p class="contact-description">Prefer to write? Send us an email with your cleaning requirements and one of our professional team members will respond within 24 hours with a detailed quote for your cleaning needs.</p>
                     <div class="contact-info">
                         <a href="mailto:banthacleaningcompany@gmail.com" itemprop="email" aria-label="Email Bantha Cleaning">banthacleaningcompany@gmail.com</a>
                     </div>
                     <meta itemprop="contactType" content="customer service">
                 </div>
-                
-                <!-- Visit Us Contact Box -->
                 <div class="contact-box" itemscope itemtype="https://schema.org/Place">
                     <span class="contact-icon" aria-hidden="true">📍</span>
                     <h3>Visit Our Aldershot Office</h3>
@@ -325,174 +742,229 @@
         </div>
     </section>
 
-    <!-- Map Section -->
     <section class="map-section">
         <div class="map-container">
             <h2 class="map-title">Find Bantha Cleaning in Aldershot</h2>
-            
             <div class="map-embed">
-                <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d323.01086390960717!2d-0.7574975987998696!3d51.24791733454102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87cf0488dafe32bf%3A0x6674422e143c96cc!2sBantha%20Cleaning!5e1!3m2!1sen!2snp!4v1753790895985!5m2!1sen!2snp" 
-                width="600" 
-                height="450" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Bantha Cleaning Location Map - Victoria Rd, Aldershot">
-                </iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d323.01086390960717!2d-0.7574975987998696!3d51.24791733454102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87cf0488dafe32bf%3A0x6674422e143c96cc!2sBantha%20Cleaning!5e1!3m2!1sen!2snp!4v1753790895985!5m2!1sen!2snp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bantha Cleaning Location Map - Victoria Rd, Aldershot"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Service Areas Section with Enhanced SEO -->
     <section class="service-areas-section">
         <div class="areas-container">
             <h2 class="areas-title">Professional Cleaning Service Coverage Areas</h2>
             <p class="areas-description">Bantha Cleaning proudly delivers trusted, top-quality residential and commercial cleaning services within a 60-mile radius of Aldershot. As your local cleaning experts, we serve all major towns and communities including Winchester, Basingstoke, Farnborough, Fleet, and more:</p>
-
             <nav class="areas-grid" aria-label="Service areas">
-                <a href="../winchester-service/" class="area-item">
-                    <span class="area-name">Winchester Cleaning Services</span>
-                </a>
-                <a href="../andover-service/" class="area-item">
-                    <span class="area-name">Andover Cleaning Services</span>
-                </a>
-                <a href="../basingstoke-service/" class="area-item">
-                    <span class="area-name">Basingstoke Cleaning Services</span>
-                </a>
-                <a href="../aldershot-service/" class="area-item">
-                    <span class="area-name">Aldershot Cleaning Services</span>
-                </a>
-                <a href="../fleet-service/" class="area-item">
-                    <span class="area-name">Fleet Cleaning Services</span>
-                </a>
-                <a href="../farnborough-service/" class="area-item">
-                    <span class="area-name">Farnborough Cleaning Services</span>
-                </a>
-                <a href="../farnham-service/" class="area-item">
-                    <span class="area-name">Farnham Cleaning Services</span>
-                </a>
-                <a href="../hook-service/" class="area-item">
-                    <span class="area-name">Hook Cleaning Services</span>
-                </a>
-                <a href="../woking-service/" class="area-item">
-                    <span class="area-name">Woking Cleaning Services</span>
-                </a>
-                <a href="../ash-vale-service/" class="area-item">
-                    <span class="area-name">Ash Vale Cleaning Services</span>
-                </a>
+                <a href="../winchester-service/" class="area-item"><span class="area-name">Winchester Cleaning Services</span></a>
+                <a href="../andover-service/" class="area-item"><span class="area-name">Andover Cleaning Services</span></a>
+                <a href="../basingstoke-service/" class="area-item"><span class="area-name">Basingstoke Cleaning Services</span></a>
+                <a href="../aldershot-service/" class="area-item"><span class="area-name">Aldershot Cleaning Services</span></a>
+                <a href="../fleet-service/" class="area-item"><span class="area-name">Fleet Cleaning Services</span></a>
+                <a href="../farnborough-service/" class="area-item"><span class="area-name">Farnborough Cleaning Services</span></a>
+                <a href="../farnham-service/" class="area-item"><span class="area-name">Farnham Cleaning Services</span></a>
+                <a href="../hook-service/" class="area-item"><span class="area-name">Hook Cleaning Services</span></a>
+                <a href="../woking-service/" class="area-item"><span class="area-name">Woking Cleaning Services</span></a>
+                <a href="../ash-vale-service/" class="area-item"><span class="area-name">Ash Vale Cleaning Services</span></a>
             </nav>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="footer-section">
-        <div class="footer-container">
-            <!-- Column 1: Menu -->
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <nav aria-label="Footer navigation">
-                    <div class="menu-item">
-                        <a href="/">Home</a>
-                    </div>
-                    <div class="menu-item">
-                        <a href="javascript:void(0);" onclick="showHideMenu()">Service</a>
-                        <div class="service-submenu" id="submenu">
-                            <div class="submenu-item">
-                                <a href="../generalcleaning/">General Cleaning</a>
-                            </div>
-                            <div class="submenu-item">
-                                <a href="../deepcleaning/">Deep Cleaning</a>
+    <footer class="bg-bantha-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="footer-column">
+                    <h3 class="text-xl font-bold mb-4">Menu</h3>
+                    <nav aria-label="Footer navigation" class="space-y-2 text-gray-300">
+                        <div class="menu-item">
+                            <a href="/" class="hover:text-bantha-blue transition duration-150">Home</a>
+                        </div>
+                        <div class="menu-item relative">
+                            <button onclick='toggleDropdown(this,"footer-services-dropdown")' class="flex items-center hover:text-bantha-blue transition duration-150 w-full text-left" aria-expanded="false">
+                                Services
+                                <span class="text-xs ml-1 transition-transform duration-150" style="display:inline-block">▼</span>
+                            </button>
+                            <div class="dropdown text-sm mt-1 ml-4 border-l border-gray-600 pl-2" id="footer-services-dropdown">
+                                <div class="submenu-item">
+                                    <a href="../generalcleaning/" class="block py-1 hover:text-bantha-blue">General Cleaning</a>
+                                </div>
+                                <div class="submenu-item">
+                                    <a href="../deepcleaning/" class="block py-1 hover:text-bantha-blue">Deep Cleaning</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="menu-item">
-                        <a href="../blog/">Cleaning Tips Blog</a>
-                    </div>
-                    <div class="menu-item">
-                        <a href="../contact/">Contact Us</a>
-                    </div>
-                </nav>
-            </div>
-            
-            <!-- Column 2: Follow Us -->
-            <div class="footer-column">
-                <h3>Connect With Us</h3>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61578910409312" class="social-link" rel="noopener" target="_blank" aria-label="Follow us on Facebook">
-                        <span class="social-icon" aria-hidden="true">📘</span>
-                        Facebook
-                    </a>
-                    <a href="https://www.instagram.com/banthacleaning/" class="social-link" rel="noopener" target="_blank" aria-label="Follow us on Instagram">
-                        <span class="social-icon" aria-hidden="true">📷</span>
-                        Instagram
-                    </a>
-                    <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="social-link" rel="noopener" target="_blank" aria-label="Contact us on WhatsApp">
-                        <span class="social-icon" aria-hidden="true">💬</span>
-                        WhatsApp
-                    </a>
+                        <div class="menu-item">
+                            <a href="../blog/" class="hover:text-bantha-blue transition duration-150">Blog</a>
+                        </div>
+                        <div class="menu-item">
+                            <a href="../contact/" class="hover:text-bantha-blue transition duration-150">Contact</a>
+                        </div>
+                    </nav>
                 </div>
-            </div>
-            
-            <!-- Column 3: Contact Info -->
-            <div class="footer-column">
-                <h3>Contact Information</h3>
-                <div class="contact-item">
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value">
-                        <a href="mailto:banthacleaningcompany@gmail.com">banthacleaningcompany@gmail.com</a>
+                <div class="footer-column">
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="social-links space-y-2 text-gray-300">
+                        <a href="https://www.facebook.com/profile.php?id=61578910409312" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                            <span class="mr-2" aria-hidden="true">📘</span>Facebook
+                        </a>
+                        <a href="https://www.instagram.com/banthacleaning/" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                            <span class="mr-2" aria-hidden="true">📷</span>Instagram
+                        </a>
+                        <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
+                            <span class="mr-2" aria-hidden="true">💬</span>WhatsApp
+                        </a>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-label">Phone</div>
-                    <div class="contact-value">
-                        <a href="tel:+447825183734">+44 7825 183734</a>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label">Website</div>
-                    <div class="contact-value">
-                        <a href="https://banthacleaning.com" target="_blank">banthacleaning.com</a>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label">Address</div>
-                    <div class="contact-value">Victoria Rd, Aldershot, UK</div>
+                <!-- Contact Info Column -->
+                <div class="footer-column col-span-2 md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <address class="contact-info space-y-2 text-gray-300 not-italic">
+                        <div class="contact-item">
+                            <div class="contact-label font-semibold">Email:</div>
+                            <div class="contact-value"><a href="mailto:banthacleaningcompany@gmail.com" class="hover:text-bantha-blue transition duration-150">banthacleaningcompany@gmail.com</a></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label font-semibold">Phone:</div>
+                            <div class="contact-value"><a href="tel:+447825183734" class="hover:text-bantha-blue transition duration-150">07825 183734</a></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label font-semibold">Address:</div>
+                            <div class="contact-value">Victoria Rd, Aldershot, UK</div>
+                        </div>
+                    </address>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Copyright Section -->
-    <section class="copyright-section">
-        <div class="copyright-container">
-            <div class="copyright-text">
-                © 2025 Bantha Cleaning Ltd. All rights reserved. Professional cleaning services in Aldershot, Basingstoke, Winchester & surrounding areas.
-            </div>
-            <nav class="footer-links" aria-label="Legal">
-                <a href="#privacy-policy">Privacy Policy</a>
-                <a href="#terms-of-service">Terms of Service</a>
-                <a href="../contact/">Contact Us</a>
+    <section class="bg-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <div class="copyright-text mb-2 md:mb-0">© 2025 Bantha Cleaning Ltd. All rights reserved.</div>
+            <nav class="footer-links space-x-4">
+                <a href="#privacy-policy" class="hover:text-white transition duration-150">Privacy Policy</a>
+                <a href="#terms-of-service" class="hover:text-white transition duration-150">Terms of Service</a>
+                <a href="../contact/" class="hover:text-white transition duration-150">Contact Us</a>
             </nav>
         </div>
     </section>
 
     <script>
-        function showHideMenu() {
-            var menu = document.getElementById('submenu');
-            if (menu.style.display === 'block') {
-                menu.style.display = 'none';
-            } else {
-                menu.style.display = 'block';
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. Opening Hours Logic ---
+            const hoursSchedule = {
+                0: { day: 'Sunday', hours: 'Closed' },
+                1: { day: 'Monday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                2: { day: 'Tuesday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                3: { day: 'Wednesday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                4: { day: 'Thursday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                5: { day: 'Friday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                6: { day: 'Saturday', hours: '9:00am - 4:00pm', open: 9, close: 16 },
+            };
+
+            function updateOpeningStatus() {
+                const now = new Date();
+                const day = now.getDay();
+                const currentHour = now.getHours();
+
+                const dayData = hoursSchedule[day];
+                const isOpen = dayData.hours !== 'Closed' &&
+                    currentHour >= dayData.open &&
+                    currentHour < dayData.close;
+
+                const statusClass = isOpen ? 'dot-open' : 'dot-closed';
+
+                document.querySelectorAll('.status-dot').forEach(dot => {
+                    dot.className = 'status-dot ' + statusClass;
+                });
+
+                document.querySelectorAll('#current-day').forEach(el => el.textContent = dayData.day);
+                document.querySelectorAll('#current-hours').forEach(el => el.textContent = dayData.hours);
+                document.querySelectorAll('#mobile-current-day').forEach(el => el.textContent = dayData.day);
+                document.querySelectorAll('#mobile-current-hours').forEach(el => el.textContent = dayData.hours);
             }
-            return false;
-        }
+
+            updateOpeningStatus();
+
+            // --- 2. Mobile Navigation Logic ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileNav = document.getElementById('mobile-nav');
+            const closeMobileNav = document.getElementById('close-mobile-nav');
+            const mobileBackdrop = document.getElementById('mobile-backdrop');
+
+            mobileMenuButton.addEventListener('click', () => {
+                const isOpen = mobileNav.classList.toggle('open');
+                mobileBackdrop.classList.toggle('active');
+                mobileMenuButton.classList.toggle('active');
+                mobileMenuButton.setAttribute('aria-expanded', isOpen);
+                document.body.classList.toggle('menu-open', isOpen);
+            });
+
+            closeMobileNav.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                mobileBackdrop.classList.remove('active');
+                mobileMenuButton.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', false);
+                document.body.classList.remove('menu-open');
+            });
+
+            mobileBackdrop.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                mobileBackdrop.classList.remove('active');
+                mobileMenuButton.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', false);
+                document.body.classList.remove('menu-open');
+            });
+
+            // --- 3. Desktop Dropdown Logic ---
+            const desktopDropdowns = [
+                document.getElementById('services-desktop-toggle'),
+                document.getElementById('areas-desktop-toggle')
+            ];
+
+            desktopDropdowns.forEach(container => {
+                const trigger = container.querySelector('a');
+                const dropdown = container.querySelector('.dropdown');
+
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const isOpen = dropdown.classList.toggle('open');
+                    trigger.setAttribute('aria-expanded', isOpen);
+
+                    desktopDropdowns.filter(d => d !== container).forEach(other => {
+                        other.querySelector('.dropdown').classList.remove('open');
+                        other.querySelector('a').setAttribute('aria-expanded', false);
+                    });
+                });
+            });
+
+            document.addEventListener('click', () => {
+                desktopDropdowns.forEach(container => {
+                    container.querySelector('.dropdown').classList.remove('open');
+                    container.querySelector('a').setAttribute('aria-expanded', false);
+                });
+            });
+
+            // --- 4. Generic Dropdown Toggle (Used for Mobile/Footer Menus) ---
+            window.toggleDropdown = (trigger, dropdownId) => {
+                const dropdown = document.getElementById(dropdownId);
+                const arrow = trigger.querySelector('span');
+                const isOpen = dropdown.classList.toggle('open');
+                trigger.setAttribute('aria-expanded', isOpen);
+
+                if (arrow) {
+                    arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            };
+
+        });
 
         // Contact form submission
-        document.querySelector('.premium-contact-form').addEventListener('submit', async function(e) {
+        document.querySelector('.premium-contact-form')?.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             const formData = new FormData();
             formData.append('access_key', '5b06d515-1c93-48db-a3f9-ca1007495dc2');
             formData.append('fullname', document.getElementById('fullname').value);
@@ -500,20 +972,20 @@
             formData.append('phone', document.getElementById('phone').value);
             formData.append('postal_code', document.getElementById('postal_code').value);
             formData.append('message', document.getElementById('message').value);
-            
+
             const submitBtn = document.querySelector('.premium-submit-button');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
-            
+
             try {
                 const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     body: formData
                 });
-                
+
                 const result = await response.json();
-                
+
                 if (result.success) {
                     window.location.href = '../thankyou/';
                 } else {
@@ -527,6 +999,13 @@
             }
         });
     </script>
-    <script src="../header.js" defer></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103"></script>
+    <script>
+        function gtag() {
+            dataLayer.push(arguments)
+        }
+        window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "AW-17423777103")
+    </script>
 </body>
+
 </html>

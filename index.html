@@ -1,768 +1,781 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Professional Cleaning Services Hampshire | House & Commercial Cleaners | Bantha Cleaning</title>
-        <meta name="description"
-            content="Professional cleaning services in Hampshire & Surrey. Trusted house cleaners, deep cleaning & commercial cleaning across Winchester, Basingstoke, Aldershot & more. 100% satisfaction guaranteed! ☎️ 07825183734">
-        <meta name="keywords" content="cleaning services Hampshire, house cleaners Aldershot, commercial cleaning Surrey, deep cleaning Winchester, domestic cleaners Basingstoke, professional cleaners Hampshire">
-        <meta name="robots" content="index, follow" />
-        
-        <!-- Open Graph / Social Media -->
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Professional Cleaning Services Hampshire | Bantha Cleaning">
-        <meta property="og:description" content="Trusted cleaning services across Hampshire & Surrey. House, deep & commercial cleaning with 100% satisfaction guarantee. Serving 60-mile radius from Aldershot.">
-        <meta property="og:url" content="https://banthacleaning.com/">
-        <meta property="og:image" content="https://banthacleaning.com/webimg/logo.png">
-        <meta property="og:site_name" content="Bantha Cleaning">
-        
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Professional Cleaning Services Hampshire | Bantha Cleaning">
-        <meta name="twitter:description" content="Trusted cleaning services across Hampshire & Surrey. House, deep & commercial cleaning with 100% satisfaction guarantee.">
-        <meta name="twitter:image" content="https://banthacleaning.com/webimg/logo.png">
-        
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://banthacleaning.com/" />
-        
-        <!-- Geo Tags -->
-        <meta name="geo.region" content="GB-HAM">
-        <meta name="geo.placename" content="Aldershot">
-        <meta name="geo.position" content="51.2485;-0.7631">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Cleaning Services Hampshire | House & Commercial Cleaners | Bantha Cleaning</title>
+    <meta name="description" content="Professional cleaning services in Hampshire & Surrey. Trusted house cleaners, deep cleaning & commercial cleaning across Winchester, Basingstoke, Aldershot & more. 100% satisfaction guaranteed! ☎️ 07825183734">
+    <meta name="keywords" content="cleaning services Hampshire, house cleaners Aldershot, commercial cleaning Surrey, deep cleaning Winchester, domestic cleaners Basingstoke, professional cleaners Hampshire">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Professional Cleaning Services Hampshire | Bantha Cleaning">
+    <meta property="og:description" content="Trusted cleaning services across Hampshire & Surrey. House, deep & commercial cleaning with 100% satisfaction guarantee. Serving 60-mile radius from Aldershot.">
+    <meta property="og:url" content="https://banthacleaning.com/">
+    <meta property="og:image" content="https://banthacleaning.com/webimg/logo.png">
+    <meta property="og:site_name" content="Bantha Cleaning">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Professional Cleaning Services Hampshire | Bantha Cleaning">
+    <meta name="twitter:description" content="Trusted cleaning services across Hampshire & Surrey. House, deep & commercial cleaning with 100% satisfaction guarantee.">
+    <meta name="twitter:image" content="https://banthacleaning.com/webimg/logo.png">
+    <link rel="canonical" href="https://banthacleaning.com/">
+    <meta name="geo.region" content="GB-HAM">
+    <meta name="geo.placename" content="Aldershot">
+    <meta name="geo.position" content="51.2485;-0.7631">
+    <link rel="preload" as="image" href="webimg/studio-cleaning.webp" fetchpriority="high">
+    <link rel="icon" type="image/png" href="webimg/logontp.png">
+    <link rel="shortcut icon" type="image/png" href="webimg/logontp.png">
+    <link rel="apple-touch-icon" href="webimg/logontp.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Keep your existing styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        'bantha-blue': '#007bff',
+                        'bantha-green': '#28a745',
+                        'bantha-dark': '#1f2937',
+                        'bantha-light': '#f9fafb'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .dropdown {
+            transition: all 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .dropdown.open {
+            max-height: 500px;
+        }
+        .mobile-overlay {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            z-index: 40;
+        }
+        .mobile-overlay.open {
+            transform: translateX(0);
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .dot-open {
+            background-color: #28a745;
+        }
+        .dot-closed {
+            background-color: #dc3545;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    </style>
 
-        <link rel="preload" as="image" href="webimg/studio-cleaning.webp" fetchpriority="high">
-        <link rel="stylesheet" href="headerandfooter.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/png" href="webimg/logontp.png">
-        <link rel="shortcut icon" type="image/png" href="webimg/logontp.png">
-        <link rel="apple-touch-icon" href="webimg/logontp.png">
-        
-        <!-- Structured Data - LocalBusiness Schema -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "Bantha Cleaning Ltd",
-          "description": "Professional house and commercial cleaning services across Hampshire and Surrey. Serving a 60-mile radius from Aldershot with 100% satisfaction guarantee.",
-          "image": "https://banthacleaning.com/webimg/logo.png",
-          "@id": "https://banthacleaning.com/",
-          "url": "https://banthacleaning.com/",
-          "telephone": "+447825183734",
-          "email": "banthacleaningcompany@gmail.com",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Victoria Rd",
-            "addressLocality": "Aldershot",
-            "addressRegion": "Hampshire",
-            "postalCode": "GU11",
-            "addressCountry": "GB"
+    <!-- Your existing JSON-LD schemas -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Bantha Cleaning Ltd",
+        "description": "Professional house and commercial cleaning services across Hampshire and Surrey. Serving a 60-mile radius from Aldershot with 100% satisfaction guarantee.",
+        "image": "https://banthacleaning.com/webimg/logo.png",
+        "@id": "https://banthacleaning.com/",
+        "url": "https://banthacleaning.com/",
+        "telephone": "+447825183734",
+        "email": "banthacleaningcompany@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Victoria Rd",
+          "addressLocality": "Aldershot",
+          "addressRegion": "Hampshire",
+          "postalCode": "GU11",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.2485,
+          "longitude": -0.7631
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Winchester"},
+          {"@type": "City", "name": "Andover"},
+          {"@type": "City", "name": "Basingstoke"},
+          {"@type": "City", "name": "Aldershot"},
+          {"@type": "City", "name": "Fleet"},
+          {"@type": "City", "name": "Farnborough"},
+          {"@type": "City", "name": "Farnham"},
+          {"@type": "City", "name": "Hook"},
+          {"@type": "City", "name": "Woking"},
+          {"@type": "City", "name": "Ash Vale"}
+        ],
+        "priceRange": "££",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
           },
-          "geo": {
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61578910409312",
+          "https://www.instagram.com/banthacleaning/"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "4"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Cleaning Service",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Bantha Cleaning Ltd"
+        },
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
             "@type": "GeoCoordinates",
             "latitude": 51.2485,
             "longitude": -0.7631
           },
-          "areaServed": [
-            {
-              "@type": "City",
-              "name": "Winchester"
-            },
-            {
-              "@type": "City",
-              "name": "Andover"
-            },
-            {
-              "@type": "City",
-              "name": "Basingstoke"
-            },
-            {
-              "@type": "City",
-              "name": "Aldershot"
-            },
-            {
-              "@type": "City",
-              "name": "Fleet"
-            },
-            {
-              "@type": "City",
-              "name": "Farnborough"
-            },
-            {
-              "@type": "City",
-              "name": "Farnham"
-            },
-            {
-              "@type": "City",
-              "name": "Hook"
-            },
-            {
-              "@type": "City",
-              "name": "Woking"
-            },
-            {
-              "@type": "City",
-              "name": "Ash Vale"
-            }
-          ],
-          "priceRange": "££",
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "08:00",
-              "closes": "18:00"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": "Saturday",
-              "opens": "09:00",
-              "closes": "17:00"
-            }
-          ],
-          "sameAs": [
-            "https://www.facebook.com/profile.php?id=61578910409312",
-            "https://www.instagram.com/banthacleaning/"
-          ],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "4"
-          }
-        }
-        </script>
-        
-        <!-- Structured Data - Service Schema -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "serviceType": "Cleaning Service",
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "Bantha Cleaning Ltd"
-          },
-          "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-              "@type": "GeoCoordinates",
-              "latitude": 51.2485,
-              "longitude": -0.7631
-            },
-            "geoRadius": "60 miles"
-          },
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Cleaning Services",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "General Cleaning",
-                  "description": "Regular house and commercial cleaning services",
-                  "url": "https://banthacleaning.com/generalcleaning/"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Deep Cleaning",
-                  "description": "Thorough deep cleaning for homes and businesses",
-                  "url": "https://banthacleaning.com/deepcleaning/"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Studio Cleaning",
-                  "description": "Commercial studio and small office cleaning"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Flat Cleaning",
-                  "description": "Apartment and flat cleaning for tenants and landlords"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "House Cleaning",
-                  "description": "Comprehensive residential house cleaning"
-                }
-              }
-            ]
-          }
-        }
-        </script>
-        
-        <!-- Breadcrumb Schema -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
+          "geoRadius": "60 miles"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Cleaning Services",
           "itemListElement": [
             {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://banthacleaning.com/"
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "General Cleaning",
+                "description": "Regular house and commercial cleaning services",
+                "url": "https://banthacleaning.com/generalcleaning/"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Deep Cleaning",
+                "description": "Thorough deep cleaning for homes and businesses",
+                "url": "https://banthacleaning.com/deepcleaning/"
+              }
             }
           ]
         }
-        </script>
-        
-        <!-- Organization Schema -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Bantha Cleaning Ltd",
-          "url": "https://banthacleaning.com",
-          "logo": "https://banthacleaning.com/webimg/logo.png",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+447825183734",
-            "contactType": "customer service",
-            "email": "banthacleaningcompany@gmail.com",
-            "areaServed": "GB",
-            "availableLanguage": "English"
-          },
-          "sameAs": [
-            "https://www.facebook.com/profile.php?id=61578910409312",
-            "https://www.instagram.com/banthacleaning/"
-          ]
-        }
-        </script>
-        
-        <!-- Google tag (gtag.js) -->
-        <script async
-            src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103">
-        </script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-17423777103');
-        </script>
-    </head>
-    <body>
-        <header class="header">
-            <div class="header-container">
+      }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://banthacleaning.com/"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Bantha Cleaning Ltd",
+        "url": "https://banthacleaning.com",
+        "logo": "https://banthacleaning.com/webimg/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+447825183734",
+          "contactType": "customer service",
+          "email": "banthacleaningcompany@gmail.com",
+          "areaServed": "GB",
+          "availableLanguage": "English"
+        },
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61578910409312",
+          "https://www.instagram.com/banthacleaning/"
+        ]
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103"></script>
+    <script>
+        function gtag(){dataLayer.push(arguments)}
+        window.dataLayer = window.dataLayer || [];
+        gtag('js', new Date());
+        gtag('config', 'AW-17423777103');
+    </script>
+</head>
+<body class="font-sans antialiased bg-bantha-light text-gray-800">
+
+    <!-- Modern Header Section -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <div class="logo-section">
+                <div class="logo-section flex-shrink-0">
                     <a href="/" aria-label="Bantha Cleaning Home">
-                        <img src="webimg/logo.png" alt="Bantha Cleaning - Professional Cleaning Services Hampshire"
-                            class="logo" width="150" height="60">
+                        <img src="webimg/logo.png" 
+                             alt="Bantha Cleaning - Professional Cleaning Services Hampshire" 
+                             class="h-10 w-auto" 
+                             width="150" 
+                             height="60">
                     </a>
                 </div>
 
                 <!-- Opening Hours (Desktop) -->
-                <div class="opening-hours">
-                    <h3 id="hours-title">Opening Hours Today</h3>
-                    <div class="current-hours">
+                <div class="hidden md:flex flex-col items-end text-sm text-gray-600">
+                    <h3 class="font-semibold text-bantha-dark" id="hours-title">Opening Hours Today</h3>
+                    <div class="flex items-center mt-1">
                         <span class="status-dot" id="status-dot" aria-hidden="true"></span>
-                        <span id="current-day"></span> - <span
-                            id="current-hours"></span>
+                        <span id="current-day" class="font-medium"></span> - 
+                        <span id="current-hours" class="ml-1"></span>
                     </div>
                 </div>
 
-                <!-- Navigation -->
-                <nav class="nav-menu" aria-label="Main navigation">
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex nav-menu space-x-6 lg:space-x-10 text-bantha-dark font-medium" aria-label="Main navigation">
                     <div class="nav-item">
-                        <a href="/" class="nav-link">Home</a>
+                        <a href="/" class="nav-link hover:text-bantha-blue transition duration-150">Home</a>
                     </div>
-                    <div class="nav-item">
-                        <a href="#" class="nav-link services-toggle" aria-expanded="false">
+                    <div class="nav-item relative group" id="services-desktop-toggle">
+                        <a href="#" class="nav-link flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
                             Services
-                            <span class="dropdown-arrow" aria-hidden="true">▼</span>
+                            <span class="dropdown-arrow ml-1 transition-transform duration-150 group-[.open]:rotate-180" aria-hidden="true">▼</span>
                         </a>
-                        <div class="dropdown">
-                            <a href="generalcleaning/">General Cleaning</a>
-                            <a href="deepcleaning/">Deep Cleaning</a>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-xl z-50 origin-top-left group-[.open]:open">
+                            <a href="generalcleaning/" class="block px-4 py-3 hover:bg-bantha-light">General Cleaning</a>
+                            <a href="deepcleaning/" class="block px-4 py-3 hover:bg-bantha-light">Deep Cleaning</a>
                         </div>
                     </div>
-                    <div class="nav-item">
-                        <a href="#" class="nav-link areas-toggle" aria-expanded="false">
+                    <div class="nav-item relative group" id="areas-desktop-toggle">
+                        <a href="#" class="nav-link flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
                             Areas We Cover
-                            <span class="dropdown-arrow" aria-hidden="true">▼</span>
+                            <span class="dropdown-arrow ml-1 transition-transform duration-150 group-[.open]:rotate-180" aria-hidden="true">▼</span>
                         </a>
-                        <div class="dropdown">
-                            <a href="winchester-service/">Winchester</a>
-                            <a href="andover-service/">Andover</a>
-                            <a href="basingstoke-service/">Basingstoke</a>
-                            <a href="aldershot-service/">Aldershot</a>
-                            <a href="fleet-service/">Fleet</a>
-                            <a href="farnborough-service/">Farnborough</a>
-                            <a href="farnham-service/">Farnham</a>
-                            <a href="hook-service/">Hook</a>
-                            <a href="woking-service/">Woking</a>
-                            <a href="ash-vale-service/">Ash Vale</a>
+                        <div class="dropdown absolute right-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-xl z-50 origin-top-right group-[.open]:open">
+                            <a href="winchester-service/" class="block px-4 py-3 hover:bg-bantha-light">Winchester</a>
+                            <a href="andover-service/" class="block px-4 py-3 hover:bg-bantha-light">Andover</a>
+                            <a href="basingstoke-service/" class="block px-4 py-3 hover:bg-bantha-light">Basingstoke</a>
+                            <a href="aldershot-service/" class="block px-4 py-3 hover:bg-bantha-light">Aldershot</a>
+                            <a href="fleet-service/" class="block px-4 py-3 hover:bg-bantha-light">Fleet</a>
+                            <a href="farnborough-service/" class="block px-4 py-3 hover:bg-bantha-light">Farnborough</a>
+                            <a href="farnham-service/" class="block px-4 py-3 hover:bg-bantha-light">Farnham</a>
+                            <a href="hook-service/" class="block px-4 py-3 hover:bg-bantha-light">Hook</a>
+                            <a href="woking-service/" class="block px-4 py-3 hover:bg-bantha-light">Woking</a>
+                            <a href="ash-vale-service/" class="block px-4 py-3 hover:bg-bantha-light">Ash Vale</a>
                         </div>
                     </div>
                     <div class="nav-item">
-                        <a href="blog/" class="nav-link">Blog</a>
+                        <a href="blog/" class="nav-link hover:text-bantha-blue transition duration-150">Blog</a>
                     </div>
                     <div class="nav-item">
-                        <a href="contact/" class="nav-link">Contact</a>
+                        <a href="contact/" class="nav-link hover:text-bantha-blue transition duration-150">Contact</a>
                     </div>
                 </nav>
 
-                <!-- Hamburger Menu -->
-                <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <!-- Hamburger Button -->
+                <button class="hamburger md:hidden p-2" aria-label="Toggle navigation menu" aria-expanded="false" id="mobile-menu-button">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
             </div>
+        </div>
+    </header>
 
-            <!-- Mobile Overlay -->
-            <div class="mobile-overlay"></div>
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-overlay fixed top-0 right-0 h-full w-64 bg-white shadow-2xl p-6 md:hidden flex flex-col justify-between" id="mobile-nav">
+        <div>
+            <div class="flex justify-between items-center mb-6">
+                <a href="/" class="text-xl font-bold text-bantha-dark">Menu</a>
+                <button class="text-2xl font-bold text-gray-500" id="close-mobile-nav">&times;</button>
+            </div>
 
             <!-- Mobile Opening Hours -->
-            <div class="mobile-opening-hours">
-                <h3>Opening Hours Today</h3>
-                <div class="current-hours">
+            <div class="mobile-opening-hours mb-6 p-3 bg-bantha-light rounded-lg">
+                <h3 class="font-bold text-bantha-dark">Opening Hours Today</h3>
+                <div class="flex items-center mt-1 text-sm text-gray-600">
                     <span class="status-dot" id="mobile-status-dot" aria-hidden="true"></span>
-                    <span id="mobile-current-day"></span> - <span
-                        id="mobile-current-hours"></span>
+                    <span id="mobile-current-day" class="font-medium"></span> - 
+                    <span id="mobile-current-hours" class="ml-1"></span>
                 </div>
             </div>
-        </header>
 
-        <!-- Company Info & Contact Form Section -->
-        <section class="info-contact-section">
-            <img src="webimg/studio-cleaning.webp" 
-         alt="" 
-         class="section-bg-image"
-         fetchpriority="high"
-         loading="eager">
-            <div class="info-contact-container">
-                <!-- Left Side - Company Info -->
-                <article class="company-info">
-                    <div class="company-info-box">
-                        <h1 class="company-name">Professional Home and
-                            Commercial Cleaners</h1>
-                        <h2 class="company-subtitle">Reliable Domestic &
-                            Commercial Cleaning Across the South East</h2>
-                        <div class="company-description">
-                            <p>
-                                Bantha Cleaning is a professional and reliable
-                                cleaning company that serves homes and
-                                businesses within a 60-mile radius of Aldershot.
-                                We proudly cover a wide range of locations,
-                                including Winchester, Andover, Basingstoke,
-                                Fleet, Farnborough, Farnham, Hook, Woking, and
-                                Ash Vale.
-                            </p>
-                            <p>
-                                Established as a trusted name in the region, we
-                                deliver superior home and commercial cleaning
-                                services to our growing number of clients every
-                                single day. Allow Bantha Cleaning to
-                                meticulously clean your property, ensuring that
-                                nothing is overlooked. Our domestic and
-                                commercial cleaning is carried out by our
-                                professionally trained cleaners who are
-                                background checked, employed, and fully insured.
-                            </p>
-                            <p>
-                                And with our <strong>100% Satisfaction
-                                    Guarantee</strong> for every service, we
-                                assure you of a great experience every time we
-                                clean your home or business. If you are looking
-                                for a reliable local partner that will meet your
-                                exact needs, contact our office today to arrange
-                                a free, no-obligation estimate.
-                            </p>
-                        </div>
+            <!-- Mobile Menu Links -->
+            <nav class="flex flex-col space-y-2 text-lg font-medium">
+                <a href="/" class="p-3 rounded-lg hover:bg-bantha-light">Home</a>
+                
+                <div class="services-toggle-mobile">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-bantha-light flex justify-between items-center" 
+                            aria-expanded="false" 
+                            onclick="toggleDropdown(this, 'mobile-services-dropdown')">
+                        Services
+                        <span class="text-sm">▼</span>
+                    </button>
+                    <div class="dropdown ml-4 border-l pl-2 border-gray-200" id="mobile-services-dropdown">
+                        <a href="generalcleaning/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">General Cleaning</a>
+                        <a href="deepcleaning/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Deep Cleaning</a>
                     </div>
-                </article>
+                </div>
 
-                <!-- Right Side - Contact Form -->
-                <aside class="contact-form-container">
-                    <h2 class="form-title">Get Your Free Quote!!</h2>
-                    <form class="contact-form" id="contactForm" aria-label="Contact form">
-                        <!-- Row 1: Full Name and Postal Code -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="fullname">Full Name *</label>
-                                <input type="text" id="fullname" name="fullname"
-                                    required aria-required="true">
-                            </div>
-                            <div class="form-group">
-                                <label for="postal_code">Postal Code</label>
-                                <input type="text" id="postal_code"
-                                    name="postal_code">
-                            </div>
-                        </div>
+                <div class="areas-toggle-mobile">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-bantha-light flex justify-between items-center" 
+                            aria-expanded="false" 
+                            onclick="toggleDropdown(this, 'mobile-areas-dropdown')">
+                        Areas We Cover
+                        <span class="text-sm">▼</span>
+                    </button>
+                    <div class="dropdown ml-4 border-l pl-2 border-gray-200" id="mobile-areas-dropdown">
+                        <a href="winchester-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Winchester</a>
+                        <a href="andover-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Andover</a>
+                        <a href="basingstoke-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Basingstoke</a>
+                        <a href="aldershot-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Aldershot</a>
+                        <a href="fleet-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Fleet</a>
+                        <a href="farnborough-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Farnborough</a>
+                        <a href="farnham-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Farnham</a>
+                        <a href="hook-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Hook</a>
+                        <a href="woking-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Woking</a>
+                        <a href="ash-vale-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Ash Vale</a>
+                    </div>
+                </div>
 
-                        <!-- Row 2: Email and Phone -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email"
-                                    required aria-required="true">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone">
-                            </div>
-                        </div>
+                <a href="blog/" class="p-3 rounded-lg hover:bg-bantha-light">Blog</a>
+                <a href="contact/" class="p-3 rounded-lg hover:bg-bantha-light">Contact</a>
+            </nav>
+        </div>
 
-                        <!-- Message -->
+        <!-- Mobile Call Button -->
+        <a href="tel:+447825183734" class="block w-full text-center bg-bantha-green text-white py-3 rounded-lg font-bold shadow-lg hover:bg-green-700 transition duration-150">
+            Call Now: 07825 183734
+        </a>
+    </div>
+
+    <!-- Keep all your existing main content sections -->
+    <section class="info-contact-section">
+        <img src="webimg/studio-cleaning.webp" alt="" class="section-bg-image" fetchpriority="high" loading="eager">
+        <div class="info-contact-container">
+            <article class="company-info">
+                <div class="company-info-box">
+                    <h1 class="company-name">Professional Home and Commercial Cleaners</h1>
+                    <h2 class="company-subtitle">Reliable Domestic & Commercial Cleaning Across the South East</h2>
+                    <div class="company-description">
+                        <p>Bantha Cleaning is a professional and reliable cleaning company that serves homes and businesses within a 60-mile radius of Aldershot. We proudly cover a wide range of locations, including Winchester, Andover, Basingstoke, Fleet, Farnborough, Farnham, Hook, Woking, and Ash Vale.</p>
+                        <p>Established as a trusted name in the region, we deliver superior home and commercial cleaning services to our growing number of clients every single day. Allow Bantha Cleaning to meticulously clean your property, ensuring that nothing is overlooked. Our domestic and commercial cleaning is carried out by our professionally trained cleaners who are background checked, employed, and fully insured.</p>
+                        <p>And with our <strong>100% Satisfaction Guarantee</strong> for every service, we assure you of a great experience every time we clean your home or business. If you are looking for a reliable local partner that will meet your exact needs, contact our office today to arrange a free, no-obligation estimate.</p>
+                    </div>
+                </div>
+            </article>
+            <aside class="contact-form-container">
+                <h2 class="form-title">Get Your Free Quote!!</h2>
+                <form class="contact-form" id="contactForm" aria-label="Contact form">
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="3"
-                                placeholder="Tell us about your cleaning requirements..."
-                                required aria-required="true"></textarea>
+                            <label for="fullname">Full Name *</label>
+                            <input type="text" id="fullname" name="fullname" required aria-required="true">
                         </div>
+                        <div class="form-group">
+                            <label for="postal_code">Postal Code</label>
+                            <input type="text" id="postal_code" name="postal_code">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Tell us about your cleaning requirements..." required aria-required="true"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </aside>
+        </div>
+    </section>
 
-                        <button type="submit" class="submit-btn">Send
-                            Message</button>
-                    </form>
-                </aside>
-            </div>
-        </section>
-
-        <!-- Section 2 -->
-        <section class="section-2">
-            <h2 class="section-title">Our Services</h2>
-
-            <div class="services-container">
-                <!-- Service 1: Studio Cleaning -->
-                <article class="service-card">
-                    <div class="service-image"><img src="webimg/studio.webp"
-                            alt="Professional Studio Cleaning Services - Commercial Office Cleaning" width="400" height="300" loading="lazy"></div>
-                    <h3>Studio Cleaning</h3>
-                    <p>Commercial Studio & Small Office Cleaning: Bantha
-                        Cleaning offers specialized professional services for
-                        studios and businesses in Aldershot. We focus on keeping
-                        your unique workspace sanitized, organized, and spotless
-                        for maximum productivity.</p>
-                </article>
-
-                <!-- Service 2: Flat Cleaning -->
-                <article class="service-card">
-                    <div class="service-image"><img
-                            src="webimg/flatcleaning.webp"
-                            alt="Flat and Apartment Cleaning Services - Residential Cleaning" width="400" height="300" loading="lazy"></div>
-                    <h3>Flat Cleaning</h3>
-                    <p>Reliable Flat & Apartment Cleaning: Expert flat and
-                        apartment cleaning solutions for tenants and landlords
-                        in the Camberley and Farnborough area. Maintain a
-                        healthy, fresh living environment with our trusted,
-                        recurring service.</p>
-                </article>
-
-                <!-- Service 3: House Cleaning -->
-                <article class="service-card">
-                    <div class="service-image"><img
-                            src="webimg/housecleaning.webp"
-                            alt="House Cleaning Services - Residential Deep Cleaning Hampshire" width="400" height="300" loading="lazy"></div>
-                    <h3>House Cleaning</h3>
-                    <p>Top-Rated House & Residential Deep Cleaning:
-                        Comprehensive house cleaning services for families in
-                        Winchester and Basingstoke. We tailor solutions to your
-                        needs, ensuring a sparkling, healthier home every
-                        time.</p>
-                </article>
-            </div>
-        </section>
-
-        <!-- About Us Section -->
-        <section class="about-section">
-            <div class="about-container">
-                <!-- Left: Image -->
-                <div class="about-image">
-                    <img src="webimg/about-us.webp"
-                        alt="About Bantha Cleaning Ltd - Professional Cleaning Team" width="600" height="400" loading="lazy">
+    <section class="section-2">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-container">
+            <article class="service-card">
+                <div class="service-image">
+                    <img src="webimg/studio.webp" alt="Professional Studio Cleaning Services - Commercial Office Cleaning" width="400" height="300" loading="lazy">
                 </div>
+                <h3>Studio Cleaning</h3>
+                <p>Commercial Studio & Small Office Cleaning: Bantha Cleaning offers specialized professional services for studios and businesses in Aldershot. We focus on keeping your unique workspace sanitized, organized, and spotless for maximum productivity.</p>
+            </article>
+            <article class="service-card">
+                <div class="service-image">
+                    <img src="webimg/flatcleaning.webp" alt="Flat and Apartment Cleaning Services - Residential Cleaning" width="400" height="300" loading="lazy">
+                </div>
+                <h3>Flat Cleaning</h3>
+                <p>Reliable Flat & Apartment Cleaning: Expert flat and apartment cleaning solutions for tenants and landlords in the Camberley and Farnborough area. Maintain a healthy, fresh living environment with our trusted, recurring service.</p>
+            </article>
+            <article class="service-card">
+                <div class="service-image">
+                    <img src="webimg/housecleaning.webp" alt="House Cleaning Services - Residential Deep Cleaning Hampshire" width="400" height="300" loading="lazy">
+                </div>
+                <h3>House Cleaning</h3>
+                <p>Top-Rated House & Residential Deep Cleaning: Comprehensive house cleaning services for families in Winchester and Basingstoke. We tailor solutions to your needs, ensuring a sparkling, healthier home every time.</p>
+            </article>
+        </div>
+    </section>
 
-                <!-- Right: Content -->
-                <article class="about-content">
-                    <h2>About Bantha Cleaning Ltd</h2>
-                    <p>Bantha Cleaning Ltd is your trusted local provider for
-                        Professional House, Flat, and Commercial Cleaning
-                        Services in the Aldershot, Camberley, Basingstoke,
-                        Winchester &
-                        Farnham areas.
-
-                        At Bantha Cleaning, we believe cleanliness is not just
-                        about looks—it's about promoting health, peace of mind,
-                        and establishing customer trust. Our professional,
-                        fully-vetted team delivers reliable deep cleaning and
-                        routine services tailored for homes, apartments, and
-                        commercial studios.
-
-                        We use modern techniques and a passion for perfection to
-                        ensure every space is spotless and healthy. As your
-                        local cleaning partner, we offer flexible scheduling and
-                        transparent pricing. Choose Bantha Cleaning for
-                        dependable, high-quality care that keeps your
-                        environment sparkling.</p>
-                </article>
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="webimg/about-us.webp" alt="About Bantha Cleaning Ltd - Professional Cleaning Team" width="600" height="400" loading="lazy">
             </div>
-        </section>
+            <article class="about-content">
+                <h2>About Bantha Cleaning Ltd</h2>
+                <p>Bantha Cleaning Ltd is your trusted local provider for Professional House, Flat, and Commercial Cleaning Services in the Aldershot, Camberley, Basingstoke, Winchester & Farnham areas. At Bantha Cleaning, we believe cleanliness is not just about looks—it's about promoting health, peace of mind, and establishing customer trust. Our professional, fully-vetted team delivers reliable deep cleaning and routine services tailored for homes, apartments, and commercial studios. We use modern techniques and a passion for perfection to ensure every space is spotless and healthy. As your local cleaning partner, we offer flexible scheduling and transparent pricing. Choose Bantha Cleaning for dependable, high-quality care that keeps your environment sparkling.</p>
+            </article>
+        </div>
+    </section>
 
-        <!-- Services Section -->
-        <section class="services-section">
-            <div class="services-container">
-                <!-- Service Box 1: General Cleaning -->
-                <a href="generalcleaning/" class="service-box" aria-label="General Cleaning Services">
-                    <div class="service-image">
-                        <img src="webimg/studio-cleaning.webp"
-                            alt="General Cleaning Services - Regular House Cleaning" width="500" height="350" loading="lazy">
-                    </div>
-                    <div class="service-text">
-                        <h3>General Cleaning</h3>
-                    </div>
-                </a>
+    <section class="services-section">
+        <div class="services-container">
+            <a href="generalcleaning/" class="service-box" aria-label="General Cleaning Services">
+                <div class="service-image">
+                    <img src="webimg/studio-cleaning.webp" alt="General Cleaning Services - Regular House Cleaning" width="500" height="350" loading="lazy">
+                </div>
+                <div class="service-text">
+                    <h3>General Cleaning</h3>
+                </div>
+            </a>
+            <a href="deepcleaning/" class="service-box" aria-label="Deep Cleaning Services">
+                <div class="service-image">
+                    <img src="webimg/flat-cleaning.webp" alt="Deep Cleaning Services - Thorough Professional Cleaning" width="500" height="350" loading="lazy">
+                </div>
+                <div class="service-text">
+                    <h3>Deep Cleaning</h3>
+                </div>
+            </a>
+        </div>
+    </section>
 
-                <!-- Service Box 2: Deep Cleaning -->
-                <a href="deepcleaning/" class="service-box" aria-label="Deep Cleaning Services">
-                    <div class="service-image">
-                        <img src="webimg/flat-cleaning.webp"
-                            alt="Deep Cleaning Services - Thorough Professional Cleaning" width="500" height="350" loading="lazy">
-                    </div>
-                    <div class="service-text">
-                        <h3>Deep Cleaning</h3>
-                    </div>
-                </a>
+    <section class="service-areas-section">
+        <div class="areas-container">
+            <h2 class="areas-title">Our Professional Cleaning Service Areas</h2>
+            <p class="areas-description">Bantha Cleaning proudly offers trusted, top-quality house and commercial cleaning within a 60-mile radius of Aldershot. We are your local experts serving all major towns and communities in the area:</p>
+            <nav class="areas-grid" aria-label="Service areas">
+                <a href="winchester-service/" class="area-item"><span class="area-name">Winchester</span></a>
+                <a href="andover-service/" class="area-item"><span class="area-name">Andover</span></a>
+                <a href="basingstoke-service/" class="area-item"><span class="area-name">Basingstoke</span></a>
+                <a href="aldershot-service/" class="area-item"><span class="area-name">Aldershot</span></a>
+                <a href="fleet-service/" class="area-item"><span class="area-name">Fleet</span></a>
+                <a href="farnborough-service/" class="area-item"><span class="area-name">Farnborough</span></a>
+                <a href="farnham-service/" class="area-item"><span class="area-name">Farnham</span></a>
+                <a href="hook-service/" class="area-item"><span class="area-name">Hook</span></a>
+                <a href="woking-service/" class="area-item"><span class="area-name">Woking</span></a>
+                <a href="ash-vale-service/" class="area-item"><span class="area-name">Ash Vale</span></a>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Google Reviews Section -->
+<section class="py-16 lg:py-24 bg-white" aria-label="Customer reviews">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-bantha-dark mb-8">Our Google Reviews</h2>
+        
+        <div class="bg-bantha-light rounded-xl shadow-lg p-8 sm:p-12">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
+                 alt="Google" 
+                 class="h-8 mx-auto mb-6" 
+                 width="92" 
+                 height="30" 
+                 loading="lazy">
+            
+            <div class="text-6xl text-yellow-400 mb-4" aria-label="4.8 out of 5 stars">
+                ★★★★★
             </div>
-        </section>
+            
+            <p class="text-3xl font-bold text-bantha-dark mb-2">4.8 out of 5</p>
+            <p class="text-gray-600 mb-8 text-lg">Based on 5 reviews</p>
+            
+            <a href="https://share.google/AMiqIL995eCtWxvWn" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition duration-300 transform hover:scale-105">
+                Read Reviews on Google
+            </a>
+        </div>
+    </div>
+</section>
 
-        <!-- Service Areas Section -->
-        <section class="service-areas-section">
-            <div class="areas-container">
-                <h2 class="areas-title">Our Professional Cleaning Service
-                    Areas</h2>
-                <p class="areas-description">Bantha Cleaning proudly offers
-                    trusted, top-quality house and commercial cleaning within a
-                    60-mile radius of Aldershot. We are your local experts
-                    serving all major towns and communities in the area:</p>
-
-                <nav class="areas-grid" aria-label="Service areas">
-                    <a href="winchester-service/" class="area-item">
-                        <span class="area-name">Winchester</span>
-                    </a>
-                    <a href="andover-service/" class="area-item">
-                        <span class="area-name">Andover</span>
-                    </a>
-                    <a href="basingstoke-service/" class="area-item">
-                        <span class="area-name">Basingstoke</span>
-                    </a>
-                    <a href="aldershot-service/" class="area-item">
-                        <span class="area-name">Aldershot</span>
-                    </a>
-                    <a href="fleet-service/" class="area-item">
-                        <span class="area-name">Fleet</span>
-                    </a>
-                    <a href="farnborough-service/" class="area-item">
-                        <span class="area-name">Farnborough</span>
-                    </a>
-                    <a href="farnham-service/" class="area-item">
-                        <span class="area-name">Farnham</span>
-                    </a>
-                    <a href="hook-service/" class="area-item">
-                        <span class="area-name">Hook</span>
-                    </a>
-                    <a href="woking-service/" class="area-item">
-                        <span class="area-name">Woking</span>
-                    </a>
-                    <a href="ash-vale-service/" class="area-item">
-                        <span class="area-name">Ash Vale</span>
-                    </a>
-                </nav>
-            </div>
-        </section>
-
-        <!-- Official Google Reviews Badge -->
-        <section style="text-align:center; padding:40px 20px;" aria-label="Customer reviews">
-          <h2>Our Google Reviews</h2>
-          
-          <!-- Google Logo -->
-          <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
-               alt="Google" style="height:30px; margin:20px 0;" width="92" height="30" loading="lazy">
-          
-          <!-- Rating -->
-          <div style="font-size:48px; color:#FFD700; margin:10px 0;" aria-label="4.8 out of 5 stars">
-            ★★★★★
-          </div>
-          <p style="font-size:20px; color:#333;">
-            <strong>4.8 out of 5</strong>
-          </p>
-          <p style="color:#666; margin-bottom:30px;">
-            Based on 5 reviews
-          </p>
-          
-          <!-- Direct link to your reviews -->
-          <a href="https://share.google/AMiqIL995eCtWxvWn" 
-             target="_blank"
-             rel="noopener noreferrer"
-             style="display:inline-block; background:#4285f4; color:white; padding:15px 30px; border-radius:5px; text-decoration:none; font-weight:bold;">
-            Read Reviews on Google
-          </a>
-        </section>
-
-        <!-- Footer Section -->
-        <footer class="footer-section">
-            <div class="footer-container">
-                <!-- Column 1: Menu -->
+    <!-- Modern Footer -->
+    <footer class="bg-bantha-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Menu -->
                 <div class="footer-column">
-                    <h3>Menu</h3>
-                    <nav aria-label="Footer navigation">
+                    <h3 class="text-xl font-bold mb-4">Menu</h3>
+                    <nav aria-label="Footer navigation" class="space-y-2 text-gray-300">
                         <div class="menu-item">
-                            <a href="/">Home</a>
+                            <a href="/" class="hover:text-bantha-blue transition duration-150">Home</a>
                         </div>
-                        <div class="menu-item">
-                            <a href="javascript:void(0);"
-                                onclick="showHideMenu()">Service</a>
-                            <div class="service-submenu" id="submenu">
+                        <div class="menu-item relative">
+                            <button onclick="toggleDropdown(this, 'footer-services-dropdown')" class="flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
+                                Services
+                                <span class="text-xs ml-1 transition-transform duration-150 rotate-0 group-[.open]:rotate-180">▼</span>
+                            </button>
+                            <div class="dropdown text-sm mt-1 ml-4 border-l border-gray-600 pl-2" id="footer-services-dropdown">
                                 <div class="submenu-item">
-                                    <a href="generalcleaning/">General
-                                        Cleaning</a>
+                                    <a href="generalcleaning/" class="block py-1 hover:text-bantha-blue">General Cleaning</a>
                                 </div>
                                 <div class="submenu-item">
-                                    <a href="deepcleaning/">Deep Cleaning</a>
+                                    <a href="deepcleaning/" class="block py-1 hover:text-bantha-blue">Deep Cleaning</a>
                                 </div>
                             </div>
                         </div>
                         <div class="menu-item">
-                            <a href="blog/">Blog</a>
+                            <a href="blog/" class="hover:text-bantha-blue transition duration-150">Blog</a>
                         </div>
                         <div class="menu-item">
-                            <a href="contact/">Contact</a>
+                            <a href="contact/" class="hover:text-bantha-blue transition duration-150">Contact</a>
                         </div>
                     </nav>
                 </div>
 
-                <!-- Column 2: Follow Us -->
+                <!-- Follow Us -->
                 <div class="footer-column">
-                    <h3>Follow Us</h3>
-                    <div class="social-links">
-                        <a
-                            href="https://www.facebook.com/profile.php?id=61578910409312"
-                            class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
-                            <span class="social-icon" aria-hidden="true">📘</span>
-                            Facebook
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="social-links space-y-2 text-gray-300">
+                        <a href="https://www.facebook.com/profile.php?id=61578910409312" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                            <span class="mr-2" aria-hidden="true">📘</span>Facebook
                         </a>
-                        <a href="https://www.instagram.com/banthacleaning/"
-                            class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
-                            <span class="social-icon" aria-hidden="true">📷</span>
-                            Instagram
+                        <a href="https://www.instagram.com/banthacleaning/" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                            <span class="mr-2" aria-hidden="true">📷</span>Instagram
                         </a>
-                        <a href="https://wa.me/qr/BPCNNI6GNVEWA1"
-                            class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
-                            <span class="social-icon" aria-hidden="true">💬</span>
-                            WhatsApp
+                        <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
+                            <span class="mr-2" aria-hidden="true">💬</span>WhatsApp
                         </a>
                     </div>
                 </div>
 
-                <!-- Column 3: Contact Info -->
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <address class="contact-info">
+                <!-- Contact Info -->
+                <div class="footer-column col-span-2 md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <address class="contact-info space-y-2 text-gray-300 not-italic">
                         <div class="contact-item">
-                            <div class="contact-label">Email</div>
+                            <div class="contact-label font-semibold">Email:</div>
                             <div class="contact-value">
-                                <a
-                                    href="mailto:banthacleaningcompany@gmail.com">banthacleaningcompany@gmail.com</a>
+                                <a href="mailto:banthacleaningcompany@gmail.com" class="hover:text-bantha-blue transition duration-150">banthacleaningcompany@gmail.com</a>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-label">Phone</div>
+                            <div class="contact-label font-semibold">Phone:</div>
                             <div class="contact-value">
-                                <a href="tel:+447825183734">07825 183734</a>
+                                <a href="tel:+447825183734" class="hover:text-bantha-blue transition duration-150">07825 183734</a>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-label">Website</div>
-                            <div class="contact-value">
-                                <a href="https://banthacleaning.com"
-                                    target="_blank" rel="noopener">banthacleaning.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-label">Address</div>
-                            <div class="contact-value">Victoria Rd, Aldershot,
-                                UK</div>
+                            <div class="contact-label font-semibold">Address:</div>
+                            <div class="contact-value">Victoria Rd, Aldershot, UK</div>
                         </div>
                     </address>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <!-- Copyright Section -->
-        <section class="copyright-section">
-            <div class="copyright-container">
-                <div class="copyright-text">
-                    © 2025 Bantha Cleaning Ltd. All rights reserved.
-                </div>
-                <nav class="footer-links" aria-label="Legal links">
-                    <a href="#privacy-policy">Privacy Policy</a>
-                    <a href="#terms-of-service">Terms of Service</a>
-                    <a href="contact/">Contact Us</a>
-                </nav>
-            </div>
-        </section>
+    <!-- Copyright Section -->
+    <section class="bg-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <div class="copyright-text mb-2 md:mb-0">© 2025 Bantha Cleaning Ltd. All rights reserved.</div>
+            <nav class="footer-links space-x-4">
+                <a href="#privacy-policy" class="hover:text-white transition duration-150">Privacy Policy</a>
+                <a href="#terms-of-service" class="hover:text-white transition duration-150">Terms of Service</a>
+                <a href="contact/" class="hover:text-white transition duration-150">Contact Us</a>
+            </nav>
+        </div>
+    </section>
 
-        <script>
-        function showHideMenu() {
-            var menu = document.getElementById('submenu');
-            if (menu.style.display === 'block') {
-                menu.style.display = 'none';
-            } else {
-                menu.style.display = 'block';
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. Opening Hours Logic ---
+            const hoursSchedule = {
+                0: { day: 'Sunday', hours: 'Closed' },
+                1: { day: 'Monday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                2: { day: 'Tuesday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                3: { day: 'Wednesday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                4: { day: 'Thursday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                5: { day: 'Friday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                6: { day: 'Saturday', hours: '9:00am - 4:00pm', open: 9, close: 16 },
+            };
+
+            function updateOpeningStatus() {
+                const now = new Date();
+                const day = now.getDay();
+                const currentHour = now.getHours();
+                
+                const dayData = hoursSchedule[day];
+                const isOpen = dayData.hours !== 'Closed' && 
+                                currentHour >= dayData.open && 
+                                currentHour < dayData.close;
+
+                const statusClass = isOpen ? 'dot-open' : 'dot-closed';
+
+                document.querySelectorAll('.status-dot').forEach(dot => {
+                    dot.className = dot.className.replace(/dot-(open|closed)/g, '').trim() + ' ' + statusClass;
+                });
+
+                document.querySelectorAll('#current-day').forEach(el => el.textContent = dayData.day);
+                document.querySelectorAll('#current-hours').forEach(el => el.textContent = dayData.hours);
+                document.querySelectorAll('#mobile-current-day').forEach(el => el.textContent = dayData.day);
+                document.querySelectorAll('#mobile-current-hours').forEach(el => el.textContent = dayData.hours);
             }
-            return false;
-        }
+
+            updateOpeningStatus();
+
+            // --- 2. Mobile Navigation Logic ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileNav = document.getElementById('mobile-nav');
+            const closeMobileNav = document.getElementById('close-mobile-nav');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('open');
+                mobileMenuButton.classList.toggle('active');
+                mobileMenuButton.setAttribute('aria-expanded', mobileNav.classList.contains('open'));
+            });
+
+            closeMobileNav.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                mobileMenuButton.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', false);
+            });
+            
+            // --- 3. Desktop Dropdown Logic ---
+            const desktopDropdowns = [
+                document.getElementById('services-desktop-toggle'),
+                document.getElementById('areas-desktop-toggle')
+            ];
+
+            desktopDropdowns.forEach(container => {
+                const trigger = container.querySelector('a');
+                const dropdown = container.querySelector('.dropdown');
+
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isOpen = container.classList.toggle('open');
+                    dropdown.classList.toggle('open');
+                    trigger.setAttribute('aria-expanded', isOpen);
+
+                    desktopDropdowns.filter(d => d !== container).forEach(other => {
+                        other.classList.remove('open');
+                        other.querySelector('.dropdown').classList.remove('open');
+                        other.querySelector('a').setAttribute('aria-expanded', false);
+                    });
+                });
+            });
+
+            document.addEventListener('click', () => {
+                desktopDropdowns.forEach(container => {
+                    container.classList.remove('open');
+                    container.querySelector('.dropdown').classList.remove('open');
+                    container.querySelector('a').setAttribute('aria-expanded', false);
+                });
+            });
+
+            // --- 4. Generic Dropdown Toggle ---
+            window.toggleDropdown = (trigger, dropdownId) => {
+                const dropdown = document.getElementById(dropdownId);
+                const parent = trigger.parentNode;
+                const isOpen = dropdown.classList.toggle('open');
+                parent.classList.toggle('open', isOpen);
+                trigger.setAttribute('aria-expanded', isOpen);
+            };
+        });
 
         // Form submission
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
             e.preventDefault();
-            
+
             const formData = new FormData();
-            formData.append('access_key', '5b06d515-1c93-48db-a3f9-ca1007495dc2');
-            formData.append('name', document.getElementById('fullname').value);
-            formData.append('email', document.getElementById('email').value);
-            formData.append('phone', document.getElementById('phone').value);
-            formData.append('postal_code', document.getElementById('postal_code').value);
-            formData.append('message', document.getElementById('message').value);
-            
-            const submitBtn = document.querySelector('.submit-btn');
+            formData.append("access_key", "5b06d515-1c93-48db-a3f9-ca1007495dc2");
+            formData.append("name", document.getElementById("fullname").value);
+            formData.append("email", document.getElementById("email").value);
+            formData.append("phone", document.getElementById("phone").value);
+            formData.append("postal_code", document.getElementById("postal_code").value);
+            formData.append("message", document.getElementById("message").value);
+
+            const submitBtn = document.querySelector(".submit-btn");
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
+            submitBtn.textContent = "Sending...";
             submitBtn.disabled = true;
-            
+
             try {
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData,
                 });
-                
+
                 const result = await response.json();
-                
+
                 if (result.success) {
-                    window.location.href = 'thankyou/';
+                    window.location.href = "thankyou/";
                 } else {
-                    throw new Error('Failed to send message');
+                    throw new Error("Failed to send message");
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Failed to send message. Please try again.');
+                console.error("Error:", error);
+                alert("Failed to send message. Please try again.");
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             }
         });
-        </script>
-        <script src="header.js"></script>
-    </body>
+    </script>
+</body>
 </html>

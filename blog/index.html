@@ -2,39 +2,110 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Cleaning Tips & Advice Blog | Expert Guides Hampshire | Bantha Cleaning</title>
     <meta name="description" content="Expert cleaning tips, maintenance guides, and home care advice from Bantha Cleaning professionals. Get insider secrets to a spotless home in Hampshire & Surrey. Free advice!">
     <meta name="keywords" content="cleaning tips, house cleaning advice, cleaning blog Hampshire, home maintenance guides, cleaning hacks, professional cleaning tips, Winchester cleaning advice">
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Open Graph / Social Media -->
+    <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Cleaning Tips & Advice Blog | Expert Guides | Bantha Cleaning">
     <meta property="og:description" content="Expert cleaning tips, maintenance guides, and home care advice from professional cleaners. Free advice for Hampshire homes!">
     <meta property="og:url" content="https://banthacleaning.com/blog/">
     <meta property="og:image" content="https://banthacleaning.com/webimg/logo.png">
-    
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cleaning Tips & Advice Blog | Expert Guides | Bantha Cleaning">
     <meta name="twitter:description" content="Expert cleaning tips, maintenance guides, and home care advice from professional cleaners.">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://banthacleaning.com/blog/" />
-    
-    <!-- Geo Tags -->
+    <link rel="canonical" href="https://banthacleaning.com/blog/">
     <meta name="geo.region" content="GB-HAM">
     <meta name="geo.placename" content="Aldershot">
     <meta name="geo.position" content="51.2485;-0.7631">
-    
-    <link rel="stylesheet" href="../headerandfooter.css">
     <link rel="stylesheet" href="blog.css">
     <link rel="icon" type="image/png" href="../webimg/logontp.png">
     <link rel="shortcut icon" type="image/png" href="../webimg/logontp.png">
     <link rel="apple-touch-icon" href="../webimg/logontp.png">
-    
-    <!-- Structured Data - Blog Schema -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    colors: {
+                        "bantha-blue": "#007bff",
+                        "bantha-green": "#28a745",
+                        "bantha-dark": "#1f2937",
+                        "bantha-light": "#f9fafb",
+                        "primary-blue": "#1D4ED8",
+                        "secondary-green": "#059669"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .dropdown {
+            transition: all .3s ease-out;
+            max-height: 0;
+            overflow: hidden
+        }
+        .dropdown.open {
+            max-height: 500px
+        }
+        .mobile-overlay {
+            transition: transform .3s ease-in-out;
+            transform: translateX(100%);
+            z-index: 50
+        }
+        .mobile-overlay.open {
+            transform: translateX(0)
+        }
+        #mobile-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease
+        }
+        #mobile-backdrop.active {
+            opacity: 1;
+            pointer-events: auto
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px
+        }
+        .dot-open {
+            background-color: #28a745
+        }
+        .dot-closed {
+            background-color: #dc3545
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: #333;
+            transition: all .3s ease
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg)
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg)
+        }
+        @media (max-width:767px) {
+            body.menu-open {
+                overflow: hidden
+            }
+        }
+    </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -53,8 +124,6 @@
       "inLanguage": "en-GB"
     }
     </script>
-    
-    <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -75,8 +144,6 @@
       ]
     }
     </script>
-    
-    <!-- Organization Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -98,262 +165,375 @@
       ]
     }
     </script>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103">
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-17423777103');
+        function gtag(){dataLayer.push(arguments)}
+        window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","AW-17423777103")
     </script>
 </head>
-<body>
-    <header class="header">
-        <div class="header-container">
-            <!-- Logo -->
-            <div class="logo-section">
-                <a href="/" aria-label="Bantha Cleaning Home">
-                    <img src="../webimg/logo.png" alt="Bantha Cleaning - Professional Cleaning Services" class="logo" width="150" height="60">
+<body class="font-sans antialiased bg-bantha-light text-gray-800">
+
+<!-- NEW HEADER FROM ALDERSHOT SERVICE PAGE -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <div class="logo-section flex-shrink-0">
+                <a href="../" aria-label="Bantha Cleaning Home">
+                    <img src="https://banthacleaning.com/webimg/logo.png" alt="Bantha Cleaning - Professional Cleaning Services" class="h-10 w-auto" width="150" height="60">
                 </a>
             </div>
-
-            <!-- Opening Hours (Desktop) -->
-            <div class="opening-hours">
-                <h3 id="hours-title">Opening Hours Today</h3>
-                <div class="current-hours">
+            
+            <div class="hidden md:flex flex-col items-end text-sm text-gray-600">
+                <h3 class="font-semibold text-bantha-dark" id="hours-title">Opening Hours Today</h3>
+                <div class="flex items-center mt-1">
                     <span class="status-dot" id="status-dot" aria-hidden="true"></span>
-                    <span id="current-day"></span> - <span id="current-hours"></span>
+                    <span id="current-day" class="font-medium"></span>-<span id="current-hours" class="ml-1"></span>
                 </div>
             </div>
-
-            <!-- Navigation -->
-            <nav class="nav-menu" aria-label="Main navigation">
+            
+            <nav class="hidden md:flex nav-menu space-x-6 lg:space-x-10 text-bantha-dark font-medium" aria-label="Main navigation">
                 <div class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
+                    <a href="../" class="nav-link hover:text-bantha-blue transition duration-150">Home</a>
                 </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link services-toggle" aria-expanded="false">
+                <div class="nav-item relative group" id="services-desktop-toggle">
+                    <a href="#" class="nav-link flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
                         Services
-                        <span class="dropdown-arrow" aria-hidden="true">▼</span>
+                        <span class="dropdown-arrow ml-1 transition-transform duration-150 group-[.open]:rotate-180" aria-hidden="true">▼</span>
                     </a>
-                    <div class="dropdown">
-                        <a href="../generalcleaning/">General Cleaning</a>
-                        <a href="../deepcleaning/">Deep Cleaning</a>
+                    <div class="dropdown absolute left-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-xl z-50 origin-top-left group-[.open]:open">
+                        <a href="../generalcleaning/" class="block px-4 py-3 hover:bg-bantha-light">General Cleaning</a>
+                        <a href="../deepcleaning/" class="block px-4 py-3 hover:bg-bantha-light">Deep Cleaning</a>
                     </div>
                 </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link areas-toggle" aria-expanded="false">
+                <div class="nav-item relative group" id="areas-desktop-toggle">
+                    <a href="#" class="nav-link flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
                         Areas We Cover
-                        <span class="dropdown-arrow" aria-hidden="true">▼</span>
+                        <span class="dropdown-arrow ml-1 transition-transform duration-150 group-[.open]:rotate-180" aria-hidden="true">▼</span>
                     </a>
-                    <div class="dropdown">
-                        <a href="../winchester-service/">Winchester</a>
-                        <a href="../andover-service/">Andover</a>
-                        <a href="../basingstoke-service/">Basingstoke</a>
-                        <a href="../aldershot-service/">Aldershot</a>
-                        <a href="../fleet-service/">Fleet</a>
-                        <a href="../farnborough-service/">Farnborough</a>
-                        <a href="../farnham-service/">Farnham</a>
-                        <a href="../hook-service/">Hook</a>
-                        <a href="../woking-service/">Woking</a>
-                        <a href="../ash-vale-service/">Ash Vale</a>
+                    <div class="dropdown absolute right-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-xl z-50 origin-top-right group-[.open]:open">
+                        <a href="../winchester-service/" class="block px-4 py-3 hover:bg-bantha-light">Winchester</a>
+                        <a href="../andover-service/" class="block px-4 py-3 hover:bg-bantha-light">Andover</a>
+                        <a href="../basingstoke-service/" class="block px-4 py-3 hover:bg-bantha-light">Basingstoke</a>
+                        <a href="../aldershot-service/" class="block px-4 py-3 hover:bg-bantha-light">Aldershot</a>
+                        <a href="../fleet-service/" class="block px-4 py-3 hover:bg-bantha-light">Fleet</a>
+                        <a href="../farnborough-service/" class="block px-4 py-3 hover:bg-bantha-light">Farnborough</a>
+                        <a href="../farnham-service/" class="block px-4 py-3 hover:bg-bantha-light">Farnham</a>
+                        <a href="../hook-service/" class="block px-4 py-3 hover:bg-bantha-light">Hook</a>
+                        <a href="../woking-service/" class="block px-4 py-3 hover:bg-bantha-light">Woking</a>
+                        <a href="../ash-vale-service/" class="block px-4 py-3 hover:bg-bantha-light">Ash Vale</a>
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a href="../blog/" class="nav-link">Blog</a>
+                    <a href="../blog/" class="nav-link hover:text-bantha-blue transition duration-150 font-bold text-bantha-blue">Blog</a>
                 </div>
                 <div class="nav-item">
-                    <a href="../contact/" class="nav-link">Contact</a>
+                    <a href="../contact/" class="nav-link hover:text-bantha-blue transition duration-150">Contact</a>
                 </div>
             </nav>
-
-            <!-- Hamburger Menu -->
-            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+            
+            <button class="hamburger md:hidden p-2" aria-label="Toggle navigation menu" aria-expanded="false" id="mobile-menu-button">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
-
-        <!-- Mobile Overlay -->
-        <div class="mobile-overlay"></div>
-        
-        <!-- Mobile Opening Hours -->
-        <div class="mobile-opening-hours">
-            <h3>Opening Hours Today</h3>
-            <div class="current-hours">
-                <span class="status-dot" id="mobile-status-dot" aria-hidden="true"></span>
-                <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Header -->
-        <header class="section-header">
-            <h1>Bantha Cleaning Blog - Expert Tips & Guides</h1>
-            <p>Professional cleaning advice and home care tips for a spotless home</p>
-        </header>
-
-        <!-- Blog Container -->
-        <section class="container-blog">
-            <div class="grid-blog" id="gridBlogPosts" role="list">
-                <!-- Posts will be loaded here -->
-            </div>
-        </section>
-    </main>
-
-    <!-- Modal -->
-    <div id="modalPost" class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="titleModal">
-        <div class="container-modal">
-            <button class="btn-close-modal" onclick="closeModal()" aria-label="Close modal">&times;</button>
-            
-            <!-- Images Section -->
-            <div id="sectionModalImages" class="section-images-modal">
-                <!-- Images will be loaded here -->
-            </div>
-            
-            <!-- Content Section -->
-            <article class="body-modal">
-                <h2 id="titleModal" class="title-modal"></h2>
-                <div id="dateModal" class="date-modal"></div>
-                <div id="contentModal" class="text-content-modal"></div>
-                
-                <!-- Contact Section -->
-                <aside class="section-contact">
-                    <h3>📞 Get In Touch</h3>
-                    <div class="grid-contact">
-                        <div class="item-contact">
-                            <strong>Email</strong>
-                            <a href="mailto:banthacleaningcompany@gmail.com">banthacleaningcompany@gmail.com</a>
-                        </div>
-                        <div class="item-contact">
-                            <strong>Website</strong>
-                            <a href="https://banthacleaning.com" target="_blank" rel="noopener noreferrer">www.banthacleaning.com</a>
-                        </div>
-                        <div class="item-contact">
-                            <strong>Phone</strong>
-                            <a href="tel:+447825183734">07825 183734</a>
-                        </div>
-                        <div class="item-contact">
-                            <strong>Address</strong>
-                            <span>Victoria Rd<br>Aldershot, UK</span>
-                        </div>
-                    </div>
-                </aside>
-            </article>
-        </div>
     </div>
+</header>
 
-    <!-- Footer Section -->
-    <footer class="footer-section">
-        <div class="footer-container">
-            <!-- Column 1: Menu -->
-            <div class="footer-column">
-                <h3>Menu</h3>
-                <nav aria-label="Footer navigation">
-                    <div class="menu-item">
-                        <a href="/">Home</a>
+<!-- Mobile Navigation -->
+<div class="mobile-overlay fixed top-0 right-0 h-full w-64 bg-white shadow-2xl p-6 md:hidden flex flex-col justify-between overflow-y-auto" id="mobile-nav" style="max-height:100vh">
+    <div>
+        <div class="flex justify-between items-center mb-6">
+            <a href="../" class="text-xl font-bold text-bantha-dark">Menu</a>
+            <button class="text-2xl font-bold text-gray-500" id="close-mobile-nav">&times;</button>
+        </div>
+        
+        <div class="mobile-opening-hours mb-6 p-3 bg-bantha-light rounded-lg">
+            <h3 class="font-bold text-bantha-dark">Opening Hours Today</h3>
+            <div class="flex items-center mt-1 text-sm text-gray-600">
+                <span class="status-dot" id="mobile-status-dot" aria-hidden="true"></span>
+                <span id="mobile-current-day" class="font-medium"></span>-<span id="mobile-current-hours" class="ml-1"></span>
+            </div>
+        </div>
+        
+        <nav class="flex flex-col space-y-2 text-lg font-medium">
+            <a href="../" class="p-3 rounded-lg hover:bg-bantha-light">Home</a>
+            
+            <div class="services-toggle-mobile">
+                <button class="w-full text-left p-3 rounded-lg hover:bg-bantha-light flex justify-between items-center" aria-expanded="false" onclick='toggleDropdown(this,"mobile-services-dropdown")'>
+                    Services
+                    <span class="text-sm">▼</span>
+                </button>
+                <div class="dropdown ml-4 border-l pl-2 border-gray-200" id="mobile-services-dropdown">
+                    <a href="../generalcleaning/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">General Cleaning</a>
+                    <a href="../deepcleaning/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Deep Cleaning</a>
+                </div>
+            </div>
+            
+            <div class="areas-toggle-mobile">
+                <button class="w-full text-left p-3 rounded-lg hover:bg-bantha-light flex justify-between items-center" aria-expanded="false" onclick='toggleDropdown(this,"mobile-areas-dropdown")'>
+                    Areas We Cover
+                    <span class="text-sm">▼</span>
+                </button>
+                <div class="dropdown ml-4 border-l pl-2 border-gray-200" id="mobile-areas-dropdown">
+                    <a href="../winchester-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Winchester</a>
+                    <a href="../andover-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Andover</a>
+                    <a href="../basingstoke-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Basingstoke</a>
+                    <a href="../aldershot-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Aldershot</a>
+                    <a href="../fleet-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Fleet</a>
+                    <a href="../farnborough-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Farnborough</a>
+                    <a href="../farnham-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Farnham</a>
+                    <a href="../hook-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Hook</a>
+                    <a href="../woking-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Woking</a>
+                    <a href="../ash-vale-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Ash Vale</a>
+                </div>
+            </div>
+            
+            <a href="../blog/" class="p-3 rounded-lg hover:bg-bantha-light font-bold text-bantha-blue">Blog</a>
+            <a href="../contact/" class="p-3 rounded-lg hover:bg-bantha-light">Contact</a>
+        </nav>
+    </div>
+    
+    <div class="mt-6 sticky bottom-0 bg-white pt-4">
+        <a href="tel:+447825183734" class="block w-full text-center bg-bantha-green text-white py-3 rounded-lg font-bold shadow-lg hover:bg-green-700 transition duration-150">Call Now: 07825 183734</a>
+    </div>
+</div>
+
+<div class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden transition-opacity duration-300" id="mobile-backdrop" style="opacity:0;pointer-events:none"></div>
+
+<!-- ORIGINAL MAIN CONTENT KEPT AS IS -->
+<main>
+    <header class="section-header">
+        <h1>Bantha Cleaning Blog - Expert Tips & Guides</h1>
+        <p>Professional cleaning advice and home care tips for a spotless home</p>
+    </header>
+    <section class="container-blog">
+        <div class="grid-blog" id="gridBlogPosts" role="list"></div>
+    </section>
+</main>
+
+<!-- ORIGINAL MODAL KEPT AS IS -->
+<div id="modalPost" class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="titleModal">
+    <div class="container-modal">
+        <button class="btn-close-modal" onclick="closeModal()" aria-label="Close modal">&times;</button>
+        <div id="sectionModalImages" class="section-images-modal"></div>
+        <article class="body-modal">
+            <h2 id="titleModal" class="title-modal"></h2>
+            <div id="dateModal" class="date-modal"></div>
+            <div id="contentModal" class="text-content-modal"></div>
+            <aside class="section-contact">
+                <h3>📞 Get In Touch</h3>
+                <div class="grid-contact">
+                    <div class="item-contact">
+                        <strong>Email</strong>
+                        <a href="mailto:banthacleaningcompany@gmail.com">banthacleaningcompany@gmail.com</a>
                     </div>
+                    <div class="item-contact">
+                        <strong>Website</strong>
+                        <a href="https://banthacleaning.com" target="_blank" rel="noopener noreferrer">www.banthacleaning.com</a>
+                    </div>
+                    <div class="item-contact">
+                        <strong>Phone</strong>
+                        <a href="tel:+447825183734">07825 183734</a>
+                    </div>
+                    <div class="item-contact">
+                        <strong>Address</strong>
+                        <span>Victoria Rd<br>Aldershot, UK</span>
+                    </div>
+                </div>
+            </aside>
+        </article>
+    </div>
+</div>
+
+<!-- NEW FOOTER FROM ALDERSHOT SERVICE PAGE -->
+<footer class="bg-bantha-dark text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="footer-column">
+                <h3 class="text-xl font-bold mb-4">Menu</h3>
+                <nav aria-label="Footer navigation" class="space-y-2 text-gray-300">
                     <div class="menu-item">
-                        <a href="javascript:void(0);" onclick="showHideMenu()">Service</a>
-                        <div class="service-submenu" id="submenu">
+                        <a href="/" class="hover:text-bantha-blue transition duration-150">Home</a>
+                    </div>
+                    <div class="menu-item relative">
+                        <button onclick='toggleDropdown(this,"footer-services-dropdown")' class="flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
+                            Services
+                            <span class="text-xs ml-1 transition-transform duration-150 rotate-0 group-[.open]:rotate-180">▼</span>
+                        </button>
+                        <div class="dropdown text-sm mt-1 ml-4 border-l border-gray-600 pl-2" id="footer-services-dropdown">
                             <div class="submenu-item">
-                                <a href="../generalcleaning/">General Cleaning</a>
+                                <a href="../generalcleaning/" class="block py-1 hover:text-bantha-blue">General Cleaning</a>
                             </div>
                             <div class="submenu-item">
-                                <a href="../deepcleaning/">Deep Cleaning</a>
+                                <a href="../deepcleaning/" class="block py-1 hover:text-bantha-blue">Deep Cleaning</a>
                             </div>
                         </div>
                     </div>
                     <div class="menu-item">
-                        <a href="../blog/">Blog</a>
+                        <a href="../blog/" class="hover:text-bantha-blue transition duration-150 font-bold text-bantha-blue">Blog</a>
                     </div>
                     <div class="menu-item">
-                        <a href="../contact/">Contact</a>
+                        <a href="../contact/" class="hover:text-bantha-blue transition duration-150">Contact</a>
                     </div>
                 </nav>
             </div>
             
-            <!-- Column 2: Follow Us -->
             <div class="footer-column">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61578910409312" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
-                        <span class="social-icon" aria-hidden="true">📘</span>
-                        Facebook
+                <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                <div class="social-links space-y-2 text-gray-300">
+                    <a href="https://www.facebook.com/profile.php?id=61578910409312" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                        <span class="mr-2" aria-hidden="true">📘</span>Facebook
                     </a>
-                    <a href="https://www.instagram.com/banthacleaning/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
-                        <span class="social-icon" aria-hidden="true">📷</span>
-                        Instagram
+                    <a href="https://www.instagram.com/banthacleaning/" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                        <span class="mr-2" aria-hidden="true">📷</span>Instagram
                     </a>
-                    <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
-                        <span class="social-icon" aria-hidden="true">💬</span>
-                        WhatsApp
+                    <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
+                        <span class="mr-2" aria-hidden="true">💬</span>WhatsApp
                     </a>
                 </div>
             </div>
             
-            <!-- Column 3: Contact Info -->
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <address class="contact-info">
+            <div class="footer-column col-span-2 md:col-span-2">
+                <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                <address class="contact-info space-y-2 text-gray-300 not-italic">
                     <div class="contact-item">
-                        <div class="contact-label">Email</div>
+                        <div class="contact-label font-semibold">Email:</div>
                         <div class="contact-value">
-                            <a href="mailto:banthacleaningcompany@gmail.com">banthacleaningcompany@gmail.com</a>
+                            <a href="mailto:banthacleaningcompany@gmail.com" class="hover:text-bantha-blue transition duration-150">banthacleaningcompany@gmail.com</a>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-label">Phone</div>
+                        <div class="contact-label font-semibold">Phone:</div>
                         <div class="contact-value">
-                            <a href="tel:+447825183734">07825 183734</a>
+                            <a href="tel:+447825183734" class="hover:text-bantha-blue transition duration-150">07825 183734</a>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-label">Website</div>
-                        <div class="contact-value">
-                            <a href="https://banthacleaning.com" target="_blank" rel="noopener">banthacleaning.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">Address</div>
+                        <div class="contact-label font-semibold">Address:</div>
                         <div class="contact-value">Victoria Rd, Aldershot, UK</div>
                     </div>
                 </address>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Copyright Section -->
-    <section class="copyright-section">
-        <div class="copyright-container">
-            <div class="copyright-text">
-                © 2025 Bantha Cleaning Ltd. All rights reserved.
-            </div>
-            <nav class="footer-links" aria-label="Legal links">
-                <a href="#privacy-policy">Privacy Policy</a>
-                <a href="#terms-of-service">Terms of Service</a>
-                <a href="../contact/">Contact Us</a>
-            </nav>
-        </div>
-    </section>
+<section class="bg-gray-800 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+        <div class="copyright-text mb-2 md:mb-0">© 2025 Bantha Cleaning Ltd. All rights reserved.</div>
+        <nav class="footer-links space-x-4">
+            <a href="#privacy-policy" class="hover:text-white transition duration-150">Privacy Policy</a>
+            <a href="#terms-of-service" class="hover:text-white transition duration-150">Terms of Service</a>
+            <a href="../contact/" class="hover:text-white transition duration-150">Contact Us</a>
+        </nav>
+    </div>
+</section>
 
-    <script>
-        function showHideMenu() {
-            var menu = document.getElementById('submenu');
-            if (menu.style.display === 'block') {
-                menu.style.display = 'none';
-            } else {
-                menu.style.display = 'block';
-            }
-            return false;
+<!-- HEADER/FOOTER JAVASCRIPT FROM ALDERSHOT SERVICE PAGE -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- 1. Opening Hours Logic ---
+        const hoursSchedule = {
+            0: { day: 'Sunday', hours: 'Closed' },
+            1: { day: 'Monday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+            2: { day: 'Tuesday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+            3: { day: 'Wednesday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+            4: { day: 'Thursday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+            5: { day: 'Friday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+            6: { day: 'Saturday', hours: '9:00am - 4:00pm', open: 9, close: 16 },
+        };
+
+        function updateOpeningStatus() {
+            const now = new Date();
+            const day = now.getDay();
+            const currentHour = now.getHours();
+            
+            const dayData = hoursSchedule[day];
+            const isOpen = dayData.hours !== 'Closed' && 
+                            currentHour >= dayData.open && 
+                            currentHour < dayData.close;
+
+            const statusClass = isOpen ? 'dot-open' : 'dot-closed';
+
+            document.querySelectorAll('.status-dot').forEach(dot => {
+                dot.className = dot.className.replace(/dot-(open|closed)/g, '').trim() + ' ' + statusClass;
+            });
+
+            document.querySelectorAll('#current-day').forEach(el => el.textContent = dayData.day);
+            document.querySelectorAll('#current-hours').forEach(el => el.textContent = dayData.hours);
+            document.querySelectorAll('#mobile-current-day').forEach(el => el.textContent = dayData.day);
+            document.querySelectorAll('#mobile-current-hours').forEach(el => el.textContent = dayData.hours);
         }
-    </script>
-    <script src="../header.js"></script>
-    <script src="blog.js"></script>
+
+        updateOpeningStatus();
+
+        // --- 2. Mobile Navigation Logic ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNav = document.getElementById('mobile-nav');
+        const closeMobileNav = document.getElementById('close-mobile-nav');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            mobileMenuButton.classList.toggle('active');
+            mobileMenuButton.setAttribute('aria-expanded', mobileNav.classList.contains('open'));
+        });
+
+        closeMobileNav.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            mobileMenuButton.classList.remove('active');
+            mobileMenuButton.setAttribute('aria-expanded', false);
+        });
+        
+        // --- 3. Desktop Dropdown Logic ---
+        const desktopDropdowns = [
+            document.getElementById('services-desktop-toggle'),
+            document.getElementById('areas-desktop-toggle')
+        ];
+
+        desktopDropdowns.forEach(container => {
+            const trigger = container.querySelector('a');
+            const dropdown = container.querySelector('.dropdown');
+
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isOpen = container.classList.toggle('open');
+                dropdown.classList.toggle('open');
+                trigger.setAttribute('aria-expanded', isOpen);
+
+                desktopDropdowns.filter(d => d !== container).forEach(other => {
+                    other.classList.remove('open');
+                    other.querySelector('.dropdown').classList.remove('open');
+                    other.querySelector('a').setAttribute('aria-expanded', false);
+                });
+            });
+        });
+
+        document.addEventListener('click', () => {
+            desktopDropdowns.forEach(container => {
+                container.classList.remove('open');
+                container.querySelector('.dropdown').classList.remove('open');
+                container.querySelector('a').setAttribute('aria-expanded', false);
+            });
+        });
+
+        // --- 4. Generic Dropdown Toggle (Used for Mobile/Footer Menus) ---
+        window.toggleDropdown = (trigger, dropdownId) => {
+            const dropdown = document.getElementById(dropdownId);
+            const parent = trigger.parentNode;
+            const isOpen = dropdown.classList.toggle('open');
+            parent.classList.toggle('open', isOpen);
+            trigger.setAttribute('aria-expanded', isOpen);
+        };
+
+    });
+</script>
+
+<!-- ORIGINAL BLOG JAVASCRIPT -->
+<script src="blog.js"></script>
+
 </body>
 </html>

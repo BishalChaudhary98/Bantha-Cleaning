@@ -1,46 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Professional Cleaning Services in Winchester | House & Commercial Cleaners | Bantha Cleaning</title>
-    <meta
-      name="description"
-      content="Expert cleaning services in Winchester. Trusted house cleaners, deep cleaning & commercial cleaning for Cathedral city properties. 100% satisfaction guaranteed. Free quote! ☎️ 07825183734"
-    />
-    <meta
-      name="keywords"
-      content="Winchester cleaning services, house cleaners Winchester, commercial cleaning Winchester, domestic cleaners Winchester, Cathedral city cleaners, student accommodation cleaning Winchester"
-    />
-    <meta name="robots" content="index, follow" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐ Bantha Cleaning | Winchester's Expert Cleaners for Historic & Student Properties</title>
+    <meta name="description" content="Trusted cleaning services in Winchester. Expert house cleaners, deep cleaning & commercial cleaning for Cathedral city properties, including historic homes and student flats. Free quote! ☎️ 07825183734">
+    <meta name="keywords" content="Winchester cleaning services, house cleaners Winchester, commercial cleaning Winchester, domestic cleaners Winchester, Cathedral city cleaners, student accommodation cleaning Winchester, historic property cleaning">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://banthacleaning.com/winchester-service/">
+    <link rel="icon" type="image/png" href="../webimg/logontp.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Professional Cleaning Services in Winchester | Bantha Cleaning">
-    <meta property="og:description" content="Trusted cleaning services for Winchester's historic properties, student accommodations & businesses. 100% satisfaction guarantee.">
-    <meta property="og:url" content="https://banthacleaning.com/winchester-service/">
-    <meta property="og:image" content="https://banthacleaning.com/webimg/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        'bantha-blue': '#007bff',
+                        'bantha-green': '#28a745',
+                        'bantha-dark': '#1f2937',
+                        'bantha-light': '#f9fafb',
+                        'primary-blue': '#1D4ED8',
+                        'secondary-green': '#059669'
+                    }
+                }
+            }
+        }
+    </script>
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Professional Cleaning Services in Winchester | Bantha Cleaning">
-    <meta name="twitter:description" content="Trusted cleaning services for Winchester's historic properties, student accommodations & businesses. 100% satisfaction guarantee.">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://banthacleaning.com/winchester-service/" />
-    
-    <!-- Geo Tags -->
-    <meta name="geo.region" content="GB-HAM">
-    <meta name="geo.placename" content="Winchester">
-    <meta name="geo.position" content="51.0632;-1.3080">
-    
-    <link rel="stylesheet" href="../headerandfooter.css" />
-    <link rel="stylesheet" href="../area.css" />
-    <link rel="icon" type="image/png" href="../webimg/logontp.png" />
-    <link rel="shortcut icon" type="image/png" href="../webimg/logontp.png" />
-    <link rel="apple-touch-icon" href="../webimg/logontp.png" />
-    
-    <!-- Structured Data - LocalBusiness Schema -->
+    <style>
+        .dropdown {
+            transition: all 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .dropdown.open {
+            max-height: 500px;
+        }
+        .mobile-overlay {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            z-index: 40;
+        }
+        .mobile-overlay.open {
+            transform: translateX(0);
+        }
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .dot-open {
+            background-color: #28a745;
+        }
+        .dot-closed {
+            background-color: #dc3545;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+    </style>
+
+    <!-- JSON-LD Schemas -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -66,41 +121,16 @@
         "longitude": -1.3080
       },
       "areaServed": [
-        {
-          "@type": "City",
-          "name": "Winchester"
-        },
-        {
-          "@type": "City",
-          "name": "Alresford"
-        },
-        {
-          "@type": "City",
-          "name": "Bishops Waltham"
-        },
-        {
-          "@type": "City",
-          "name": "Wickham"
-        },
-        {
-          "@type": "City",
-          "name": "Basingstoke"
-        }
+        {"@type": "City", "name": "Winchester"},
+        {"@type": "City", "name": "Alresford"},
+        {"@type": "City", "name": "Bishops Waltham"},
+        {"@type": "City", "name": "Wickham"},
+        {"@type": "City", "name": "Basingstoke"}
       ],
       "priceRange": "££",
       "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "08:00",
-          "closes": "18:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "09:00",
-          "closes": "17:00"
-        }
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "18:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "17:00"}
       ],
       "sameAs": [
         "https://www.facebook.com/profile.php?id=61578910409312",
@@ -108,93 +138,6 @@
       ]
     }
     </script>
-    
-    <!-- Structured Data - Service Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "Cleaning Service",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Bantha Cleaning"
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Winchester"
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Winchester Cleaning Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "House Cleaning Winchester",
-              "description": "Regular residential cleaning for Winchester homes"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Commercial Cleaning Winchester",
-              "description": "Professional office and business cleaning in Winchester"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Deep Cleaning Winchester",
-              "description": "Thorough deep cleaning services for Winchester properties"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Student Accommodation Cleaning Winchester",
-              "description": "End-of-term and regular cleaning for University of Winchester students"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Historic Property Cleaning Winchester",
-              "description": "Specialist cleaning for Winchester's historic properties"
-            }
-          }
-        ]
-      }
-    }
-    </script>
-    
-    <!-- Breadcrumb Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://banthacleaning.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Winchester Cleaning Services",
-          "item": "https://banthacleaning.com/winchester-service/"
-        }
-      ]
-    }
-    </script>
-    
-    <!-- FAQ Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -221,353 +164,539 @@
           "name": "What areas of Winchester do you cover?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We serve all of Winchester including the city center, Stanmore, Weeke, Fulflood, St Cross, and surrounding villages like Alresford and Bishops Waltham."
+            "text": "We serve all of Winchester including the city center, Stanmore, Weeke, Fulflood, St Cross, and surrounding villages like Alresford, Bishops Waltham, and Wickham."
           }
         }
       ]
     }
     </script>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "AW-17423777103");
-    </script>
-  
-  </head>
-  <body>
-    <header class="header">
-      <div class="header-container">
-        <div class="logo-section">
-          <a href="/" aria-label="Bantha Cleaning Home">
-            <img src="../webimg/logo.png" alt="Bantha Cleaning Winchester - Professional House & Commercial Cleaning Services" class="logo" width="150" height="60" />
-          </a>
-        </div>
+</head>
+<body class="font-sans antialiased bg-bantha-light text-gray-800">
 
-        <div class="opening-hours">
-          <h3 id="hours-title">Opening Hours Today</h3>
-          <div class="current-hours">
-            <span class="status-dot" id="status-dot" aria-hidden="true"></span>
-            <span id="current-day"></span> - <span id="current-hours"></span>
-          </div>
-        </div>
+    <!-- Modern Header Section -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="logo-section flex-shrink-0">
+                    <a href="../" aria-label="Bantha Cleaning Home">
+                        <img src="https://banthacleaning.com/webimg/logo.png" 
+                             alt="Bantha Cleaning - Professional Cleaning Services Winchester" 
+                             class="h-10 w-auto" 
+                             width="150" 
+                             height="60">
+                    </a>
+                </div>
 
-        <nav class="nav-menu" aria-label="Main navigation">
-          <div class="nav-item">
-            <a href="/" class="nav-link">Home</a>
-          </div>
-          <div class="nav-item">
-            <a href="#" class="nav-link services-toggle" aria-expanded="false">
-              Services
-              <span class="dropdown-arrow" aria-hidden="true">▼</span>
-            </a>
-            <div class="dropdown">
-              <a href="../generalcleaning/">General Cleaning</a>
-              <a href="../deepcleaning/">Deep Cleaning</a>
+                <!-- Opening Hours (Desktop) -->
+                <div class="hidden md:flex flex-col items-end text-sm text-gray-600">
+                    <h3 class="font-semibold text-bantha-dark" id="hours-title">Opening Hours Today</h3>
+                    <div class="flex items-center mt-1">
+                        <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+                        <span id="current-day" class="font-medium"></span> - 
+                        <span id="current-hours" class="ml-1"></span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex nav-menu space-x-6 lg:space-x-10 text-bantha-dark font-medium" aria-label="Main navigation">
+                    <div class="nav-item">
+                        <a href="../" class="nav-link hover:text-bantha-blue transition duration-150">Home</a>
+                    </div>
+                    <div class="nav-item relative group" id="services-desktop-toggle">
+                        <a href="#" class="nav-link flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
+                            Services
+                            <span class="dropdown-arrow ml-1 transition-transform duration-150 group-[.open]:rotate-180" aria-hidden="true">▼</span>
+                        </a>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-xl z-50 origin-top-left group-[.open]:open">
+                            <a href="../generalcleaning/" class="block px-4 py-3 hover:bg-bantha-light">General Cleaning</a>
+                            <a href="../deepcleaning/" class="block px-4 py-3 hover:bg-bantha-light">Deep Cleaning</a>
+                        </div>
+                    </div>
+                    <div class="nav-item relative group" id="areas-desktop-toggle">
+                        <a href="#" class="nav-link flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
+                            Areas We Cover
+                            <span class="dropdown-arrow ml-1 transition-transform duration-150 group-[.open]:rotate-180" aria-hidden="true">▼</span>
+                        </a>
+                        <div class="dropdown absolute right-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-xl z-50 origin-top-right group-[.open]:open">
+                            <a href="./" class="block px-4 py-3 hover:bg-bantha-light font-bold text-bantha-blue">Winchester</a>
+                            <a href="../andover-service/" class="block px-4 py-3 hover:bg-bantha-light">Andover</a>
+                            <a href="../basingstoke-service/" class="block px-4 py-3 hover:bg-bantha-light">Basingstoke</a>
+                            <a href="../aldershot-service/" class="block px-4 py-3 hover:bg-bantha-light">Aldershot</a>
+                            <a href="../fleet-service/" class="block px-4 py-3 hover:bg-bantha-light">Fleet</a>
+                            <a href="../farnborough-service/" class="block px-4 py-3 hover:bg-bantha-light">Farnborough</a>
+                            <a href="../farnham-service/" class="block px-4 py-3 hover:bg-bantha-light">Farnham</a>
+                            <a href="../hook-service/" class="block px-4 py-3 hover:bg-bantha-light">Hook</a>
+                            <a href="../woking-service/" class="block px-4 py-3 hover:bg-bantha-light">Woking</a>
+                            <a href="../ash-vale-service/" class="block px-4 py-3 hover:bg-bantha-light">Ash Vale</a>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="../blog/" class="nav-link hover:text-bantha-blue transition duration-150">Blog</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="../contact/" class="nav-link hover:text-bantha-blue transition duration-150">Contact</a>
+                    </div>
+                </nav>
+
+                <!-- Hamburger Button -->
+                <button class="hamburger md:hidden p-2" aria-label="Toggle navigation menu" aria-expanded="false" id="mobile-menu-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-          </div>
-          <div class="nav-item">
-            <a href="#" class="nav-link areas-toggle" aria-expanded="false">
-              Areas We Cover
-              <span class="dropdown-arrow" aria-hidden="true">▼</span>
-            </a>
-            <div class="dropdown">
-              <a href="../winchester-service/">Winchester</a>
-              <a href="../andover-service/">Andover</a>
-              <a href="../basingstoke-service/">Basingstoke</a>
-              <a href="../aldershot-service/">Aldershot</a>
-              <a href="../fleet-service/">Fleet</a>
-              <a href="../farnborough/">Farnborough</a>
-              <a href="../farnham-service/">Farnham</a>
-              <a href="../hook-service/">Hook</a>
-              <a href="../woking-service/">Woking</a>
-              <a href="../ash-vale-service/">Ash Vale</a>
-            </div>
-          </div>
-          <div class="nav-item">
-            <a href="../blog/" class="nav-link">Blog</a>
-          </div>
-          <div class="nav-item">
-            <a href="../contact/" class="nav-link">Contact</a>
-          </div>
-        </nav>
-
-        <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-
-      <div class="mobile-overlay"></div>
-
-      <div class="mobile-opening-hours">
-        <h3>Opening Hours Today</h3>
-        <div class="current-hours">
-          <span class="status-dot" id="mobile-status-dot" aria-hidden="true"></span>
-          <span id="mobile-current-day"></span> - <span id="mobile-current-hours"></span>
         </div>
-      </div>
     </header>
 
-    <section class="welcome-section">
-      <div class="welcome-container">
-        <h1 class="welcome-title">Professional Cleaning Services in Winchester, Hampshire</h1>
-
-        <h2 class="welcome-subtitle">
-          Trusted House Cleaners & Commercial Cleaning Experts for Winchester's Historic Properties & Modern Homes
-        </h2>
-
-        <div class="welcome-content">
-          <article class="content-block">
-            <h3 class="block-title">Why Choose Bantha Cleaning for Your Winchester Property?</h3>
-            <p class="block-text">
-              <strong>Expert Cleaning for Winchester's Unique Properties:</strong> Our fully employed, background-checked team specializes in cleaning Winchester's diverse property types, from historic Cathedral Quarter homes to modern student accommodations near the University of Winchester. Professionally trained and comprehensively insured for all house, flat, and commercial cleaning, we deliver bespoke cleaning services tailored to your Winchester property's specific needs. Serving Winchester city center, Stanmore, Weeke, Fulflood, St Cross, and surrounding Hampshire villages including Alresford and Bishops Waltham.
-            </p>
-          </article>
-
-          <article class="content-block">
-            <h3 class="block-title">100% Satisfaction Guarantee for Winchester Residents</h3>
-            <p class="block-text">
-              <strong>Trusted Local Cleaning Partner:</strong>
-              We confidently offer a 100% Satisfaction Guarantee for all our professional cleaning services in Winchester. Whether you need regular house cleaning, deep cleaning for your historic property, or commercial cleaning for your Winchester business, you can trust that every visit will leave your space immaculate. This commitment has made us one of Winchester's most trusted cleaning companies, serving families, students, and businesses across the Cathedral city.
-            </p>
-          </article>
-
-          <article class="content-block">
-            <h3 class="block-title">Comprehensive Coverage Across Winchester and Hampshire</h3>
-            <p class="block-text">
-              <strong>Your Local Winchester Cleaning Specialists:</strong>
-              Based in Hampshire, our professional domestic and commercial cleaning services cover all of Winchester and extend to Aldershot, Camberley, Farnham, Basingstoke, Andover, and neighboring communities within our 60-mile service radius. We understand the unique cleaning requirements of Winchester's mix of medieval architecture, Victorian terraces, and contemporary developments.
-            </p>
-          </article>
-
-          <article class="content-block">
-            <h3 class="block-title">Supporting the Winchester Community</h3>
-            <p class="block-text">
-              <strong>More Than Clean Homes – Building Community Connections:</strong>
-              At Bantha Cleaning, we take pride in supporting Winchester's vibrant community. From helping University of Winchester students maintain their accommodations to ensuring local businesses present professional spaces, we're invested in the Cathedral city's continued prosperity and cleanliness.
-            </p>
-          </article>
-
-          <article class="content-block services-block">
-            <h3 class="block-title">Complete Cleaning Solutions for Winchester Properties</h3>
-            <div class="services-grid">
-              <div class="service-item">
-                <div class="service-icon" aria-hidden="true">🏠</div>
-                <span class="service-name">Regular House Cleaning</span>
-              </div>
-              <div class="service-item">
-                <div class="service-icon" aria-hidden="true">🚽</div>
-                <span class="service-name">Toilet Sanitization</span>
-              </div>
-              <div class="service-item">
-                <div class="service-icon" aria-hidden="true">🛁</div>
-                <span class="service-name">Bathroom Deep Clean</span>
-              </div>
-              <div class="service-item">
-                <div class="service-icon" aria-hidden="true">🔌</div>
-                <span class="service-name">Professional Vacuuming</span>
-              </div>
-              <div class="service-item">
-                <div class="service-icon" aria-hidden="true">✨</div>
-                <span class="service-name">Thorough Dusting</span>
-              </div>
-              <div class="service-item">
-                <div class="service-icon" aria-hidden="true">🧽</div>
-                <span class="service-name">Floor Mopping</span>
-              </div>
-              <div class="service-item">
-                <div class="service-icon" aria-hidden="true">🧹</div>
-                <span class="service-name">Hard Floor Sweeping</span>
-              </div>
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-overlay fixed top-0 right-0 h-full w-64 bg-white shadow-2xl p-6 md:hidden flex flex-col justify-between" id="mobile-nav">
+        <div>
+            <div class="flex justify-between items-center mb-6">
+                <a href="../" class="text-xl font-bold text-bantha-dark">Menu</a>
+                <button class="text-2xl font-bold text-gray-500" id="close-mobile-nav">&times;</button>
             </div>
-          </article>
 
-          <article class="content-block highlight-block">
-            <h3 class="block-title">Request Your Free Cleaning Quote in Winchester</h3>
-            <p class="block-text">
-              <strong>Complimentary, No-Obligation Estimate:</strong> Ready to experience professional cleaning in Winchester? Request your free quote today by completing our online form or calling us directly at <a href="tel:+447825183734">07825 183734</a>. Our responsive Winchester cleaning team will promptly schedule your consultation. Flexible appointments available for homes, student accommodations, and businesses throughout the Cathedral city.
-            </p>
-            <p class="closing-text">
-              <strong>Transform your Winchester property with professional cleaning from Bantha Cleaning – trusted by families, students, and businesses across Hampshire's historic capital!</strong>
-            </p>
-            <div class="cta-buttons">
-              <a href="../contact/" class="cta-btn primary" rel="noopener">Get Your Free Estimate</a>
-              <a href="tel:+447825183734" class="cta-btn secondary">Call: 07825 183734</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="location-specific-section">
-      <div class="welcome-container">
-        <h2>Winchester's Premier Cleaning Service</h2>
-
-        <div class="winchester-content">
-          <article class="content-block">
-            <h3>Historic Cathedral City Expertise</h3>
-            <p>
-              Winchester's rich history from Roman times to its role as England's ancient capital means diverse property types. We specialize in cleaning everything from medieval cottages near the Cathedral to modern student accommodations around the University of Winchester campus.
-            </p>
-            <p>
-              Our <a href="../generalcleaning/">general cleaning services</a> and <a href="../deepcleaning/">deep cleaning options</a> are perfect for Winchester's diverse property types.
-            </p>
-          </article>
-
-          <article class="content-block">
-            <h3>Areas We Serve in Winchester</h3>
-            <p>
-              Our Winchester cleaning services cover the city center around the Cathedral and High Street, Stanmore, Weeke, Fulflood, St Cross, and surrounding villages including Alresford, Bishops Waltham, and Wickham. We understand the unique cleaning needs of both historic properties and modern developments.
-            </p>
-          </article>
-
-          <article class="content-block">
-            <h3>Student & Family Focused</h3>
-            <p>
-              With the University of Winchester and Winchester College, we provide specialized cleaning for student accommodations, family homes, and professional properties. Our services include end-of-term deep cleans, regular maintenance for busy families, and commercial cleaning for local businesses.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="faq-section">
-      <div class="welcome-container">
-        <h2>Frequently Asked Questions - Winchester Cleaning Services</h2>
-        <div class="faq-content">
-          <article class="faq-item">
-            <h3>Do you clean historic properties in Winchester?</h3>
-            <p>
-              Yes, we specialize in cleaning historic properties throughout Winchester, using appropriate methods for period features and original materials found in the Cathedral area and surrounding historic neighborhoods. Our team is trained to handle delicate surfaces and architectural features common in Winchester's heritage buildings.
-            </p>
-          </article>
-          <article class="faq-item">
-            <h3>Do you provide student accommodation cleaning?</h3>
-            <p>
-              Absolutely! We offer regular cleaning and end-of-term deep cleans for University of Winchester students and other student accommodations throughout the city. We understand student schedules and offer flexible booking options during term time and holidays.
-            </p>
-          </article>
-          <article class="faq-item">
-            <h3>What areas of Winchester do you cover?</h3>
-            <p>
-              We serve all of Winchester including the city center, Stanmore, Weeke, Fulflood, St Cross, and surrounding villages like Alresford, Bishops Waltham, and Wickham. Our 60-mile service radius covers the wider Hampshire area.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer-section">
-      <div class="footer-container">
-        <div class="footer-column">
-          <h3>Quick Links</h3>
-          <nav aria-label="Footer navigation">
-            <div class="menu-item">
-              <a href="/">Home</a>
-            </div>
-            <div class="menu-item">
-              <a href="javascript:void(0);" onclick="showHideMenu()">Our Services</a>
-              <div class="service-submenu" id="submenu">
-                <div class="submenu-item">
-                  <a href="../generalcleaning/">General Cleaning</a>
+            <!-- Mobile Opening Hours -->
+            <div class="mobile-opening-hours mb-6 p-3 bg-bantha-light rounded-lg">
+                <h3 class="font-bold text-bantha-dark">Opening Hours Today</h3>
+                <div class="flex items-center mt-1 text-sm text-gray-600">
+                    <span class="status-dot" id="mobile-status-dot" aria-hidden="true"></span>
+                    <span id="mobile-current-day" class="font-medium"></span> - 
+                    <span id="mobile-current-hours" class="ml-1"></span>
                 </div>
-                <div class="submenu-item">
-                  <a href="../deepcleaning/">Deep Cleaning</a>
+            </div>
+
+            <!-- Mobile Menu Links -->
+            <nav class="flex flex-col space-y-2 text-lg font-medium">
+                <a href="../" class="p-3 rounded-lg hover:bg-bantha-light">Home</a>
+                
+                <div class="services-toggle-mobile">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-bantha-light flex justify-between items-center" 
+                            aria-expanded="false" 
+                            onclick="toggleDropdown(this, 'mobile-services-dropdown')">
+                        Services
+                        <span class="text-sm">▼</span>
+                    </button>
+                    <div class="dropdown ml-4 border-l pl-2 border-gray-200" id="mobile-services-dropdown">
+                        <a href="../generalcleaning/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">General Cleaning</a>
+                        <a href="../deepcleaning/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Deep Cleaning</a>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="menu-item">
-              <a href="../blog/">Cleaning Tips Blog</a>
-            </div>
-            <div class="menu-item">
-              <a href="../contact/">Contact Us</a>
-            </div>
-          </nav>
+
+                <div class="areas-toggle-mobile">
+                    <button class="w-full text-left p-3 rounded-lg hover:bg-bantha-light flex justify-between items-center" 
+                            aria-expanded="false" 
+                            onclick="toggleDropdown(this, 'mobile-areas-dropdown')">
+                        Areas We Cover
+                        <span class="text-sm">▼</span>
+                    </button>
+                    <div class="dropdown ml-4 border-l pl-2 border-gray-200" id="mobile-areas-dropdown">
+                        <a href="./" class="block py-2 text-base text-bantha-blue font-bold">Winchester</a>
+                        <a href="../andover-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Andover</a>
+                        <a href="../basingstoke-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Basingstoke</a>
+                        <a href="../aldershot-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Aldershot</a>
+                        <a href="../fleet-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Fleet</a>
+                        <a href="../farnborough-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Farnborough</a>
+                        <a href="../farnham-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Farnham</a>
+                        <a href="../hook-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Hook</a>
+                        <a href="../woking-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Woking</a>
+                        <a href="../ash-vale-service/" class="block py-2 text-base text-gray-600 hover:text-bantha-blue">Ash Vale</a>
+                    </div>
+                </div>
+
+                <a href="../blog/" class="p-3 rounded-lg hover:bg-bantha-light">Blog</a>
+                <a href="../contact/" class="p-3 rounded-lg hover:bg-bantha-light">Contact</a>
+            </nav>
         </div>
 
-        <div class="footer-column">
-          <h3>Connect With Us</h3>
-          <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=61578910409312" class="social-link" rel="noopener" target="_blank" aria-label="Follow us on Facebook">
-              <span class="social-icon" aria-hidden="true">📘</span>
-              Facebook
-            </a>
-            <a href="https://www.instagram.com/banthacleaning/" class="social-link" rel="noopener" target="_blank" aria-label="Follow us on Instagram">
-              <span class="social-icon" aria-hidden="true">📷</span>
-              Instagram
-            </a>
-            <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="social-link" rel="noopener" target="_blank" aria-label="Contact us on WhatsApp">
-              <span class="social-icon" aria-hidden="true">💬</span>
-              WhatsApp
-            </a>
-          </div>
+        <!-- Mobile Call Button -->
+        <a href="tel:+447825183734" class="block w-full text-center bg-bantha-green text-white py-3 rounded-lg font-bold shadow-lg hover:bg-green-700 transition duration-150">
+            Call Now: 07825 183734
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gray-900 bg-cover bg-center py-20 flex items-center justify-center shadow-lg" style="background-image: url('../webimg/housecleaning.webp')">
+        <div class="absolute inset-0 bg-bantha-dark opacity-70"></div>
+        <div class="hero-content relative z-10 text-center max-w-4xl px-4">
+            <span class="inline-block text-sm font-semibold uppercase tracking-wider text-white bg-bantha-blue py-2 px-4 rounded-full mb-4 shadow-lg">
+                Serving Winchester City & Surrounding Villages
+            </span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
+                Winchester's Expert Cleaning Services for <span class="text-bantha-green">Historic Homes</span> & Student Flats
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-200 mb-8">
+                Specialist, Insured, and Trusted Domestic & Commercial Cleaners serving the <strong>Cathedral City</strong>.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="../contact/" class="inline-block bg-bantha-blue hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition duration-300 transform hover:scale-105">
+                    Request Your Free Quote
+                </a>
+                <a href="tel:+447825183734" class="inline-block bg-bantha-green hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition duration-300 transform hover:scale-105">
+                    Call: 07825 183734
+                </a>
+            </div>
+            <p class="mt-4 text-sm text-gray-300 font-medium">
+                100% Satisfaction Guaranteed | Fully Insured & Trained Team
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Key Benefits Section -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <article class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-bantha-blue transition transform hover:scale-[1.02] duration-300">
+                <div class="text-5xl mb-4 text-bantha-blue">🏛️</div>
+                <h3 class="text-2xl font-bold text-bantha-dark mb-3">Historic Property Specialists</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    We understand Winchester's unique architecture. Our team is trained to handle delicate period features, from medieval cottages to Victorian terraces in St Cross and Fulflood. We use appropriate methods for period features and original materials.
+                </p>
+                <a href="../deepcleaning/" class="mt-4 inline-block text-bantha-blue font-semibold hover:text-bantha-green transition">
+                    Explore Deep Cleaning for Period Homes →
+                </a>
+            </article>
+
+            <article class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-bantha-blue transition transform hover:scale-[1.02] duration-300">
+                <div class="text-5xl mb-4 text-bantha-blue">🎓</div>
+                <h3 class="text-2xl font-bold text-bantha-dark mb-3">University Student Accommodation</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    We offer specialized regular maintenance and <strong>end-of-term deep cleans</strong> for students near the University of Winchester. Fast, efficient, and reliable service to ensure deposit returns or smooth tenant turnover for landlords.
+                </p>
+                <p class="mt-3 text-sm text-gray-500 italic">
+                    "Perfect for end-of-tenancy requirements."
+                </p>
+            </article>
+
+            <article class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-bantha-blue transition transform hover:scale-[1.02] duration-300">
+                <div class="text-5xl mb-4 text-bantha-blue">✅</div>
+                <h3 class="text-2xl font-bold text-bantha-dark mb-3">City-Wide Guarantee & Coverage</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Serving all of Winchester—from the City Centre to Weeke and Stanmore—plus surrounding villages like Alresford and Bishops Waltham. Our <strong>100% Satisfaction Guarantee</strong> means we stand behind the immaculate results every time.
+                </p>
+                <a href="../contact/" class="mt-4 inline-block text-bantha-blue font-semibold hover:text-bantha-green transition">
+                    Get a Consultation →
+                </a>
+            </article>
         </div>
 
-        <div class="footer-column">
-          <h3>Contact Bantha Cleaning</h3>
-          <address class="contact-info">
-            <div class="contact-item">
-              <div class="contact-label">Email</div>
-              <div class="contact-value">
-                <a href="mailto:banthacleaningcompany@gmail.com">banthacleaningcompany@gmail.com</a>
-              </div>
+        <!-- Services Included Section -->
+        <section class="mb-16 p-10 bg-bantha-light rounded-xl shadow-inner">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-bantha-dark mb-10">
+                Complete Cleaning Solutions for Winchester Properties
+            </h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-6 text-center">
+                <div class="service-item">
+                    <div class="text-5xl mb-2" aria-hidden="true">🏠</div>
+                    <span class="font-medium text-gray-700">Regular House Clean</span>
+                </div>
+                <div class="service-item">
+                    <div class="text-5xl mb-2" aria-hidden="true">🚽</div>
+                    <span class="font-medium text-gray-700">Toilet Sanitization</span>
+                </div>
+                <div class="service-item">
+                    <div class="text-5xl mb-2" aria-hidden="true">🛁</div>
+                    <span class="font-medium text-gray-700">Bathroom Deep Clean</span>
+                </div>
+                <div class="service-item">
+                    <div class="text-5xl mb-2" aria-hidden="true">🔌</div>
+                    <span class="font-medium text-gray-700">Professional Vacuuming</span>
+                </div>
+                <div class="service-item">
+                    <div class="text-5xl mb-2" aria-hidden="true">✨</div>
+                    <span class="font-medium text-gray-700">Thorough Dusting</span>
+                </div>
+                <div class="service-item">
+                    <div class="text-5xl mb-2" aria-hidden="true">🧽</div>
+                    <span class="font-medium text-gray-700">Floor Mopping</span>
+                </div>
+                <div class="service-item">
+                    <div class="text-5xl mb-2" aria-hidden="true">🏢</div>
+                    <span class="font-medium text-gray-700">Commercial Services</span>
+                </div>
             </div>
-            <div class="contact-item">
-              <div class="contact-label">Phone</div>
-              <div class="contact-value">
-                <a href="tel:+447825183734">07825 183734</a>
-              </div>
+            <div class="text-center mt-8">
+                <a href="../deepcleaning/" class="text-lg font-semibold text-bantha-blue underline hover:text-bantha-green transition">
+                    View all deep cleaning services available in Winchester →
+                </a>
             </div>
-            <div class="contact-item">
-              <div class="contact-label">Website</div>
-              <div class="contact-value">
-                <a href="https://banthacleaning.com" target="_blank" rel="noopener">banthacleaning.com</a>
-              </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="p-10 bg-bantha-blue rounded-xl shadow-2xl text-center mb-16">
+            <h2 class="text-4xl font-extrabold text-white mb-3">
+                Ready to Schedule Your Winchester Cleaning?
+            </h2>
+            <p class="text-xl text-gray-200 mb-8">
+                Get your free, no-obligation estimate today. We offer flexible times and fast response.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="../contact/" class="inline-block bg-white text-bantha-blue font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    Request Price Quote
+                </a>
+                <a href="tel:+447825183734" class="inline-block bg-bantha-green text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-green-700 transition duration-300 transform hover:scale-105">
+                    📞 07825 183734
+                </a>
             </div>
-            <div class="contact-item">
-              <div class="contact-label">Address</div>
-              <div class="contact-value">
-                Victoria Rd, Aldershot, Hampshire, UK
-                <br>
-                <small>Serving Winchester & Hampshire</small>
-              </div>
+        </section>
+    </main>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-bantha-light">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-bantha-dark mb-10">
+                Frequently Asked Questions - Winchester
+            </h2>
+            
+            <div class="faq-content space-y-4">
+                <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden" id="faq-1">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left font-semibold text-lg hover:bg-gray-50 focus:outline-none" onclick="toggleFaq('faq-1')">
+                        Do you clean historic properties in Winchester?
+                        <span class="faq-icon text-2xl text-bantha-blue transform rotate-0 transition duration-300">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="p-5 pt-0 text-gray-600 leading-relaxed">
+                            Yes, we specialize in cleaning historic properties throughout Winchester, using appropriate methods for period features and original materials found in the Cathedral area and surrounding historic neighborhoods. Our team is trained to handle delicate surfaces and architectural features common in Winchester's heritage buildings.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden" id="faq-2">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left font-semibold text-lg hover:bg-gray-50 focus:outline-none" onclick="toggleFaq('faq-2')">
+                        Do you provide student accommodation cleaning?
+                        <span class="faq-icon text-2xl text-bantha-blue transform rotate-0 transition duration-300">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="p-5 pt-0 text-gray-600 leading-relaxed">
+                            Absolutely! We offer regular cleaning and end-of-term deep cleans for University of Winchester students and other student accommodations throughout the city. We understand student schedules and offer flexible booking options during term time and holidays.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-xl shadow-md overflow-hidden" id="faq-3">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left font-semibold text-lg hover:bg-gray-50 focus:outline-none" onclick="toggleFaq('faq-3')">
+                        What areas of Winchester do you cover?
+                        <span class="faq-icon text-2xl text-bantha-blue transform rotate-0 transition duration-300">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="p-5 pt-0 text-gray-600 leading-relaxed">
+                            We serve all of Winchester including the city center, Stanmore, Weeke, Fulflood, St Cross, and surrounding villages like Alresford, Bishops Waltham, and Wickham. Our 60-mile service radius covers the wider Hampshire area.
+                        </p>
+                    </div>
+                </div>
             </div>
-          </address>
         </div>
-      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-bantha-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                
+                <!-- Menu Column -->
+                <div class="footer-column">
+                    <h3 class="text-xl font-bold mb-4">Menu</h3>
+                    <nav aria-label="Footer navigation" class="space-y-2 text-gray-300">
+                        <div class="menu-item"><a href="/" class="hover:text-bantha-blue transition duration-150">Home</a></div>
+                        <div class="menu-item relative">
+                            <button onclick="toggleDropdown(this, 'footer-services-dropdown')" class="flex items-center hover:text-bantha-blue transition duration-150" aria-expanded="false">
+                                Services <span class="text-xs ml-1 transition-transform duration-150 rotate-0 group-[.open]:rotate-180">▼</span>
+                            </button>
+                            <div class="dropdown text-sm mt-1 ml-4 border-l border-gray-600 pl-2" id="footer-services-dropdown">
+                                <div class="submenu-item"><a href="../generalcleaning/" class="block py-1 hover:text-bantha-blue">General Cleaning</a></div>
+                                <div class="submenu-item"><a href="../deepcleaning/" class="block py-1 font-bold text-bantha-blue">Deep Cleaning</a></div>
+                            </div>
+                        </div>
+                        <div class="menu-item"><a href="../blog/" class="hover:text-bantha-blue transition duration-150">Blog</a></div>
+                        <div class="menu-item"><a href="../contact/" class="hover:text-bantha-blue transition duration-150">Contact</a></div>
+                    </nav>
+                </div>
+                
+                <!-- Follow Us Column -->
+                <div class="footer-column">
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="social-links space-y-2 text-gray-300">
+                        <a href="https://www.facebook.com/profile.php?id=61578910409312" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                            <span class="mr-2" aria-hidden="true">📘</span>Facebook
+                        </a>
+                        <a href="https://www.instagram.com/banthacleaning/" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                            <span class="mr-2" aria-hidden="true">📷</span>Instagram
+                        </a>
+                        <a href="https://wa.me/qr/BPCNNI6GNVEWA1" class="flex items-center hover:text-bantha-blue transition duration-150" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
+                            <span class="mr-2" aria-hidden="true">💬</span>WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info Column -->
+                <div class="footer-column col-span-2 md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <address class="contact-info space-y-2 text-gray-300 not-italic">
+                        <div class="contact-item">
+                            <div class="contact-label font-semibold">Email:</div>
+                            <div class="contact-value"><a href="mailto:banthacleaningcompany@gmail.com" class="hover:text-bantha-blue transition duration-150">banthacleaningcompany@gmail.com</a></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label font-semibold">Phone:</div>
+                            <div class="contact-value"><a href="tel:+447825183734" class="hover:text-bantha-blue transition duration-150">07825 183734</a></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label font-semibold">Address:</div>
+                            <div class="contact-value">Victoria Rd, Aldershot, UK</div>
+                        </div>
+                    </address>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <section class="copyright-section">
-      <div class="copyright-container">
-        <div class="copyright-text">
-          © 2025 Bantha Cleaning Ltd. All rights reserved. | Professional Cleaning Services Winchester
+    <!-- Copyright Section -->
+    <section class="bg-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <div class="copyright-text mb-2 md:mb-0">
+                © 2025 Bantha Cleaning Ltd. All rights reserved.
+            </div>
+            <nav class="footer-links space-x-4">
+                <a href="#privacy-policy" class="hover:text-white transition duration-150">Privacy Policy</a>
+                <a href="#terms-of-service" class="hover:text-white transition duration-150">Terms of Service</a>
+                <a href="../contact/" class="hover:text-white transition duration-150">Contact Us</a>
+            </nav>
         </div>
-        <nav class="footer-links" aria-label="Legal links">
-          <a href="#privacy-policy">Privacy Policy</a>
-          <a href="#terms-of-service">Terms of Service</a>
-          <a href="../contact/">Contact Us</a>
-        </nav>
-      </div>
     </section>
 
+    <!-- Unified JavaScript for Interactivity and Logic -->
     <script>
-      function showHideMenu() {
-        var menu = document.getElementById("submenu");
-        if (menu.style.display === "block") {
-          menu.style.display = "none";
-        } else {
-          menu.style.display = "block";
-        }
-        return false;
-      }
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. Opening Hours Logic ---
+            const hoursSchedule = {
+                0: { day: 'Sunday', hours: 'Closed' },
+                1: { day: 'Monday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                2: { day: 'Tuesday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                3: { day: 'Wednesday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                4: { day: 'Thursday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                5: { day: 'Friday', hours: '8:00am - 6:00pm', open: 8, close: 18 },
+                6: { day: 'Saturday', hours: '9:00am - 4:00pm', open: 9, close: 16 },
+            };
+
+            function updateOpeningStatus() {
+                const now = new Date();
+                const day = now.getDay(); // 0 (Sunday) to 6 (Saturday)
+                const currentHour = now.getHours();
+                
+                const dayData = hoursSchedule[day];
+                const isOpen = dayData.hours !== 'Closed' && 
+                                currentHour >= dayData.open && 
+                                currentHour < dayData.close;
+
+                const statusClass = isOpen ? 'dot-open' : 'dot-closed';
+
+                // Update all status elements
+                document.querySelectorAll('.status-dot').forEach(dot => {
+                    // Remove existing status classes and add the new one
+                    dot.className = dot.className.replace(/dot-(open|closed)/g, '').trim() + ' ' + statusClass;
+                });
+
+                document.querySelectorAll('#current-day').forEach(el => el.textContent = dayData.day);
+                document.querySelectorAll('#current-hours').forEach(el => el.textContent = dayData.hours);
+                document.querySelectorAll('#mobile-current-day').forEach(el => el.textContent = dayData.day);
+                document.querySelectorAll('#mobile-current-hours').forEach(el => el.textContent = dayData.hours);
+            }
+
+            // Run the status check immediately
+            updateOpeningStatus();
+
+            // --- 2. Mobile Navigation Logic ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileNav = document.getElementById('mobile-nav');
+            const closeMobileNav = document.getElementById('close-mobile-nav');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('open');
+                mobileMenuButton.classList.toggle('active');
+                mobileMenuButton.setAttribute('aria-expanded', mobileNav.classList.contains('open'));
+            });
+
+            closeMobileNav.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                mobileMenuButton.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', false);
+            });
+            
+            // --- 3. Desktop Dropdown Logic ---
+            const desktopDropdowns = [
+                document.getElementById('services-desktop-toggle'),
+                document.getElementById('areas-desktop-toggle')
+            ];
+
+            desktopDropdowns.forEach(container => {
+                const trigger = container.querySelector('a');
+                const dropdown = container.querySelector('.dropdown');
+
+                // Toggle on click
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevent document click listener from firing immediately
+                    
+                    const isOpen = container.classList.toggle('open');
+                    dropdown.classList.toggle('open');
+                    trigger.setAttribute('aria-expanded', isOpen);
+
+                    // Close other desktop dropdowns
+                    desktopDropdowns.filter(d => d !== container).forEach(other => {
+                        other.classList.remove('open');
+                        other.querySelector('.dropdown').classList.remove('open');
+                        other.querySelector('a').setAttribute('aria-expanded', false);
+                    });
+                });
+            });
+
+            // Close desktop dropdowns when clicking anywhere else
+            document.addEventListener('click', () => {
+                desktopDropdowns.forEach(container => {
+                    container.classList.remove('open');
+                    container.querySelector('.dropdown').classList.remove('open');
+                    container.querySelector('a').setAttribute('aria-expanded', false);
+                });
+            });
+
+
+            // --- 4. FAQ Accordion Logic ---
+            window.toggleFaq = (id) => {
+                const item = document.getElementById(id);
+                const answer = item.querySelector('.faq-answer');
+                const wasOpen = item.classList.contains('active');
+
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-answer').style.maxHeight = 0;
+                });
+                
+                // Open the clicked one if it was closed
+                if (!wasOpen) {
+                    item.classList.add('active');
+                    // Set maxHeight to scrollHeight to allow transition (scrollHeight is the full height)
+                    answer.style.maxHeight = answer.scrollHeight + 'px'; 
+                } else {
+                    // This path is usually not needed because all are closed first, but it prevents 
+                    // a slight flicker if clicking the same one quickly.
+                    answer.style.maxHeight = 0;
+                }
+            };
+            
+            // --- 5. Generic Dropdown Toggle (Used for Mobile/Footer Menus) ---
+            window.toggleDropdown = (trigger, dropdownId) => {
+                const dropdown = document.getElementById(dropdownId);
+                const parent = trigger.parentNode;
+                const isOpen = dropdown.classList.toggle('open');
+                parent.classList.toggle('open', isOpen);
+                trigger.setAttribute('aria-expanded', isOpen);
+            };
+
+        });
     </script>
-    <script src="../header.js"></script>
-  </body>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17423777103"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","AW-17423777103")</script>
+</body>
 </html>
