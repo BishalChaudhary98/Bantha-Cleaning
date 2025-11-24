@@ -97,6 +97,108 @@
         .hamburger.active span:nth-child(3) {
             transform: translateY(-8px) rotate(-45deg);
         }
+
+        /* Notification Banner Styles */
+.notification-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.notification-banner.show {
+    transform: translateY(0);
+}
+
+.notification-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.notification-text {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+.notification-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Adjust body padding when notification is shown */
+body.notification-active {
+    padding-top: 60px;
+}
+
+/* Adjust header when notification is shown */
+body.notification-active header {
+    top: 60px;
+}
+
+@media (max-width: 640px) {
+    .notification-banner {
+        padding: 0.75rem;
+    }
+    
+    .notification-content {
+        flex-direction: row;
+    }
+    
+    .notification-text {
+        font-size: 0.875rem;
+    }
+    
+    body.notification-active {
+        padding-top: 70px;
+    }
+    
+    body.notification-active header {
+        top: 70px;
+    }
+}
     </style>
 
     <!-- Your existing JSON-LD schemas -->
@@ -393,6 +495,19 @@
             Call Now: 07825 183734
         </a>
     </div>
+
+    <!-- Notification Banner -->
+<div class="notification-banner" id="notificationBanner">
+    <div class="notification-content">
+        <div class="notification-text">
+            <span class="notification-icon" aria-hidden="true">💼</span>
+            <span>Currently no job openings. Please check back soon.</span>
+        </div>
+        <button class="notification-close" id="closeNotification" aria-label="Close notification">
+            ×
+        </button>
+    </div>
+</div>
 
     <!-- Keep all your existing main content sections -->
     <section class="info-contact-section">
@@ -776,6 +891,73 @@
                 submitBtn.disabled = false;
             }
         });
+
+        // --- Notification Banner Logic with Daily Cookie ---
+(function() {
+    const banner = document.getElementById('notificationBanner');
+    const closeBtn = document.getElementById('closeNotification');
+    
+    // Cookie helper functions
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+    
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+    
+    function shouldShowNotification() {
+        const lastClosed = getCookie('notificationClosed');
+        if (!lastClosed) return true;
+        
+        const closedDate = new Date(lastClosed);
+        const today = new Date();
+        
+        // Reset at midnight - check if it's a different day
+        return closedDate.toDateString() !== today.toDateString();
+    }
+    
+    function showNotification() {
+        setTimeout(() => {
+            banner.classList.add('show');
+            document.body.classList.add('notification-active');
+        }, 500); // Delay before showing (500ms after page load)
+    }
+    
+    function hideNotification() {
+        banner.classList.remove('show');
+        document.body.classList.remove('notification-active');
+        
+        // Set cookie with today's date
+        const today = new Date().toISOString();
+        setCookie('notificationClosed', today, 1); // Expires in 1 day
+    }
+    
+    // Check if notification should be shown
+    if (shouldShowNotification()) {
+        showNotification();
+    }
+    
+    // Close button event
+    closeBtn.addEventListener('click', hideNotification);
+    
+    // Optional: Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && banner.classList.contains('show')) {
+            hideNotification();
+        }
+    });
+})();
     </script>
 </body>
 </html>
